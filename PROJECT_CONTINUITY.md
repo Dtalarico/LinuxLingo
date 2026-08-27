@@ -122,6 +122,7 @@ Do not maintain a duplicate command list here.
 - Preserve separation between code and data.
 - Prefer real-world command scenarios over trivia.
 - Keep the repository structure lean.
+- Keep JSON and other project files human-readable when practical.
 - Update this file at the end of every substantial work session.
 - When starting a new ChatGPT conversation, provide this file first so the assistant can recover project state.
 - After reading this file, the assistant should ask only for the current project files needed for the requested task.
@@ -178,6 +179,8 @@ At the end of each substantial work session, update:
 - Created and committed `linuxlingo.py`
 - Created and committed `scenario_bank.json`
 - Seeded the initial scenario bank with MVP drills and real Linux coursework/practice commands
+- Expanded `scenario_bank.json` from LL001–LL016 to LL001–LL042 with Week 2 NOS-120 material
+- Restored `scenario_bank.json` to human-readable pretty formatting after the expansion
 
 ### Changed
 - Adaptive tutoring concepts are now part of the master specification.
@@ -185,13 +188,18 @@ At the end of each substantial work session, update:
 - MVP remains intentionally simple and terminal-first.
 - `scenario_bank.json` is the authoritative training-data file.
 - `linuxlingo.py` is the authoritative engine file.
+- Week 2 coursework harvesting added command, documentation, shell, text-search, user-management, and related drills.
+- Some quiz-derived items were added during the Week 2 harvest; these may be reviewed or cleaned up later if the bank should contain only command-focused material.
+- Human-readable repository formatting is preferred for files David will inspect directly.
 
 ### Current State
 - GitHub repository structure is established.
 - All five canonical project files now exist.
 - Initial Python MVP exists.
-- Initial JSON command/scenario bank exists.
-- Python still contains hard-coded drills and has not yet been refactored to load the JSON bank.
+- `scenario_bank.json` currently contains 42 drills, LL001–LL042.
+- `scenario_bank.json` is human-readable and pretty formatted.
+- `linuxlingo.py` is unchanged and still contains 5 hard-coded drills.
+- Python has not yet been refactored to load the JSON bank.
 
 ### Next Exact Task
 Refactor `linuxlingo.py` so it loads drills from `scenario_bank.json`.
