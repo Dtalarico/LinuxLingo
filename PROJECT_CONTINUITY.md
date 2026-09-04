@@ -1,205 +1,155 @@
 # LinuxLingo Project Continuity
 
 ## Purpose
-This file is the operational handoff document for LinuxLingo.
+This file is the operational handoff document for LinuxLingo. It lets a fresh development or AI-assisted session recover the current state without needing the full conversation history.
 
-Its job is to let a fresh ChatGPT instance quickly recover the current project state without needing the full conversation history.
-
-This file must be updated at the end of every substantial LinuxLingo work session.
+Update this file after every substantial LinuxLingo work session.
 
 ---
 
 ## Current Project State
 - Project: LinuxLingo
-- Repository: GitHub
-- Development phase: Initial build / repository setup
-- Current workflow: GitHub web interface
-- Older concept and design documents have been moved into an Archive folder in Google Drive.
-- Active development now continues from the current GitHub repository.
+- Repository: GitHub (`Dtalarico/LinuxLingo`)
+- Development model: terminal-first Python MVP
+- GitHub is the active source of truth.
+- Older concept/design documents remain archived reference material in Google Drive.
+- `scenario_bank.json` is the authoritative training corpus.
+- `linuxlingo.py` now loads drills from `scenario_bank.json`; the original five hard-coded drills have been removed from the engine.
 
 ---
 
 ## Canonical Project Files
-- README.md
-- PROJECT_CONTINUITY.md
-- LINUXLINGO_MASTER_SPEC.md
-- linuxlingo.py
-- scenario_bank.json
+- `README.md`
+- `PROJECT_CONTINUITY.md`
+- `LINUXLINGO_MASTER_SPEC.md`
+- `linuxlingo.py`
+- `scenario_bank.json`
+
+`.gitignore` is repository infrastructure rather than a canonical design/data document.
 
 ---
 
-## File Responsibilities
+## Architecture
 
-### README.md
+### `linuxlingo.py`
+Python CLI engine. Program behavior belongs here.
+
+### `scenario_bank.json`
+Canonical drill/training bank. Commands, prompts, valid answers, tags, explanations, source provenance, difficulty, and validation metadata belong here.
+
+### `LINUXLINGO_MASTER_SPEC.md`
+Canonical architecture, learning philosophy, training model, and long-term doctrine.
+
+### `README.md`
 Public-facing project overview.
 
-### PROJECT_CONTINUITY.md
-Tracks:
-- current project state
-- recent decisions
-- what was completed
-- what is in progress
-- next exact task
-
-This file should stay concise.
-
-### LINUXLINGO_MASTER_SPEC.md
-Canonical architecture, learning philosophy, tier structure, design decisions, and long-term project doctrine.
-
-### linuxlingo.py
-Python CLI engine and program logic.
-
-### scenario_bank.json
-Canonical command and drill bank.
-
-All commands, drills, scenarios, answers, tags, explanations, difficulty levels, and related training data belong here.
-
-The growing command bank should NOT be duplicated inside this continuity file.
+### `PROJECT_CONTINUITY.md`
+Operational state, recent decisions, completed work, and next exact task. Keep it concise; do not duplicate the drill bank here.
 
 ---
 
-## Current Architecture Decisions
-- LinuxLingo is a terminal-first Linux command fluency trainer.
-- The MVP is a Python CLI application.
-- Program logic stays separate from training data.
-- `linuxlingo.py` contains engine logic.
-- `scenario_bank.json` contains the growing drill bank.
-- Real Linux commands used in coursework, labs, and practice should be harvested into the command bank.
-- Avoid unnecessary extra project files.
-- GitHub is the active source of truth for development.
-- Google Drive is used for archived design material and reference documents.
-- GitHub web interface will be used for now.
-- GitHub Desktop and command-line Git can be introduced later.
+## Learning Doctrine
+LinuxLingo treats Linux as a language:
+
+- commands = vocabulary
+- flags/options = grammar
+- pipelines/chaining = sentence structure
+- real terminal tasks = conversation
+
+Core progression:
+
+**problem → reasoning → command → execution → verification**
+
+The learner should move from recognition to independent production and eventually to multi-step operational fluency.
 
 ---
 
-## Learning Design
-LinuxLingo trains command-line fluency through:
-- active recall
-- command production
-- repetition
-- scenario-based drills
-- error correction
-- progressive difficulty
-- eventual multi-command fluency missions
+## Adaptive Tutoring Relationship
+LinuxLingo is the CLI practice/retrieval layer of a larger learning workflow.
 
-Core model:
+Current learning pipeline:
 
-problem → command → execution
+**SOURCE CONTENT → INGESTION → ADAPTIVE TEACHING → LINUXLINGO RETRIEVAL/PRACTICE**
 
-Commands are vocabulary.  
-Flags are grammar.  
-Pipelines are sentence structure.
+The adaptive tutoring method should teach concepts before LinuxLingo treats them as expected independent recall. LinuxLingo then provides repeated command production, varied scenarios, delayed retrieval, error repair, and eventually mastery tracking.
+
+Important distinction:
+
+1. **Retrieval failure:** the learner was taught the concept but cannot independently retrieve/apply it.
+2. **Coverage failure:** the source/course/lab asks for a command or concept that the learner has not actually been introduced to.
+
+These are different failures and should not be scored or remediated identically. A future mastery system should track source exposure/coverage separately from retrieval performance.
 
 ---
 
-## Command Bank Continuity
-- Canonical bank file: `scenario_bank.json`
-- New commands and drills are added there.
-- This continuity file should record only:
-  - bank status
-  - naming conventions
-  - category decisions
-  - structural changes
-  - next bank-development task
+## Source Ingestion Doctrine
+The largest scaling bottleneck is no longer merely writing quiz logic; it is converting trustworthy Linux source material into structured training data efficiently and accurately.
 
-Do not maintain a duplicate command list here.
+Potential sources include:
+- coursework and labs
+- Linux Essentials / LPIC material
+- RHCSA study material
+- real administration tasks
+- troubleshooting sessions
+- authoritative command documentation
+
+Ingestion should preserve provenance. Drills should record enough source information to determine what material introduced the concept and to distinguish taught material from unsupported assessment demands.
+
+Do not blindly convert every quiz fact into a command drill. Prefer material that contributes to command-line fluency, operational reasoning, self-rescue, or required exam recall.
 
 ---
 
-## Current Development Priorities
-1. Continue expanding `scenario_bank.json` with real Linux commands and scenarios.
-2. Refactor `linuxlingo.py` so drills load from `scenario_bank.json` instead of remaining hard-coded.
-3. Preserve the current schema unless a deliberate architecture change is made.
-4. Continue adding adaptive tutoring behavior gradually after the MVP data-loading flow works.
-5. Continue building toward multi-question and multi-step Linux sessions later.
+## Current Bank State
+- `scenario_bank.json` contains 42 drills: LL001–LL042.
+- Bank is human-readable / pretty formatted.
+- Week 2 NOS-120 material is represented.
+- Some quiz-derived recognition items remain and may later be reviewed for value.
+- Recent coursework has introduced additional filesystem/navigation material (wildcards/globbing, Vim fundamentals, paths, copying/moving/removing, brace expansion, command discovery) that has not yet been harvested into the bank.
+
+---
+
+## Engine State
+Completed on 2026-09-04:
+- Removed the five hard-coded drill objects from `linuxlingo.py`.
+- Engine now loads the authoritative JSON bank at startup.
+- Engine validates the top-level bank shape and required drill fields.
+- Engine accepts all bank question types through a common prompt/answer loop.
+- Basic whitespace normalization is used for answer comparison.
+- Feedback uses the bank explanation field.
+- User-entered commands are no longer automatically executed by the MVP.
+
+Important limitation:
+- `check` fields remain in the bank as future state-validation metadata, but the current safe MVP does not execute arbitrary learner input or state checks.
+- Exact/normalized answer comparison is still simplistic and will eventually need richer validation.
 
 ---
 
 ## Working Rules
-- Work one step at a time during implementation.
+- One implementation step at a time.
 - Do not unnecessarily redesign working architecture.
-- Preserve separation between code and data.
-- Prefer real-world command scenarios over trivia.
-- Keep the repository structure lean.
-- Keep JSON and other project files human-readable when practical.
-- Update this file at the end of every substantial work session.
-- When starting a new ChatGPT conversation, provide this file first so the assistant can recover project state.
-- After reading this file, the assistant should ask only for the current project files needed for the requested task.
+- Preserve code/data separation.
+- Prefer real operational scenarios over trivia.
+- Keep files human-readable.
+- Preserve source provenance.
+- Do not count an unintroduced concept as ordinary retrieval failure.
+- Use state-based validation eventually where safe and appropriate.
+- GitHub is the active development source of truth.
 
 ---
 
-## Fresh-Session File Request Protocol
-
-After reading `PROJECT_CONTINUITY.md`, a fresh ChatGPT instance should determine which current files are needed before continuing.
-
-Ask for files based on the task:
-
-### If working on the Python engine
-Request:
-- `linuxlingo.py`
-- `scenario_bank.json`
-
-### If working on the command or drill bank
-Request:
-- `scenario_bank.json`
-
-Request `LINUXLINGO_MASTER_SPEC.md` only if the task depends on architecture, schema, tiering, or learning-design rules.
-
-### If changing architecture or project doctrine
-Request:
-- `LINUXLINGO_MASTER_SPEC.md`
-
-Also request:
-- `linuxlingo.py`
-- `scenario_bank.json`
-
-if the proposed architecture change affects current implementation or data structure.
-
-### If updating public project documentation
-Request:
-- `README.md`
-
-Also request other files only if needed to verify current implementation or project state.
-
-### If only discussing next steps
-`PROJECT_CONTINUITY.md` may be sufficient by itself.
-
-Do not ask for every project file automatically.
-
-Always inspect the current authoritative file before changing it.
+## Completed
+- Repository structure established.
+- Canonical project files created.
+- Initial Python MVP created.
+- Scenario bank created and expanded LL001–LL042.
+- Week 2 NOS-120 commands/coursework harvested.
+- Adaptive tutoring principles incorporated into project doctrine.
+- Python MVP refactored to load the JSON bank rather than five hard-coded drills.
 
 ---
 
-## Session Update Format
-At the end of each substantial work session, update:
+## Current Priority
+Bring the documentation up to the current learning architecture and then harvest the newly learned NOS-120 filesystem/navigation material into `scenario_bank.json`.
 
-### Completed
-- Created and committed `LINUXLINGO_MASTER_SPEC.md`
-- Created and committed `linuxlingo.py`
-- Created and committed `scenario_bank.json`
-- Seeded the initial scenario bank with MVP drills and real Linux coursework/practice commands
-- Expanded `scenario_bank.json` from LL001–LL016 to LL001–LL042 with Week 2 NOS-120 material
-- Restored `scenario_bank.json` to human-readable pretty formatting after the expansion
-
-### Changed
-- Adaptive tutoring concepts are now part of the master specification.
-- Future multi-question and multi-step Linux sessions are part of the long-term architecture.
-- MVP remains intentionally simple and terminal-first.
-- `scenario_bank.json` is the authoritative training-data file.
-- `linuxlingo.py` is the authoritative engine file.
-- Week 2 coursework harvesting added command, documentation, shell, text-search, user-management, and related drills.
-- Some quiz-derived items were added during the Week 2 harvest; these may be reviewed or cleaned up later if the bank should contain only command-focused material.
-- Human-readable repository formatting is preferred for files David will inspect directly.
-
-### Current State
-- GitHub repository structure is established.
-- All five canonical project files now exist.
-- Initial Python MVP exists.
-- `scenario_bank.json` currently contains 42 drills, LL001–LL042.
-- `scenario_bank.json` is human-readable and pretty formatted.
-- `linuxlingo.py` is unchanged and still contains 5 hard-coded drills.
-- Python has not yet been refactored to load the JSON bank.
-
-### Next Exact Task
-Refactor `linuxlingo.py` so it loads drills from `scenario_bank.json`.
+## Next Exact Task
+Audit and expand `scenario_bank.json` with the recent NOS-120 material, beginning with navigation/filesystem/globbing commands actually encountered in the labs, while preserving the existing schema and source provenance.
