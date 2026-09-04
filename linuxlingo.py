@@ -1,66 +1,81 @@
+import json
 import random
-import subprocess
+from pathlib import Path
 
-drills = [
-    {
-        "task": "Create a directory named workspace",
-        "check": "test -d workspace",
-        "solution": "mkdir workspace"
-    },
-    {
-        "task": "Create a file named notes.txt",
-        "check": "test -f notes.txt",
-        "solution": "touch notes.txt"
-    },
-    {
-        "task": "Create a directory named project inside ~/workspace",
-        "check": "test -d ~/workspace/project",
-        "solution": "mkdir ~/workspace/project"
-    },
-    {
-        "task": "Create a file called log.txt inside workspace",
-        "check": "test -f workspace/log.txt",
-        "solution": "touch workspace/log.txt"
-    },
-    {
-        "task": "Create two directories inside project named data and logs",
-        "check": "test -d project/data && test -d project/logs",
-        "solution": "mkdir -p project/{data,logs}"
-    }
-]
+BANK_PATH = Path(__file__).with_name("scenario_bank.json")
 
-score = 0
-attempts = 0
 
-print("\nWelcome to LinuxLingo MVP\n")
-print("Type 'exit' anytime to quit.\n")
+def load_drills():
+    with BANK_PATH.open("r", encoding="utf-8") as handle:
+        drills = json.load(handle)
 
-while True:
-    drill = random.choice(drills)
+    if not isinstance(drills, list):
+        raise ValueError("scenario_bank.json must contain a top-level JSON list.")
 
-    print("\nTASK:")
-    print(drill["task"])
+    required = {"id", "prompt", "answers"}
+    usable = []
 
-    user_input = input("\nEnter command: ")
+    for drill in drills:
+        if not isinstance(drill, dict):
+            continue
+        if not required.issubset(drill):
+            continue
+        if not isinstance(drill["answers"], list) or not drill["answers"]:
+            continue
+        usable.append(drill)
 
-    if user_input.strip() == "exit":
-        break
+    if not usable:
+        raise ValueError("No usable drills were found in scenario_bank.json.")
 
-    try:
-        subprocess.run(user_input, shell=True)
-    except Exception:
-        pass
+    return usable
 
-    check = subprocess.run(drill["check"], shell=True)
 
-    attempts += 1
+def normalize(text):
+    """Normalize whitespace for answer comparison without changing command meaning."""
+    return " ".join(text.strip().split())
 
-    if check.returncode == 0:
-        score += 1
-        print("\nPASS")
-    else:
-        print("\nFAIL")
-        print("Expected command example:")
-        print(drill["solution"])
 
-    print(f"\nScore: {score}/{attempts}")
+def is_correct(user_input, answers):
+    submitted = normalize(user_input)
+    return any(submitted == normalize(answer) for answer in answers)
+
+
+def main():
+    drills = load_drills()
+    score = 0
+    attempts = 0
+
+    print("\nWelcome to LinuxLingo MVP\n")
+    print(f"Loaded {len(drills)} drills from scenario_bank.json.")
+    print("Type 'exit' anytime to quit.\n")
+
+    while True:
+        drill = random.choice(drills)
+
+        print(f"\n[{drill['id']}] {drill.get('category', 'uncategorized')} | {drill.get('difficulty', 'unrated')}")
+        print("TASK:")
+        print(drill["prompt"])
+
+        user_input = input("\nEnter command or answer: ")
+
+        if user_input.strip().lower() == "exit":
+            break
+
+        attempts += 1
+
+        if is_correct(user_input, drill["answers"]):
+            score += 1
+            print("\nPASS")
+        else:
+            print("\nFAIL")
+            print("Expected answer example:")
+            print(drill["answers"][0])
+            explanation = drill.get("explanation")
+            if explanation:
+                print(explanation)
+
+        print(f"\nScore: {score}/{attempts}")
+
+
+if __name__ == "__main__":
+    main()
