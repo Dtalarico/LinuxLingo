@@ -10,11 +10,11 @@ Update this file after every substantial LinuxLingo work session.
 ## Current Project State
 - Project: LinuxLingo
 - Repository: GitHub (`Dtalarico/LinuxLingo`)
-- Development model: terminal-first Python MVP
+- Development model: terminal-first Python MVP growing toward an adaptive terminal-fluency system.
 - GitHub is the active source of truth.
-- Older concept/design documents remain archived reference material in Google Drive.
+- Older concept/design documents remain archived reference material in Google Drive and should be consulted when revising canonical architecture so the current MVP does not accidentally redefine the original project vision.
 - `scenario_bank.json` is the authoritative training corpus.
-- `linuxlingo.py` now loads drills from `scenario_bank.json`; the original five hard-coded drills have been removed from the engine.
+- `linuxlingo.py` loads drills from `scenario_bank.json`; the original five hard-coded drills have been removed from the engine.
 
 ---
 
@@ -40,7 +40,7 @@ Python CLI engine. Program behavior belongs here.
 Canonical drill/training bank. Commands, prompts, valid answers, tags, explanations, source provenance, difficulty, and validation metadata belong here.
 
 ### `LINUXLINGO_MASTER_SPEC.md`
-Canonical architecture, learning philosophy, training model, and long-term doctrine.
+Canonical architecture, learning philosophy, training model, and long-term doctrine. It describes LinuxLingo the system, not merely the present MVP implementation.
 
 ### `README.md`
 Public-facing project overview.
@@ -64,6 +64,8 @@ Core progression:
 
 The learner should move from recognition to independent production and eventually to multi-step operational fluency.
 
+The original project vision remains authoritative: Duolingo-style micro-drills create enough meaningful repetitions to build command-line muscle memory, then progress through Basic, Fluency/Bridge, and Professional/RHCSA-oriented operation.
+
 ---
 
 ## Adaptive Tutoring Relationship
@@ -71,9 +73,9 @@ LinuxLingo is the CLI practice/retrieval layer of a larger learning workflow.
 
 Current learning pipeline:
 
-**SOURCE CONTENT → INGESTION → ADAPTIVE TEACHING → LINUXLINGO RETRIEVAL/PRACTICE**
+**SOURCE CONTENT → INGESTION → ADAPTIVE TEACHING → LINUXLINGO RETRIEVAL/PRACTICE → TERMINAL EXECUTION → FEEDBACK → DELAYED/VARIED RETESTING → FLUENCY**
 
-The adaptive tutoring method should teach concepts before LinuxLingo treats them as expected independent recall. LinuxLingo then provides repeated command production, varied scenarios, delayed retrieval, error repair, and eventually mastery tracking.
+The adaptive tutoring method should teach concepts before LinuxLingo treats them as expected independent recall.
 
 Important distinction:
 
@@ -87,53 +89,74 @@ These are different failures and should not be scored or remediated identically.
 ## Source Ingestion Doctrine
 The largest scaling bottleneck is no longer merely writing quiz logic; it is converting trustworthy Linux source material into structured training data efficiently and accurately.
 
-Potential sources include:
-- coursework and labs
-- Linux Essentials / LPIC material
-- RHCSA study material
-- real administration tasks
-- troubleshooting sessions
-- authoritative command documentation
+Potential sources include coursework/labs, Linux Essentials/LPIC material, RHCSA study material, real administration tasks, troubleshooting sessions, and authoritative command documentation.
 
-Ingestion should preserve provenance. Drills should record enough source information to determine what material introduced the concept and to distinguish taught material from unsupported assessment demands.
+Ingestion should preserve provenance. Do not blindly convert every quiz fact into a command drill.
 
-Do not blindly convert every quiz fact into a command drill. Prefer material that contributes to command-line fluency, operational reasoning, self-rescue, or required exam recall.
+Preferred coursework workflow:
+
+**LAB → LEARN → HARVEST → COMMIT → MOVE ON**
+
+Harvest after each lab when practical rather than after several labs; this preserves more granular data about exposure, reasoning, difficulty, and genuinely new material.
 
 ---
 
 ## Current Bank State
 - `scenario_bank.json` contains 70 drills: LL001–LL070.
-- 28 new drills were harvested on 2026-09-04 from the day's NOS-120 work.
+- 28 drills, LL043–LL070, were harvested from the September 4 NOS-120 work.
 - New material includes navigation, wildcard/globbing behavior, `type`, PATH/`which`, nested directory creation, quoting/escaping spaces, `cp`, recursive `cp`, `mv`, `rm`, `rmdir`, recursive directory removal, brace expansion, `ls -lh`, Vim fundamentals, shell history, and Bash built-in help.
-- Week 2 NOS-120 material remains represented in LL001–LL042.
 - Some quiz-derived recognition items remain and may later be reviewed for value.
 
 ---
 
 ## Engine State
-Completed on 2026-09-04:
-- Removed the five hard-coded drill objects from `linuxlingo.py`.
-- Engine now loads the authoritative JSON bank at startup.
+- Engine loads the authoritative JSON bank at startup.
+- Original five hard-coded drills are removed.
 - Engine validates the top-level bank shape and required drill fields.
-- Engine accepts all bank question types through a common prompt/answer loop.
 - Basic whitespace normalization is used for answer comparison.
 - Feedback uses the bank explanation field.
-- User-entered commands are no longer automatically executed by the MVP.
+- User-entered commands are not automatically executed.
 
 Important limitation:
-- `check` fields remain in the bank as future state-validation metadata, but the current safe MVP does not execute arbitrary learner input or state checks.
-- Exact/normalized answer comparison is still simplistic and will eventually need richer validation.
+- `check` fields remain as future state-validation metadata, but the current safe MVP does not execute arbitrary learner input or state checks.
+- Exact/normalized answer comparison remains simplistic and will eventually need richer validation.
+
+---
+
+## Master Spec Revision — 2026-09-05
+`LINUXLINGO_MASTER_SPEC.md` was substantially revised after rereading the archived LinuxLingo concept documents in Google Drive.
+
+The revision deliberately preserves the original overarching design rather than allowing the current Python/JSON MVP to redefine the project. It now explicitly integrates:
+
+- original Duolingo-style micro-drill / command-muscle-memory concept
+- Linux-as-language doctrine
+- Basic → Fluency/Bridge → Premium/Professional progression
+- active recall and terminal production
+- varied question-format architecture
+- terminal-first implementation strategy
+- source ingestion and provenance
+- adaptive teaching relationship
+- coverage failure vs retrieval failure
+- per-lab harvesting workflow
+- current safe MVP limitations
+- mastery evidence and delayed retesting
+- future state validation and fluency missions
+- distinction between current implementation and long-term system design
+
+David intends to reread the revised Master Spec personally and review it for fidelity.
 
 ---
 
 ## Working Rules
 - One implementation step at a time.
 - Do not unnecessarily redesign working architecture.
+- Preserve original design intent when modernizing documentation.
 - Preserve code/data separation.
 - Prefer real operational scenarios over trivia.
 - Keep files human-readable.
 - Preserve source provenance.
 - Do not count an unintroduced concept as ordinary retrieval failure.
+- Harvest useful coursework after each lab when practical.
 - Use state-based validation eventually where safe and appropriate.
 - GitHub is the active development source of truth.
 
@@ -143,24 +166,24 @@ Important limitation:
 - Repository structure established.
 - Canonical project files created.
 - Initial Python MVP created.
-- Scenario bank created and expanded through LL070.
-- Week 2 NOS-120 commands/coursework harvested.
-- September 4 NOS-120 work harvested into 28 additional drills, LL043–LL070.
-- Adaptive tutoring principles incorporated into project doctrine.
-- Python MVP refactored to load the JSON bank rather than five hard-coded drills.
+- Python MVP refactored to load JSON rather than five hard-coded drills.
+- Scenario bank expanded through LL070.
+- September 4 NOS-120 material harvested into LL043–LL070.
+- Archived LinuxLingo concept documents reread to recover original overarching design intent.
+- Master Spec revised on 2026-09-05 to integrate original vision with current adaptive/ingestion architecture.
+- Continuity updated to reflect the revised architecture and per-lab harvesting workflow.
 
 ---
 
-## Deferred Documentation Work
-Not for the current work session:
-- Revise `LINUXLINGO_MASTER_SPEC.md` again so it coherently reflects the current ingestion architecture, adaptive tutoring relationship, source-coverage vs retrieval-failure distinction, and current engine/bank state.
-- Revise `README.md` after the Master Spec revision so the public-facing overview accurately summarizes the canonical architecture without duplicating the full specification.
+## Remaining Documentation Work
+- David should personally reread/review the revised `LINUXLINGO_MASTER_SPEC.md` for fidelity; revise if his review identifies anything that does not accurately represent the project.
+- Revise `README.md` after Master Spec review so the public-facing overview accurately summarizes the canonical architecture without duplicating the full specification.
 - Add the current Adaptive Infrastructure Tutoring Prompt to the repository as its own Markdown file and reference it from the appropriate canonical documentation.
 
 ---
 
 ## Current Priority
-The project is in a good stopping state for 2026-09-04. Documentation revisions and prompt-file addition are deliberately deferred to a later session.
+The Master Spec revision previously listed as deferred is now complete pending David's review.
 
 ## Next Exact Task
-When LinuxLingo development resumes, decide whether to begin with the deferred documentation work or continue harvesting newly encountered NOS-120 material into `scenario_bank.json`, preserving the existing schema and source provenance.
+David reviews `LINUXLINGO_MASTER_SPEC.md`. After that review, incorporate any corrections he identifies. If approved, update `README.md` to match the canonical architecture, then add/reference the standalone Adaptive Infrastructure Tutoring Prompt Markdown file. Continue harvesting new NOS-120 material after each lab as it is completed.
