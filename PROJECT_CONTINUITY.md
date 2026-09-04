@@ -27,6 +27,8 @@ Update this file after every substantial LinuxLingo work session.
 
 `.gitignore` is repository infrastructure rather than a canonical design/data document.
 
+A future canonical Markdown file will preserve the current Adaptive Infrastructure Tutoring Prompt in the repository and will be referenced by the appropriate project documentation.
+
 ---
 
 ## Architecture
@@ -148,8 +150,16 @@ Important limitation:
 
 ---
 
+## Deferred Documentation Work
+Not for the current work session:
+- Revise `LINUXLINGO_MASTER_SPEC.md` again so it coherently reflects the current ingestion architecture, adaptive tutoring relationship, source-coverage vs retrieval-failure distinction, and current engine/bank state.
+- Revise `README.md` after the Master Spec revision so the public-facing overview accurately summarizes the canonical architecture without duplicating the full specification.
+- Add the current Adaptive Infrastructure Tutoring Prompt to the repository as its own Markdown file and reference it from the appropriate canonical documentation.
+
+---
+
 ## Current Priority
-Bring the documentation up to the current learning architecture and then harvest the newly learned NOS-120 filesystem/navigation material into `scenario_bank.json`.
+The project is in a good stopping state for 2026-09-04. Documentation revisions and prompt-file addition are deliberately deferred to a later session.
 
 ## Next Exact Task
-Audit and expand `scenario_bank.json` with the recent NOS-120 material, beginning with navigation/filesystem/globbing commands actually encountered in the labs, while preserving the existing schema and source provenance.
+When LinuxLingo development resumes, decide whether to begin with the deferred documentation work or harvest the recent NOS-120 navigation/filesystem/globbing material into `scenario_bank.json`, preserving the existing schema and source provenance.
