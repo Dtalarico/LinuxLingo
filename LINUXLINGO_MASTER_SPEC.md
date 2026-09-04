@@ -6,65 +6,56 @@
 **Document:** `LINUXLINGO_MASTER_SPEC.md`  
 **Role:** Canonical architecture and design specification  
 **Status:** Active  
-**Development Model:** Terminal-first Python MVP
+**Development Model:** Terminal-first Python MVP growing toward an adaptive terminal-fluency system
 
 This document is the authoritative design specification for LinuxLingo.
 
-Older LinuxLingo concept papers and design drafts are archived reference material. Their useful ideas are consolidated here.
+Older LinuxLingo concept papers and design drafts remain archived reference material. Their useful ideas are preserved and consolidated here rather than discarded merely because the current implementation is smaller than the long-term design.
 
-Current project state belongs in `PROJECT_CONTINUITY.md`.
-
-Program logic belongs in `linuxlingo.py`.
-
-Training data belongs in `scenario_bank.json`.
+Current operational state belongs in `PROJECT_CONTINUITY.md`. Program logic belongs in `linuxlingo.py`. Training data belongs in `scenario_bank.json`.
 
 ---
 
 # 1. Project Overview
 
-LinuxLingo is a terminal-first Linux learning system designed to build real command-line fluency through active recall, repetition, scenario-based practice, troubleshooting, and progressively more difficult terminal tasks.
+LinuxLingo is a terminal-first Linux learning system designed to build genuine command-line fluency through active recall, repetition, scenario-based problem solving, terminal production, troubleshooting, verification, and progressively more difficult operational tasks.
+
+The original concept was deliberately simple: **Duolingo-style micro-drills that build real Linux command-line muscle memory.** The project exists because beginners commonly encounter Linux through reading, videos, command lists, and demonstrations but do not receive enough varied repetitions requiring them to produce commands independently.
 
 The central idea is:
 
 **Linux should be learned like a language.**
 
 - Commands are vocabulary.
-- Flags are grammar.
-- Pipelines are sentence structure.
+- Flags/options are grammar.
+- Pipelines and chaining are sentence structure.
 - Real terminal tasks are conversation.
 
-The learner should progress from recognizing commands to producing and using them naturally.
+The learner should progress from recognition to independent production, then from isolated command production to calm, repeatable system operation.
 
-Core learning model:
+Core operational progression:
 
-**problem → command → execution**
+**problem → reasoning → command → execution → verification**
+
+LinuxLingo is therefore not fundamentally a command list, a quiz bank, or a Python script. Those are implementation components. The system's purpose is to manufacture terminal fluency.
 
 ---
 
 # 2. The Problem
 
-Linux is often taught through:
+Linux is often taught through long videos, passive reading, lectures, tutorials, command lists, and projects that assume terminal confidence before sufficient repetition has occurred.
 
-- long videos
-- passive reading
-- lectures
-- command lists
-- tutorials
-- large projects introduced before basic terminal confidence develops
-
-These approaches can create recognition without production.
-
-A learner may recognize `mkdir`, `grep`, or `chmod` when shown the command but still freeze when asked to solve a real problem from a blank terminal.
+These approaches can create recognition without production. A learner may recognize `mkdir`, `grep`, or `chmod` when shown the command but still freeze when asked to solve a real problem from a blank terminal.
 
 LinuxLingo is designed to close that gap.
 
-The goal is not simply:
+The target is not merely:
 
 > “I have seen this command.”
 
-The goal is:
+The target is:
 
-> “I know what to type, why I am typing it, and what result I expect.”
+> “I know what I need to accomplish, I can retrieve the appropriate command, I understand why I am using it, I can execute it, and I know how to verify the result.”
 
 ---
 
@@ -74,557 +65,310 @@ LinuxLingo emphasizes:
 
 1. Active recall
 2. Command production
-3. Repetition
+3. Repetition with meaningful variation
 4. Progressive difficulty
 5. Scenario-based problem solving
 6. Real terminal interaction
 7. Error diagnosis
 8. Practical verification
 9. Adaptive reinforcement
-10. Mastery rather than simple exposure
+10. Mastery rather than exposure
+11. Self-rescue through Linux documentation
+12. Calm, repeatable operation rather than brittle memorization
 
-Linux fluency is treated as a conditioned skill.
-
-The learner repeatedly translates:
-
-**situation → reasoning → command execution**
+Linux fluency is treated as a conditioned operational skill. Recognition is useful evidence, but independent production and successful application are stronger evidence.
 
 ---
 
-# 4. Minimum Viable Product
+# 4. Learning Pipeline and System Boundaries
+
+The modern LinuxLingo architecture includes an upstream teaching and ingestion layer as well as the terminal retrieval/practice layer.
+
+The complete learning pipeline is:
+
+**SOURCE CONTENT → INGESTION → ADAPTIVE TEACHING → LINUXLINGO RETRIEVAL/PRACTICE → TERMINAL EXECUTION → FEEDBACK → DELAYED/VARIED RETESTING → FLUENCY**
+
+Potential source content includes:
+
+- coursework and labs
+- Linux Essentials / LPIC material
+- RHCSA study material
+- authoritative command documentation
+- real administration tasks
+- troubleshooting sessions
+- instructor-guided practice
+
+LinuxLingo itself is primarily the retrieval, production, practice, and mastery layer. The adaptive teaching process may introduce and repair concepts before LinuxLingo expects independent recall.
+
+This distinction protects the system from confusing **not yet taught** with **taught but forgotten**.
+
+---
+
+# 5. Coverage Failure vs. Retrieval Failure
+
+LinuxLingo must distinguish two fundamentally different events.
+
+## Retrieval Failure
+
+The learner has been introduced to a concept but cannot independently retrieve or apply it when needed.
+
+Appropriate response may include explanation, repair, delayed retesting, and additional varied practice.
+
+## Coverage Failure
+
+A source, course, lab, or assessment demands a command or concept that the learner has not actually been introduced to through the tracked learning process.
+
+This is not ordinary forgetting and should not be scored as equivalent to retrieval failure.
+
+Future mastery data should therefore distinguish at least:
+
+- introduced/exposed
+- practiced
+- independently retrieved
+- applied in context
+- missed after exposure
+- not yet covered
+
+This distinction is a major design requirement of the adaptive architecture.
+
+---
+
+# 6. Source Ingestion and Provenance
+
+As the training corpus grows, one of LinuxLingo's largest scaling problems is trustworthy source ingestion.
+
+Training material should increasingly be harvested from real learning and operational contexts rather than invented solely to inflate drill count.
+
+Every useful drill should preserve enough provenance to identify where the concept came from. Provenance supports:
+
+- coverage tracking
+- curriculum alignment
+- certification packs
+- auditability
+- distinguishing taught material from unsupported assessment demands
+- later improvement of weak or ambiguous drills
+
+The preferred working cycle for coursework is:
+
+**LAB → LEARN → HARVEST → COMMIT → MOVE ON**
+
+Harvesting after each lab is preferable to reconstructing several labs later because it preserves more granular information about what was introduced, what required reasoning, what caused difficulty, and what was genuinely new.
+
+Do not blindly convert every quiz fact into a command drill. Prefer material that contributes to command-line fluency, operational reasoning, self-rescue, troubleshooting, or necessary exam recall.
+
+---
+
+# 7. Minimum Viable Product
 
 The initial LinuxLingo MVP is a Python command-line application.
 
-The MVP should:
+The current MVP proves the most important architectural separation: the Python engine loads training content from the JSON scenario bank rather than embedding a permanent command list in code.
 
-- load drills from a JSON bank
-- present Linux tasks
-- accept typed responses
-- evaluate responses
-- provide feedback
-- track basic performance
-- reinforce missed concepts
-- progressively expose the learner to more difficult commands
+Current MVP capabilities include:
 
-The first MVP should remain intentionally simple.
-
-It does NOT require:
-
-- a mobile application
-- a web interface
-- a graphical desktop application
-- a simulated terminal
-- containerized training environments
-- complex artificial-intelligence infrastructure
-
-Those may be added later.
-
-The first objective is to prove that the terminal-first training model works.
-
----
-
-# 5. Canonical Project Files
-
-LinuxLingo currently uses five canonical files.
-
-## `README.md`
-
-Public-facing project overview.
-
-It explains:
-
-- what LinuxLingo is
-- why it exists
-- the basic learning philosophy
-- the high-level architecture
-- current project status
-
----
-
-## `PROJECT_CONTINUITY.md`
-
-Operational handoff document.
-
-It records:
-
-- current project state
-- completed work
-- important recent decisions
-- what is currently being developed
-- the next exact task
-
-Its purpose is to allow a fresh development or AI-assisted work session to recover project state quickly.
-
-It must remain concise.
-
-It must NOT contain the growing command bank.
-
----
-
-## `LINUXLINGO_MASTER_SPEC.md`
-
-This document.
-
-It contains:
-
-- architecture
-- design doctrine
-- learning philosophy
-- question architecture
-- training tiers
-- adaptive tutoring principles
-- command-bank architecture
-- development direction
-
----
-
-## `linuxlingo.py`
-
-Python CLI engine.
-
-The engine will progressively handle:
-
-- loading training data
+- loading drills from `scenario_bank.json`
+- validating basic bank structure
 - selecting drills
-- presenting questions
-- accepting user input
-- validating responses
-- recording results
-- controlling sessions
-- adaptive drill selection
-- mastery tracking
+- presenting tasks
+- accepting typed responses
+- normalized answer comparison
+- immediate pass/fail feedback
+- explanations from the bank
+- basic score tracking
 
-The engine should remain reasonably small and understandable.
+The current MVP intentionally does **not** execute arbitrary learner-entered commands. `check` fields may preserve future state-validation metadata, but safe state-based validation remains future work.
 
----
+The MVP does not require a mobile app, web interface, graphical desktop app, browser terminal emulator, sandboxed VM, or elaborate AI infrastructure.
 
-## `scenario_bank.json`
-
-Canonical command and drill bank.
-
-It stores training data including:
-
-- drill IDs
-- question types
-- difficulty
-- categories
-- tags
-- prompts
-- valid answers
-- explanations
-- validation checks where appropriate
-- mastery metadata where appropriate
-
-The bank should be able to grow independently from the Python engine.
+The first objective remains proving and refining the terminal-first learning model.
 
 ---
 
-# 6. Code and Data Separation
+# 8. Canonical Project Files
 
-LinuxLingo separates program behavior from training content.
+LinuxLingo currently uses five canonical project files:
 
-The basic architecture is:
+- `README.md` — public-facing project overview
+- `PROJECT_CONTINUITY.md` — operational handoff and current state
+- `LINUXLINGO_MASTER_SPEC.md` — canonical architecture, doctrine, and long-term design
+- `linuxlingo.py` — Python CLI engine
+- `scenario_bank.json` — canonical drill/training corpus
 
-`linuxlingo.py`
+`.gitignore` is repository infrastructure rather than a canonical design/data document.
 
-↓
-
-loads
-
-↓
-
-`scenario_bank.json`
-
-↓
-
-selects drill
-
-↓
-
-presents task
-
-↓
-
-learner responds
-
-↓
-
-response is evaluated
-
-↓
-
-result is recorded
-
-↓
-
-next drill is selected
-
-The growing command bank should NOT be hard-coded permanently inside the Python program.
-
-This separation allows the drill bank to grow from dozens to hundreds or eventually thousands of exercises without requiring the core engine to be rewritten each time.
+A future standalone Markdown file should preserve the current Adaptive Infrastructure Tutoring Prompt. The Master Spec defines the relationship and doctrine; the standalone prompt preserves the operational tutoring instructions without bloating this specification.
 
 ---
 
-# 7. Question Architecture
+# 9. Code and Data Separation
 
-LinuxLingo should support multiple question formats.
+Program behavior and training content must remain separate.
 
-The MVP may begin with only the simplest formats and expand gradually.
+Basic architecture:
+
+**`linuxlingo.py` → loads `scenario_bank.json` → selects drill → presents task → learner responds → response is evaluated → result is recorded → next drill is selected**
+
+The command/drill bank must not be permanently hard-coded into the Python engine.
+
+This separation allows the corpus to grow from dozens to hundreds or thousands of exercises without rewriting the core program for every content expansion.
 
 ---
+
+# 10. Question Architecture
+
+LinuxLingo should support multiple question formats because fluency cannot be measured by a single repeated prompt style.
 
 ## Type A — Knowledge / Recognition
 
-Example:
-
-**Question:**  
-What command prints the current working directory?
-
-**Answer:**  
-`pwd`
-
-Purpose:
-
-- reinforce meaning
-- support terminology recall
-- establish foundational knowledge
-
-Recognition questions should support Linux fluency but should not dominate the system.
-
----
+Tests terminology or command meaning. Useful, but should not dominate.
 
 ## Type B — Scenario Command
 
-Primary training format.
-
-Example:
-
-**Task:**  
-Create a directory named `projects`.
-
-**Answer:**  
-`mkdir projects`
-
-Purpose:
-
-- build command recall
-- connect real tasks to terminal commands
-- train production rather than recognition
-
----
+Primary production format. The learner receives a task and must produce the command.
 
 ## Type C — Error Correction
 
-Example:
-
-**Broken command:**
-
-`ls --alll`
-
-**Task:**  
-Correct the command.
-
-Possible answers:
-
-`ls --all`
-
-or
-
-`ls -a`
-
-Purpose:
-
-- build troubleshooting ability
-- reinforce syntax
-- reinforce flag knowledge
-- develop debugging instincts
-
----
+The learner diagnoses and repairs a broken command.
 
 ## Type D — Fill in the Blank
 
-Example:
-
-`____ -l`
-
-Answer:
-
-`ls`
-
-Purpose:
-
-- reinforce syntax
-- reinforce command recognition
-- provide lighter retrieval practice
-
----
+Lighter retrieval practice for syntax or command components.
 
 ## Type E — Reverse Recognition
 
-Example:
-
-**Command:**
-
-`chmod 755 script.sh`
-
-**Task:**  
-Explain what the command does.
-
-Purpose:
-
-- connect syntax to behavior
-- strengthen comprehension
-
----
+The learner receives a command and explains its behavior.
 
 ## Type F — Command Construction
 
-Example:
-
-Requirements:
-
-- list files
-- use long format
-- show human-readable file sizes
-
-Answer:
-
-`ls -lh`
-
-Purpose:
-
-- teach flags as composable grammar
-- build command construction ability
-
----
+The learner combines a base command with required flags/options or path syntax.
 
 ## Type G — Terminal Simulation
 
-Example:
+The prompt includes realistic terminal context such as working directory, prompt, filesystem state, or prior output.
 
-`~/practice$`
+Future formats may include output interpretation, multi-step missions, troubleshooting branches, and state-based tasks.
 
-Task:
-
-Create a directory named `projects`.
-
-Answer:
-
-`mkdir projects`
-
-Purpose:
-
-- increase realism
-- connect drills to real terminal context
-
----
-
-# 8. MVP Question Flow
-
-For the initial MVP, LinuxLingo should remain simple.
-
-The basic loop may be:
-
-1. Select one drill.
-2. Present one task.
-3. Accept one response.
-4. Grade or validate the response.
-5. Provide feedback.
-6. Record the result.
-7. Move to the next drill.
-
-This keeps the first implementation understandable and testable.
-
----
-
-# 9. Future Multi-Question and Extended Task Support
-
-Linux usage often involves sequences rather than isolated commands.
-
-LinuxLingo should eventually support extended question groups and multi-step operational tasks.
-
-Future sessions may present:
-
-- several related questions at once
-- command sequences
-- chained administrative tasks
-- troubleshooting workflows
-- multi-stage scenarios
-- longer terminal missions
-
-Example:
-
-**Scenario:**
-
-A new project directory must be created, entered, populated with a file, and verified.
-
-Possible sequence:
-
-`mkdir project`
-
-`cd project`
-
-`touch notes.txt`
-
-`ls -l`
-
-The architecture should eventually support this kind of extended interaction.
-
-However:
-
-**The MVP will begin with one task at a time.**
-
-Multi-question and extended scenario support is a planned capability, not an immediate requirement.
-
----
-
-# 10. Validation Philosophy
-
-Whenever practical, LinuxLingo should validate successful system state rather than only compare exact command strings.
-
-Example:
-
-Task:
-
-Create a directory named `project`.
-
-One valid command is:
-
-`mkdir project`
-
-Instead of only checking whether the learner typed exactly that text, LinuxLingo may verify:
-
-`test -d project`
-
-If the directory exists, the operation succeeded.
-
-This allows multiple technically valid solutions where appropriate.
-
-State-based validation more closely resembles real Linux administration.
-
-Not every drill requires state validation.
-
-Recognition and conceptual questions may still use answer comparison.
+Question variation should strengthen retrieval and transfer, not merely create cosmetic duplicates.
 
 ---
 
 # 11. Scenario Bank Structure
 
-A scenario may use a structure similar to:
+The canonical bank is `scenario_bank.json`.
 
+A drill generally contains:
+
+```json
 {
   "id": "LL001",
   "type": "scenario",
   "difficulty": "beginner",
-  "tags": ["filesystem", "directories"],
-  "prompt": "Create a directory named 'projects'.",
-  "answers": ["mkdir projects"],
-  "explanation": "The mkdir command creates a directory."
-}
-
-A scenario requiring state validation may later include:
-
-{
-  "id": "LL002",
-  "type": "scenario",
-  "difficulty": "beginner",
-  "tags": ["filesystem", "directories"],
-  "prompt": "Create a directory named 'workspace'.",
+  "tier": "basic",
+  "category": "filesystem",
+  "tags": ["directories", "creation"],
+  "prompt": "Create a directory named workspace.",
   "answers": ["mkdir workspace"],
   "check": "test -d workspace",
-  "explanation": "mkdir creates a directory."
+  "explanation": "mkdir creates a new directory.",
+  "source": "LinuxLingo MVP"
 }
+```
 
-The exact JSON schema may evolve.
+The schema may evolve, but permanent principles are:
 
-The permanent rule is:
+- training data remains separate from program logic
+- IDs remain stable
+- provenance is preserved
+- human readability matters
+- multiple valid answers may be represented when appropriate
+- future metadata may record exposure, mastery evidence, prerequisites, and validation strategy
 
-**training data remains separate from program logic.**
+A single command may support many meaningful drills. Corpus depth matters more than artificially maximizing unique command count.
 
 ---
 
-# 12. Adaptive Tutoring Model
+# 12. Validation Philosophy
 
-LinuxLingo should eventually behave as an adaptive tutor rather than a simple random quiz generator.
+Whenever practical and safe, LinuxLingo should eventually validate successful system state rather than only compare exact command strings.
 
-The adaptive system should track what the learner actually knows.
+For a task such as creating a directory, successful state may be better evidence than exact textual equality because Linux often permits multiple technically valid solutions.
+
+However, validation must not create unnecessary risk. The current MVP does not execute arbitrary learner input.
+
+Future validation may use controlled environments, constrained execution, expected-state checks, or sandboxing where appropriate.
+
+Recognition and conceptual questions may continue to use answer comparison.
+
+---
+
+# 13. Adaptive Tutoring Model
+
+LinuxLingo should evolve beyond random quiz selection into an adaptive tutor/practice engine.
+
+The adaptive system should determine:
+
+- what has been introduced
+- what has been practiced
+- what has been tested
+- what has been independently recalled
+- what has been applied successfully
+- what appears mastered
+- what remains weak
+- what has not yet been covered
 
 Important principles include:
 
-- test one concept at a time when appropriate
-- identify strong and weak areas
-- reinforce missed concepts
-- reduce unnecessary repetition of mastered concepts
-- distinguish recognition from true recall
-- delay contaminated retests
-- vary context when retesting
-- track the quality of mastery evidence
-- progressively increase difficulty
+- one concept at a time when appropriate
+- active retrieval
+- immediate repair after errors
+- delayed retesting
+- context variation
+- progressively stronger evidence requirements
+- reduced unnecessary repetition of mastered concepts
+- separation of concept mastery from exam-specific recall
+- distinction between coverage and retrieval failure
 
-The system should attempt to determine:
-
-- what has been introduced
-- what has been tested
-- what has been answered correctly
-- what has been answered incorrectly
-- what appears mastered
-- what needs more practice
-- what has not yet been covered
+The associated Adaptive Infrastructure Tutoring Prompt should operationalize these principles for AI-assisted teaching while LinuxLingo provides structured retrieval and terminal practice.
 
 ---
 
-# 13. Mastery Evidence
+# 14. Mastery Evidence
 
 Not every correct answer proves equal understanding.
 
-LinuxLingo should eventually distinguish between:
+Stronger evidence includes:
 
-- independent recall
-- successful application in a new context
+- independent command production
+- correct application in a new context
 - delayed recall
-- immediate recall
+- successful troubleshooting
+- correct execution and verification
+- successful multi-command sequencing
+
+Weaker evidence includes:
+
 - recognition
 - elimination
 - guessing
-- answer leakage
-- correction immediately after being shown the answer
-
-Stronger mastery evidence includes:
-
-- independent command production
-- correct use in a new scenario
-- delayed recall
-- successful troubleshooting
-
-Weaker mastery evidence includes:
-
-- obvious elimination
 - repeated identical prompts
-- answers revealed by the question itself
-- immediate retesting after correction
+- answer leakage
+- immediate repetition after the answer was shown
+
+Mastery should depend on evidence quality, not merely raw correct-answer count.
 
 ---
 
-# 14. Delayed Retesting
+# 15. Immediate Repair and Delayed Retesting
 
-If a learner misses a concept and is immediately shown the correct answer, asking the same question again does not prove independent recall.
+When a learner answers incorrectly, feedback should repair the underlying model rather than merely mark the answer wrong.
 
-The answer remains active in working memory.
+Useful feedback may include the expected command, concise explanation, relevant flag meaning, why the submitted answer failed, and how the command fits the larger system.
 
-LinuxLingo should eventually:
-
-1. explain the error
-2. move to another concept
-3. return to the missed concept later
-4. use a different scenario when possible
-
-The delayed retest provides better evidence of real learning.
+After repair, the same prompt should not immediately be treated as proof of mastery. The system should move elsewhere and return later, preferably with a different scenario.
 
 ---
 
-# 15. Question Quality
-
-LinuxLingo questions should avoid poor assessment design.
+# 16. Question Quality
 
 Questions should avoid:
 
@@ -632,956 +376,301 @@ Questions should avoid:
 - unstated assumptions
 - nonsense distractors
 - answer leakage
-- technically impossible alternatives
-- wording that accidentally reveals the command
-- repetitive questions that test nothing new
+- technically impossible alternatives used merely as filler
+- wording that accidentally reveals the answer
+- repetitive variants that test nothing new
 
-The correct answer should be correct because the learner understands the system, not merely because every alternative is absurd.
-
----
-
-# 16. Immediate Repair
-
-When the learner answers incorrectly, LinuxLingo should provide enough explanation to repair the misunderstanding.
-
-Feedback may include:
-
-- whether the answer was correct
-- the expected command
-- a concise explanation
-- the role of the command
-- relevant flag meaning
-- why the learner's answer failed
-
-The goal is not merely grading.
-
-The goal is model repair.
+The learner should succeed because they understand the system.
 
 ---
 
 # 17. Difficulty Model
 
-Initial difficulty levels may include:
-
-- beginner
-- intermediate
-- advanced
+Initial difficulty levels may include beginner, intermediate, and advanced.
 
 Difficulty should consider:
 
 - command complexity
-- number of required concepts
-- number of flags
+- number of concepts required
+- flags/options
 - path complexity
-- command chaining
+- quoting/escaping
+- globbing or expansion
+- chaining/pipelines
 - troubleshooting requirements
 - system impact
 - amount of reasoning required
 
-Difficulty should not simply mean that a command is obscure.
+Obscurity alone is not meaningful difficulty.
 
 ---
 
-# 18. Basic Tier — Foundation
+# 18. Tier Architecture
 
-## Goal
+The original LinuxLingo vision uses progressive training tiers. The current MVP is not the whole product; it is the seed from which these tiers can be implemented.
 
-Move the learner from terminal fear to functional literacy.
+## Basic Tier — Foundation
 
-The learner should be able to navigate Linux and perform essential file operations without constantly consulting a cheat sheet.
+**Goal:** Move the learner from terminal fear or unfamiliarity to functional literacy.
 
----
+Domains include:
 
-## Navigation
+- navigation and path semantics
+- file/directory creation and manipulation
+- viewing output
+- basic editing
+- quoting and escaping
+- wildcards/globbing
+- redirection and pipes
+- introductory search
+- documentation/self-help
 
-Commands may include:
+The learner should be able to navigate, manipulate files safely, inspect content, perform simple searches, and retrieve foundational commands without constant cheat-sheet dependence.
 
-- `pwd`
-- `ls`
-- `cd`
-- `clear`
+## Fluency Track — The Bridge
 
-Concepts include:
+**Goal:** Move the learner from “I know basic commands” to “I can operate a Linux system calmly, correctly, and repeatedly without freezing.”
 
-- current directory
-- parent directory
-- home directory
-- relative paths
-- absolute paths
+Domains expand into:
 
----
-
-## File and Directory Management
-
-Commands may include:
-
-- `mkdir`
-- `rmdir`
-- `touch`
-- `cp`
-- `mv`
-- `rm`
-
----
-
-## Viewing and Output
-
-Commands may include:
-
-- `cat`
-- `less`
-- `head`
-- `tail`
-- `echo`
-
----
-
-## Basic Editing
-
-Tools may include:
-
-- `nano`
-- introductory `vi`
-- introductory `vim`
-
----
-
-## Redirection and Pipes
-
-Concepts may include:
-
-- `>`
-- `>>`
-- `|`
-- `grep`
-
----
-
-## Basic Tier End State
-
-The learner can:
-
-- navigate directories
-- create files and folders
-- move and rename objects
-- inspect file contents
-- perform simple searches
-- use basic redirection and pipelines
-
----
-
-# 19. Fluency Track — The Bridge
-
-## Goal
-
-Move the learner from basic command familiarity to calm, repeatable Linux operation.
-
-The Fluency Track develops:
-
+- identity and context
+- process control
+- package management
+- file discipline and text processing
+- network comfort
+- configuration confidence
 - command sequencing
-- system awareness
 - diagnostic instincts
-- command combinations
-- practical administration habits
+- Linux documentation and self-rescue
 
----
+The Fluency Track is the bridge between vocabulary knowledge and operational reflex.
 
-## Identity and Context
+## Premium Tier — Professional Operations
 
-Commands may include:
+**Goal:** Develop professional Linux administration competence with eventual RHCSA alignment.
 
-- `whoami`
-- `id`
-- `groups`
-- `sudo -l`
-- `hostname`
-- `hostnamectl`
+Domains include:
 
-Goal:
-
-Understand:
-
-- who the current user is
-- what permissions they have
-- what system they are operating
-
----
-
-## Process Control
-
-Commands may include:
-
-- `ps`
-- `ps aux`
-- `top`
-- `kill`
-- `kill -9`
-- `nice`
-- `renice`
-- `uptime`
-- `jobs`
-- `bg`
-- `fg`
-
-Goal:
-
-Observe and control running processes.
-
----
-
-## Package Management
-
-Commands may include:
-
-- `apt`
-- `dnf`
-- package update operations
-- package upgrade operations
-- `which`
-- `whereis`
-- `man`
-- `--help`
-
-Goal:
-
-Install software, inspect software availability, and use Linux documentation for self-rescue.
-
----
-
-## File Discipline
-
-Commands may include:
-
-- `find`
-- `grep`
-- `wc`
-- `sort`
-- `uniq`
-- `cut`
-
-Goal:
-
-Find, filter, extract, organize, and verify information.
-
----
-
-## Network Comfort
-
-Commands may include:
-
-- `ip a`
-- `ip addr`
-- `ping`
-- `curl`
-- `ssh`
-- `hostname`
-
-Goal:
-
-Perform basic connectivity diagnosis and understand system network identity.
-
----
-
-## Configuration Confidence
-
-Commands and tools may include:
-
-- `nano`
-- `vi`
-- `vim`
-- `cat`
-- `head`
-- `tail`
-- `diff`
-- `history`
-
-Goal:
-
-Modify configuration files, verify changes, and recover from mistakes without panic.
-
----
-
-# 20. Premium Tier — Professional Operations
-
-## Goal
-
-Develop professional Linux administration competence with eventual RHCSA alignment.
-
-The Premium Tier emphasizes:
-
-- permissions
-- ownership
-- services
+- permissions and ownership
+- users/groups
+- services and logs
 - system health
 - storage
 - networking
-- archives
+- archives/compression
 - automation
+- troubleshooting
+- security/access control
+
+Professional-tier work should increasingly resemble real administration rather than isolated quiz questions.
 
 ---
 
-## Permissions and Ownership
+# 19. Fluency Missions and Multi-Step Operation
 
-Commands may include:
+Real Linux work rarely consists of one isolated command.
 
-- `chmod`
-- `chown`
-- `chgrp`
-- `sudo`
-- `umask`
+Advanced exercises should combine actions into realistic missions such as:
 
----
+- inspect identity → diagnose permission failure → repair → verify
+- locate information → filter/extract → save result
+- identify resource-heavy process → inspect → control → verify
+- inspect network configuration → test reachability → locate failure
+- modify configuration → compare before/after → prove intended result
 
-## System Vitality and Services
+Command chaining and pipelines represent Linux sentence construction and should become more prominent as vocabulary grows.
 
-Commands may include:
-
-- `top`
-- `htop`
-- `df -h`
-- `systemctl`
-- `journalctl`
+The MVP may remain one-task-at-a-time while the architecture preserves this longer-term direction.
 
 ---
 
-## Storage and Networking
+# 20. Error Diagnosis and Self-Rescue
 
-Commands may include:
+Troubleshooting is a core Linux skill.
 
-- `lsblk`
-- `ssh`
-- `scp`
-- `rsync`
-- `ip addr`
-- `tar`
-- `gzip`
+LinuxLingo should train learners to respond to incorrect commands, wrong flags, path mistakes, permission problems, missing packages, ownership issues, failed services, network problems, and configuration errors.
+
+Documentation tools such as `man`, `info`, `help`, `type`, `which`, and command help options are not peripheral trivia. They are part of teaching the learner how to recover when memory fails.
+
+The objective is not omniscient memorization. It is competent operation and competent recovery.
 
 ---
 
-## Automation
+# 21. Session Architecture
 
-Topics may include:
+A mature training session may:
 
-- shell scripts
-- Bash variables
-- loops
-- cron jobs
+1. Load the scenario bank.
+2. Determine eligible drills from coverage/mastery state.
+3. Select a drill based on learning need rather than pure randomness.
+4. Present the task.
+5. Accept the learner response.
+6. Grade or validate it.
+7. Record evidence quality and result.
+8. Provide feedback/repair.
+9. Schedule appropriate future retrieval.
+10. Continue until the session ends.
+11. Summarize strengths, weaknesses, and next priorities.
 
----
-
-# 21. Command Categories
-
-The scenario bank may organize commands into domains.
-
----
-
-## Navigation
-
-Examples:
-
-- `pwd`
-- `ls`
-- `ls -l`
-- `ls -a`
-- `ls -la`
-- `cd`
-- `cd ..`
-- `cd ~`
+Future sessions may support configurable lengths, linked scenario sequences, extended missions, mistake review, and category-specific practice.
 
 ---
 
-## File and Directory Management
-
-Examples:
-
-- `mkdir`
-- `rmdir`
-- `rm`
-- `rm -r`
-- `rm -rf`
-- `cp`
-- `cp -r`
-- `mv`
-- `touch`
-
----
-
-## File Viewing and Inspection
-
-Examples:
-
-- `cat`
-- `less`
-- `more`
-- `head`
-- `tail`
-- `tail -f`
-- `wc`
-- `file`
-
----
-
-## Search and Text Processing
-
-Examples:
-
-- `grep`
-- `grep -r`
-- `grep -i`
-- `find`
-- `locate`
-- `which`
-- `whereis`
-- `cut`
-- `sort`
-- `uniq`
-
----
-
-## Permissions and Ownership
-
-Examples:
-
-- `chmod`
-- numeric permission modes
-- symbolic permission modes
-- `chown`
-- `chgrp`
-- `umask`
-
----
-
-## Users and Groups
-
-Examples:
-
-- `useradd`
-- `userdel`
-- `usermod`
-- `passwd`
-- `groupadd`
-- `groupdel`
-- `groups`
-- `id`
-
----
-
-## Process Management
-
-Examples:
-
-- `ps`
-- `ps aux`
-- `top`
-- `htop`
-- `kill`
-- `kill -9`
-- `pkill`
-- `jobs`
-- `bg`
-- `fg`
-
----
-
-## System Information
-
-Examples:
-
-- `uname`
-- `uname -a`
-- `whoami`
-- `who`
-- `uptime`
-- `hostname`
-- `hostnamectl`
-- `date`
-- `lsblk`
-- `free`
-- `df`
-- `df -h`
-- `du`
-- `du -sh`
-
----
-
-## Networking
-
-Examples:
-
-- `ping`
-- `ip addr`
-- `ip link`
-- `ip route`
-- `ss`
-- `curl`
-- `wget`
-- `ssh`
-
----
-
-## Package Management
-
-Ubuntu / Debian examples:
-
-- `apt update`
-- `apt install`
-- `apt upgrade`
-- `apt remove`
-
-RHEL / Fedora examples:
-
-- `dnf install`
-- `dnf remove`
-- `dnf update`
-- `dnf search`
-- `dnf info`
-- `dnf list`
-
----
-
-## Archiving and Compression
-
-Examples:
-
-- `tar`
-- `tar -cvf`
-- `tar -xvf`
-- `tar -czvf`
-- `tar -xzvf`
-- `gzip`
-- `gunzip`
-- `zip`
-- `unzip`
-
----
-
-## Redirection and Pipelines
-
-Examples:
-
-- `>`
-- `>>`
-- `<`
-- `|`
-- `tee`
-
----
-
-## System Control and Services
-
-Examples:
-
-- `poweroff`
-- `reboot`
-- `systemctl`
-- `journalctl`
-
-This category will grow as real coursework, labs, troubleshooting, and administration provide additional examples.
-
----
-
-# 22. Fluency Missions
-
-Advanced exercises should combine commands into realistic tasks.
-
-These are not simply questions about individual commands.
-
-They test whether the learner can sequence actions.
-
----
-
-## Permission Denied Fix
-
-Goal:
-
-- inspect identity
-- inspect permissions
-- determine why access failed
-- correct permissions
-- verify success
-
----
-
-## Locate + Extract + Save
-
-Goal:
-
-- locate information
-- search for specific content
-- extract matching information
-- save the result
-
----
-
-## System Stabilizer
-
-Goal:
-
-- identify a resource-heavy process
-- inspect behavior
-- reduce its impact or terminate it
-- verify system stability
-
----
-
-## Network Checkpoint
-
-Goal:
-
-- verify network configuration
-- test reachability
-- determine where communication fails
-
----
-
-## Change + Prove
-
-Goal:
-
-- modify a configuration
-- compare before and after
-- verify the intended result
-
----
-
-# 23. Command Chaining
-
-Higher-level fluency should include command chaining and pipelines.
-
-Example:
-
-Task:
-
-Create a directory named `test` and enter it.
-
-Possible answer:
-
-`mkdir test && cd test`
-
-Pipelines and command chaining represent Linux sentence construction.
-
-They should become more prominent after the learner develops sufficient command vocabulary.
-
----
-
-# 24. Error Diagnosis
-
-Linux administrators frequently encounter:
-
-- incorrect commands
-- wrong flags
-- permission problems
-- missing packages
-- ownership issues
-- failed services
-- networking problems
-- configuration mistakes
-
-LinuxLingo should therefore treat troubleshooting as a core learning skill.
-
-Error-diagnosis exercises may ask learners to:
-
-- identify a mistake
-- interpret an error
-- provide a corrected command
-- verify the repair
-
----
-
-# 25. Session Architecture
-
-An MVP training session may follow this flow:
-
-1. Load `scenario_bank.json`
-2. Select eligible drills
-3. Present one drill
-4. Accept user response
-5. Validate or grade response
-6. Record result
-7. Provide feedback
-8. Select the next drill
-9. Continue until the selected session length ends
-10. Display a summary
-
-Possible session lengths may later include:
-
-- 10 questions
-- 20 questions
-- 50 questions
-
-Future versions may also support:
-
-- multi-question blocks
-- linked scenario sequences
-- extended terminal missions
-
----
-
-# 26. Mistake Review
+# 22. Mistake Review and Mastery States
 
 Incorrect answers should become future learning material.
 
-A review mode may display:
+Possible mastery states include:
 
-- original question
-- learner answer
-- correct answer
-- explanation
+- **Uncovered** — not yet introduced
+- **Learning** — introduced but insufficient evidence
+- **Practicing** — some successful retrieval with remaining weakness
+- **Mastered** — consistent high-quality recall/application
 
-Future versions may create a mistake queue.
-
-Missed concepts can then return later in the same session or in future sessions.
+A future mistake queue may preserve the original task, learner response, expected behavior, explanation, and later retest history.
 
 ---
 
-# 27. Mastery System
+# 23. Category Mastery and Readiness
 
-LinuxLingo may track command mastery using stages such as:
+LinuxLingo may report performance by domain such as navigation, filesystem, permissions, networking, processes, package management, system information, and documentation/self-rescue.
 
-## Learning
+A future evidence-based readiness estimate may target approximately **95% demonstrated readiness**, but this must not mean merely 95% raw quiz accuracy.
 
-The learner has encountered the concept but has not demonstrated consistent recall.
-
-## Practicing
-
-The learner has answered correctly multiple times but still demonstrates occasional weakness.
-
-## Mastered
-
-The learner consistently recalls and applies the command correctly.
-
-The exact scoring formula is not yet fixed.
-
-Mastery should depend on evidence quality rather than simple raw correct-answer counts.
+Readiness should consider coverage, independent recall, delayed recall, execution, transfer to new scenarios, troubleshooting ability, category balance, and recurring error patterns.
 
 ---
 
-# 28. Category Mastery
+# 24. Streaks and Motivation
 
-Commands belong to categories such as:
+Daily streaks and similar mechanics may encourage consistent practice, but they are secondary to actual skill development.
 
-- navigation
-- filesystem
-- permissions
-- networking
-- processes
-- package management
-- system information
-
-LinuxLingo may eventually report category-level performance.
-
-Examples:
-
-- Navigation mastery
-- Filesystem mastery
-- Permissions mastery
-- Networking mastery
-
-This helps learners identify weak areas.
+LinuxLingo should not reward meaningless repetition merely to preserve a streak. Gamification must serve learning rather than replace it.
 
 ---
 
-# 29. Readiness Target
+# 25. Command Bank Development Philosophy
 
-LinuxLingo should eventually support an evidence-based readiness estimate.
+The corpus is one of LinuxLingo's most important assets.
 
-A useful target is approximately:
+The objective is not to build a large application with weak content or accumulate an impressive-looking command count. The objective is a structured, high-quality training corpus capable of producing transfer and fluency.
 
-**95% demonstrated readiness**
+A single command can support multiple drill forms: recall, explanation, flag construction, output interpretation, contextual application, troubleshooting, and use inside a larger mission.
 
-This should not simply mean 95% raw quiz accuracy.
-
-Readiness may eventually consider:
-
-- independent recall
-- delayed recall
-- practical execution
-- ability to apply commands in new situations
-- troubleshooting ability
-- category coverage
-- error patterns
-
-The purpose is accurate operational confidence rather than false reassurance.
+Recent coursework harvesting demonstrates the intended growth model: authentic learning material enters the corpus with provenance, is converted into appropriate drill types, and becomes future retrieval practice.
 
 ---
 
-# 30. Streak System
+# 26. Corpus Scale
 
-Future versions may include daily practice streaks.
+Early development targets were approximately 50 drills, followed by 80–120 and then 200–300 drills for a substantial MVP corpus.
 
-A streak may increase when the learner completes a qualifying training session.
+As of the current implementation state recorded in `PROJECT_CONTINUITY.md`, the bank has passed the original 50-drill seed threshold.
 
-The purpose is to reinforce consistent practice.
+Long-term size is not fixed. Additional certification-specific packs and specialized banks may eventually contain hundreds or thousands of drills.
 
-Streak mechanics are secondary to actual skill development.
-
-LinuxLingo should not reward meaningless repetition merely to preserve a streak.
+Quality, provenance, meaningful variation, and mastery value matter more than an arbitrary total.
 
 ---
 
-# 31. Command Bank Development Philosophy
+# 27. Development Strategy
 
-The command bank is one of the most important parts of LinuxLingo.
+The project should evolve in layers without allowing implementation convenience to redefine the original learning vision.
 
-The objective is not to build a large application with weak training content.
+Near-term development priorities are:
 
-The objective is to build a structured, high-quality training corpus.
+1. Continue harvesting high-quality real coursework/lab material after each learning unit.
+2. Preserve source provenance.
+3. Improve answer validation beyond simplistic normalized exact matching.
+4. Add meaningful session scoring and result persistence.
+5. Expand question-format variation.
+6. Introduce safe state-based validation when architecture permits.
+7. Add adaptive drill selection.
+8. Add delayed retesting and mistake review.
+9. Add mastery/coverage tracking.
+10. Add multi-step fluency missions.
+11. Expand troubleshooting and professional-tier coverage.
+12. Consider additional interfaces only after the terminal-first learning engine is stable.
 
-Commands should increasingly be harvested from:
-
-- Linux coursework
-- NOS labs
-- system administration practice
-- troubleshooting sessions
-- certification study
-- real command-line work
-
-A single command can support multiple drills.
-
-Example:
-
-`lsblk`
-
-Possible drill forms:
-
-- recall the command
-- explain what it does
-- identify attached block devices
-- interpret its output
-- use it during a storage scenario
-- diagnose a missing disk
-
-This creates depth without artificially inflating the command count.
+The project should resist premature visual polish, web/mobile development, and unnecessary infrastructure before the learning engine proves itself.
 
 ---
 
-# 32. Command Bank Scale
+# 28. Current Implementation vs. Long-Term Design
 
-Early MVP development may begin with approximately:
+The Master Spec describes **LinuxLingo the system**, not merely the code that exists today.
 
-- 50 structured drills
+The current implementation is intentionally smaller than the architecture:
 
-A substantial first bank may contain:
+- Python CLI engine: implemented
+- external JSON drill bank: implemented
+- basic drill selection: implemented
+- normalized answer comparison: implemented
+- immediate feedback/basic scoring: implemented
+- rich validation: future
+- persistent learner model: future
+- adaptive selection: future
+- delayed retesting: future
+- mastery tracking: future
+- coverage tracking: future
+- state-based execution validation: future
+- fluency missions: future
+- specialized/certification packs: future
 
-- 80–120 drills
-
-Later development may expand toward:
-
-- 200–300 drills
-- additional certification-specific packs
-- larger specialized banks
-
-The final size is not fixed.
-
-Quality and meaningful variation matter more than an arbitrary total.
-
----
-
-# 33. Development Strategy
-
-Current development sequence:
-
-1. Establish repository structure.
-2. Preserve the existing Python MVP.
-3. Create `scenario_bank.json`.
-4. Seed the bank with real Linux commands.
-5. Connect the JSON bank to the Python engine.
-6. Implement reliable question selection.
-7. Improve answer validation.
-8. Add session scoring.
-9. Add question-format variation.
-10. Add state-based validation.
-11. Add adaptive drill selection.
-12. Add delayed retesting.
-13. Add mistake review.
-14. Add mastery tracking.
-15. Add fluency missions.
-16. Add extended multi-question scenarios.
-17. Expand troubleshooting coverage.
-18. Expand command coverage.
-19. Consider additional interfaces only after the terminal-first engine is stable.
+`PROJECT_CONTINUITY.md` is authoritative for exact current counts and immediate development state.
 
 ---
 
-# 34. Current MVP Priority
-
-The immediate priority is:
-
-**build the command bank and connect it cleanly to the Python CLI engine.**
-
-The project should resist premature complexity.
-
-Do not become distracted by:
-
-- visual polish
-- mobile development
-- web development
-- elaborate infrastructure
-- unnecessary architecture
-
-before the underlying learning engine works.
-
----
-
-# 35. Future Expansion
+# 29. Future Expansion
 
 Possible future capabilities include:
 
 - configurable practice sessions
 - adaptive difficulty
-- spaced repetition
+- spaced retrieval
 - mistake queues
 - mastery dashboards
 - streak systems
-- extended multi-question scenarios
+- multi-question scenarios
 - command-sequence missions
-- certification-focused drill packs
+- certification-focused packs
 - RHCSA-aligned practice
-- system-state validation
+- safe system-state validation
 - sandboxed Linux environments
 - container-based labs
 - automated repair simulations
-- community command banks
-- web interface
-- desktop interface
+- community or instructor-curated command banks
+- web/desktop/mobile interfaces
 
-These are future layers.
-
-They are not requirements for the initial MVP.
+These are future layers, not requirements for the initial MVP.
 
 ---
 
-# 36. Portfolio Value
+# 30. Portfolio and Research Value
 
-LinuxLingo should function as a technical portfolio artifact demonstrating:
+LinuxLingo should function as a technical portfolio artifact demonstrating Linux knowledge, Python development, CLI design, JSON data architecture, software organization, troubleshooting logic, adaptive learning-system design, Git/GitHub workflow, and systems thinking.
 
-- Linux knowledge
-- Python development
-- CLI design
-- JSON data architecture
-- software organization
-- troubleshooting logic
-- adaptive learning-system design
-- Git/GitHub workflow
-- systems thinking
+Its development process also has research value: the system is being refined from inside an actual Linux learning process. Friction encountered by a learner—retrieval failures, coverage gaps, poor assessment design, successful repair methods, and useful repetitions—can become design evidence rather than being discarded after the course assignment ends.
 
-The repository should remain understandable enough that another developer, instructor, employer, or technical interviewer can examine the project and understand how it works.
+The repository should remain understandable enough that another developer, instructor, employer, or technical interviewer can examine the project and understand both what currently works and what the larger architecture is intended to become.
 
 ---
 
-# 37. Long-Term Vision
+# 31. Long-Term Vision
 
-LinuxLingo may eventually become a broader interactive Linux training environment.
+LinuxLingo may eventually become a broader interactive Linux training environment, but every future feature must support the same central purpose:
 
-However, every future feature must support the same central purpose:
+**building genuine command-line fluency through repeated command production, adaptive practice, practical problem solving, terminal execution, and verification.**
 
-**building genuine command-line fluency through repeated command production, adaptive practice, and practical problem solving.**
+The original idea must remain visible even as implementation evolves:
 
-The project should never lose that focus.
+**micro-drills create repetitions; repetitions create retrieval; retrieval plus real execution creates fluency.**
+
+The project should never become a passive content library wearing the costume of a training system.
 
 ---
 
-# 38. Design Motto
+# 32. Design Motto
 
 **Linux is not learned by reading.**
 
