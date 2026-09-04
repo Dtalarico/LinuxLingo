@@ -102,11 +102,11 @@ Do not blindly convert every quiz fact into a command drill. Prefer material tha
 ---
 
 ## Current Bank State
-- `scenario_bank.json` contains 42 drills: LL001–LL042.
-- Bank is human-readable / pretty formatted.
-- Week 2 NOS-120 material is represented.
+- `scenario_bank.json` contains 70 drills: LL001–LL070.
+- 28 new drills were harvested on 2026-09-04 from the day's NOS-120 work.
+- New material includes navigation, wildcard/globbing behavior, `type`, PATH/`which`, nested directory creation, quoting/escaping spaces, `cp`, recursive `cp`, `mv`, `rm`, `rmdir`, recursive directory removal, brace expansion, `ls -lh`, Vim fundamentals, shell history, and Bash built-in help.
+- Week 2 NOS-120 material remains represented in LL001–LL042.
 - Some quiz-derived recognition items remain and may later be reviewed for value.
-- Recent coursework has introduced additional filesystem/navigation material (wildcards/globbing, Vim fundamentals, paths, copying/moving/removing, brace expansion, command discovery) that has not yet been harvested into the bank.
 
 ---
 
@@ -143,8 +143,9 @@ Important limitation:
 - Repository structure established.
 - Canonical project files created.
 - Initial Python MVP created.
-- Scenario bank created and expanded LL001–LL042.
+- Scenario bank created and expanded through LL070.
 - Week 2 NOS-120 commands/coursework harvested.
+- September 4 NOS-120 work harvested into 28 additional drills, LL043–LL070.
 - Adaptive tutoring principles incorporated into project doctrine.
 - Python MVP refactored to load the JSON bank rather than five hard-coded drills.
 
@@ -162,4 +163,4 @@ Not for the current work session:
 The project is in a good stopping state for 2026-09-04. Documentation revisions and prompt-file addition are deliberately deferred to a later session.
 
 ## Next Exact Task
-When LinuxLingo development resumes, decide whether to begin with the deferred documentation work or harvest the recent NOS-120 navigation/filesystem/globbing material into `scenario_bank.json`, preserving the existing schema and source provenance.
+When LinuxLingo development resumes, decide whether to begin with the deferred documentation work or continue harvesting newly encountered NOS-120 material into `scenario_bank.json`, preserving the existing schema and source provenance.
