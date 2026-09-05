@@ -102,10 +102,43 @@ Harvest after each lab when practical rather than after several labs; this prese
 ---
 
 ## Current Bank State
-- `scenario_bank.json` contains 70 drills: LL001–LL070.
-- 28 drills, LL043–LL070, were harvested from the September 4 NOS-120 work.
-- New material includes navigation, wildcard/globbing behavior, `type`, PATH/`which`, nested directory creation, quoting/escaping spaces, `cp`, recursive `cp`, `mv`, `rm`, `rmdir`, recursive directory removal, brace expansion, `ls -lh`, Vim fundamentals, shell history, and Bash built-in help.
+- `scenario_bank.json` contains 81 drills: LL001–LL081.
+- 28 drills, LL043–LL070, were harvested from earlier September 4 NOS-120 work.
+- 11 drills, LL071–LL081, were harvested from the September 4 display-lines / text-processing / AWK lab.
+- Earlier September 4 material includes navigation, wildcard/globbing behavior, `type`, PATH/`which`, nested directory creation, quoting/escaping spaces, `cp`, recursive `cp`, `mv`, `rm`, `rmdir`, recursive directory removal, brace expansion, `ls -lh`, Vim fundamentals, shell history, and Bash built-in help.
+- LL071–LL081 add `head`, `head -1`, `head -v`, `tail`, `tail -v`, `df | tail +2`, `nl` with output redirection, `tac`, AWK whole-record and field selection, and the Bash/AWK single-quote language boundary.
 - Some quiz-derived recognition items remain and may later be reviewed for value.
+
+---
+
+## September 4 Text-Processing / AWK Harvest
+The completed Cengage lab produced unusually high-value design evidence despite being short.
+
+New command/content primitives include:
+
+- `head` and `tail` default line behavior
+- `-v` as forced filename-heading / verbose behavior
+- starting `tail` at line 2 to remove a header from piped output
+- `nl` for line numbering
+- transformed output redirected with `>`
+- `tac` for reverse line order, including the operational reason it is useful when newest records are appended at the bottom
+- `awk` as a utility that interprets programs written in the AWK language
+- AWK records and fields (`$0`, `$1`, `$2`)
+- AWK action blocks and `print`
+- Bash single quotes as the boundary that preserves embedded AWK syntax from shell expansion
+
+The session reinforced an important teaching requirement: **layer ownership must be explicit when one language invokes another.** A learner should be able to identify which interpreter owns each piece of syntax rather than memorizing opaque command strings.
+
+Example layered command:
+
+`awk '{print $1}' pw`
+
+- Bash owns command invocation and shell quoting.
+- Single quotes preserve the embedded text from Bash expansion.
+- AWK owns `{ ... }`, `print`, and `$1`.
+- `$1` is the first field of the current AWK record.
+
+This aligns with the original LinuxLingo tiered design: teach concrete primitives, preserve their semantic boundaries, then compose them into larger command structures.
 
 ---
 
@@ -158,6 +191,7 @@ David intends to reread the revised Master Spec personally and review it for fid
 - Do not count an unintroduced concept as ordinary retrieval failure.
 - Harvest useful coursework after each lab when practical.
 - Use state-based validation eventually where safe and appropriate.
+- Make commit messages specific enough that the project history explains what changed.
 - GitHub is the active development source of truth.
 
 ---
@@ -167,8 +201,10 @@ David intends to reread the revised Master Spec personally and review it for fid
 - Canonical project files created.
 - Initial Python MVP created.
 - Python MVP refactored to load JSON rather than five hard-coded drills.
-- Scenario bank expanded through LL070.
+- Scenario bank expanded through LL081.
 - September 4 NOS-120 material harvested into LL043–LL070.
+- September 4 display-lines / text-processing / AWK lab harvested into LL071–LL081.
+- Bash/AWK interpreter-boundary learning captured as explicit drill material rather than only a memorized AWK command string.
 - Archived LinuxLingo concept documents reread to recover original overarching design intent.
 - Master Spec revised on 2026-09-05 to integrate original vision with current adaptive/ingestion architecture.
 - Continuity updated to reflect the revised architecture and per-lab harvesting workflow.
@@ -183,7 +219,7 @@ David intends to reread the revised Master Spec personally and review it for fid
 ---
 
 ## Current Priority
-The Master Spec revision previously listed as deferred is now complete pending David's review.
+The scenario bank is current through the completed September 4 text-processing / AWK lab. The Master Spec revision remains complete pending David's personal review.
 
 ## Next Exact Task
-David reviews `LINUXLINGO_MASTER_SPEC.md`. After that review, incorporate any corrections he identifies. If approved, update `README.md` to match the canonical architecture, then add/reference the standalone Adaptive Infrastructure Tutoring Prompt Markdown file. Continue harvesting new NOS-120 material after each lab as it is completed.
+David reviews `LINUXLINGO_MASTER_SPEC.md` (planned for the morning). After that review, incorporate any corrections he identifies. If approved, update `README.md` to match the canonical architecture, then add/reference the standalone Adaptive Infrastructure Tutoring Prompt Markdown file. Continue harvesting new NOS-120 material after each lab as it is completed.
