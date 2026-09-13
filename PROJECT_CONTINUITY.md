@@ -102,11 +102,15 @@ Harvest after each lab when practical rather than after several labs; this prese
 ---
 
 ## Current Bank State
-- `scenario_bank.json` contains 81 drills: LL001–LL081.
+- `scenario_bank.json` now contains **100 drills: LL001–LL100**.
 - 28 drills, LL043–LL070, were harvested from earlier September 4 NOS-120 work.
 - 11 drills, LL071–LL081, were harvested from the September 4 display-lines / text-processing / AWK lab.
+- 15 drills, LL082–LL096, were harvested from the September 13 Cengage LDM-004 directory-management lab.
+- 4 drills, LL097–LL100, were harvested from the September 13 Configuring Docker Containers lab.
 - Earlier September 4 material includes navigation, wildcard/globbing behavior, `type`, PATH/`which`, nested directory creation, quoting/escaping spaces, `cp`, recursive `cp`, `mv`, `rm`, `rmdir`, recursive directory removal, brace expansion, `ls -lh`, Vim fundamentals, shell history, and Bash built-in help.
 - LL071–LL081 add `head`, `head -1`, `head -v`, `tail`, `tail -v`, `df | tail +2`, `nl` with output redirection, `tac`, AWK whole-record and field selection, and the Bash/AWK single-quote language boundary.
+- LL082–LL096 add `su`, recursive `ls -R`, multiple-directory creation, relative-path copy/move operations, move-and-rename behavior, relative-vs-absolute path correction, `grep -i`, `history -a`, `id`, searching `.bashrc`, and `find ... -newermt`.
+- LL097–LL100 add Docker image listing, image building/tagging, detached container execution with port publishing, and running-container verification.
 - Some quiz-derived recognition items remain and may later be reviewed for value.
 
 ---
@@ -139,6 +143,39 @@ Example layered command:
 - `$1` is the first field of the current AWK record.
 
 This aligns with the original LinuxLingo tiered design: teach concrete primitives, preserve their semantic boundaries, then compose them into larger command structures.
+
+---
+
+## September 13 Directory-Management / Shell-History Harvest
+The LDM-004 lab was long and repetitive, but it produced useful operational material because the same filesystem primitives were exercised repeatedly in different path contexts.
+
+High-value additions include:
+
+- switching user context with `su user01`
+- recursive directory inspection with `ls -R`
+- creating several sibling directories in one `mkdir` command
+- copying and moving files between sibling directories with `..` relative paths
+- renaming files with `mv`
+- distinguishing `/IT-temp` from `IT-temp` and therefore absolute from relative paths
+- case-insensitive search with `grep -i`
+- persisting current-session commands with `history -a`
+- inspecting identity with `id`
+- searching shell configuration with `grep alias ~/.bashrc`
+- time-based file discovery using `find . -type f -newermt <date>`
+
+The lab also exposed a useful training lesson: some automated graders inspect shell history rather than only filesystem end state. `history -a` is therefore worth knowing as a real Bash command, even though the repeated grading friction was specific to the lab platform.
+
+---
+
+## September 13 Docker Harvest
+The Configuring Docker Containers lab added a compact container workflow:
+
+- list local images with `docker images`
+- build/tag an image with `docker build -t web2 .`
+- run a named detached container with host/container port publishing using `docker run -d --name ... -p ...`
+- verify running containers with `docker ps`
+
+These drills belong in the fluency layer because they combine Linux CLI syntax with container operations rather than basic filesystem vocabulary.
 
 ---
 
@@ -201,10 +238,14 @@ David intends to reread the revised Master Spec personally and review it for fid
 - Canonical project files created.
 - Initial Python MVP created.
 - Python MVP refactored to load JSON rather than five hard-coded drills.
-- Scenario bank expanded through LL081.
+- Scenario bank expanded through LL100.
 - September 4 NOS-120 material harvested into LL043–LL070.
 - September 4 display-lines / text-processing / AWK lab harvested into LL071–LL081.
+- September 13 directory-management / shell-history material harvested into LL082–LL096.
+- September 13 Docker container material harvested into LL097–LL100.
 - Bash/AWK interpreter-boundary learning captured as explicit drill material rather than only a memorized AWK command string.
+- Absolute-vs-relative path failure from the September 13 lab captured as an error-correction drill rather than discarded as a mistake.
+- Shell-history persistence (`history -a`) captured explicitly because it materially affected the lab workflow.
 - Archived LinuxLingo concept documents reread to recover original overarching design intent.
 - Master Spec revised on 2026-09-05 to integrate original vision with current adaptive/ingestion architecture.
 - Continuity updated to reflect the revised architecture and per-lab harvesting workflow.
@@ -213,13 +254,12 @@ David intends to reread the revised Master Spec personally and review it for fid
 
 ## Remaining Documentation Work
 - David should personally reread/review the revised `LINUXLINGO_MASTER_SPEC.md` for fidelity; revise if his review identifies anything that does not accurately represent the project.
-- Revise `README.md` after Master Spec review so the public-facing overview accurately summarizes the canonical architecture without duplicating the full specification.
 - Add the current Adaptive Infrastructure Tutoring Prompt to the repository as its own Markdown file and reference it from the appropriate canonical documentation.
 
 ---
 
 ## Current Priority
-The scenario bank is current through the completed September 4 text-processing / AWK lab. The Master Spec revision remains complete pending David's personal review.
+The scenario bank is current through the completed September 13 directory-management and Docker-container labs and has reached 100 drills. Continue using the per-lab harvest workflow so new coursework becomes training data while the details are still fresh.
 
 ## Next Exact Task
-David reviews `LINUXLINGO_MASTER_SPEC.md` (planned for the morning). After that review, incorporate any corrections he identifies. If approved, update `README.md` to match the canonical architecture, then add/reference the standalone Adaptive Infrastructure Tutoring Prompt Markdown file. Continue harvesting new NOS-120 material after each lab as it is completed.
+On the next completed Linux/CLI lab, harvest the genuinely useful commands, flags, path semantics, troubleshooting lessons, and verification steps into `scenario_bank.json`, then update this continuity file. Separately, David still plans to review `LINUXLINGO_MASTER_SPEC.md` for fidelity and add the standalone Adaptive Infrastructure Tutoring Prompt when ready.
