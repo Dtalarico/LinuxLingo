@@ -1,5 +1,5 @@
 # LinuxLingo
-Duolingo-stule Linux terminal trainer for building real command line fluency through hands-on drills. repetition, and scenario-based practice.
+Duolingo-style Linux terminal trainer for building real command-line fluency through hands-on drills, repetition, and scenario-based practice.
 
 ## Overview
 
@@ -16,7 +16,7 @@ The core idea is simple:
 
 Instead of relying primarily on lectures, videos, or command recognition, LinuxLingo trains the learner to translate a real problem into the correct command and execute it.
 
-**problem → command → execution**
+**problem → reasoning → command → execution → verification**
 
 ---
 
@@ -38,17 +38,18 @@ The emphasis is on developing terminal reflexes and practical confidence rather 
 
 The initial LinuxLingo MVP is a Python command-line application.
 
-The MVP will:
+The MVP currently:
 
-- present Linux command drills
-- accept typed command responses
-- use real-world scenarios
-- provide feedback
-- track performance
-- draw training data from a separate JSON drill bank
-- progressively expand from basic commands to multi-command tasks
+- loads drills from a separate JSON bank
+- presents Linux command drills
+- accepts typed command responses
+- uses real-world scenarios
+- provides immediate pass/fail feedback and explanations
+- tracks a basic session score
+- normalizes whitespace for answer comparison
+- keeps program logic separate from training content
 
-The project intentionally begins as a small terminal application before expanding into more complex interfaces.
+The current safe MVP does not execute arbitrary learner-entered commands. Rich state validation, adaptive selection, mastery tracking, and persistent learner data remain future work.
 
 ---
 
@@ -71,7 +72,8 @@ Contains the growing command and scenario bank, including:
 - prompts
 - valid answers
 - explanations
-- validation information where appropriate
+- source provenance
+- validation metadata where appropriate
 
 This separation allows the command bank to grow without requiring the core Python engine to be constantly rewritten.
 
@@ -81,7 +83,7 @@ Maintains the current development state of the project so work can continue clea
 
 ### `LINUXLINGO_MASTER_SPEC.md`
 
-Will contain the canonical project architecture, learning philosophy, tier structure, design decisions, and long-term development doctrine.
+Contains the canonical project architecture, learning philosophy, tier structure, design decisions, and long-term development doctrine.
 
 ---
 
@@ -111,7 +113,11 @@ Commands are taught in realistic contexts instead of as disconnected vocabulary.
 
 ### Error Correction
 
-Learners will eventually diagnose broken commands, incorrect flags, syntax errors, and common terminal mistakes.
+Learners diagnose broken commands, incorrect flags, syntax errors, path mistakes, and common terminal failures.
+
+### Verification
+
+The long-term model is not merely command recall. Learners should know how to confirm that a command actually produced the intended state.
 
 ### Progressive Difficulty
 
@@ -144,6 +150,7 @@ LinuxLingo will progressively cover areas such as:
 - storage
 - services
 - archiving and compression
+- containers
 - shell scripting
 - troubleshooting
 
@@ -153,9 +160,15 @@ LinuxLingo will progressively cover areas such as:
 
 The command bank is intended to grow from real Linux usage.
 
-Commands encountered during coursework, labs, system administration practice, troubleshooting, and certification study can be converted into LinuxLingo drills.
+Commands encountered during coursework, labs, system administration practice, troubleshooting, and certification study are converted into LinuxLingo drills with source provenance.
+
+Preferred workflow:
+
+**LAB → LEARN → HARVEST → COMMIT → MOVE ON**
 
 The long-term value of the project depends heavily on building a large, structured, high-quality training corpus rather than merely creating a large application.
+
+As of September 13, 2026, the bank contains **100 drills (LL001–LL100)**. Recent harvests include filesystem/navigation work, Vim, wildcards, text processing, AWK, shell history, identity/context commands, time-based `find` searches, relative-vs-absolute path troubleshooting, and Docker image/container operations.
 
 ---
 
@@ -163,15 +176,15 @@ The long-term value of the project depends heavily on building a large, structur
 
 Current development order:
 
-1. Establish the GitHub repository and project structure.
-2. Preserve and refine the existing Python MVP.
-3. Create the initial `scenario_bank.json`.
-4. Begin building the real command and scenario bank.
-5. Consolidate earlier design work into `LINUXLINGO_MASTER_SPEC.md`.
-6. Improve question handling and validation.
-7. Add performance tracking and mastery systems.
-8. Add advanced scenario and troubleshooting drills.
-9. Expand only after the terminal-first MVP is stable.
+1. Preserve the terminal-first Python/JSON architecture.
+2. Continue harvesting real coursework and lab material after each learning unit.
+3. Preserve source provenance and useful troubleshooting context.
+4. Improve answer validation beyond normalized exact matching.
+5. Add performance persistence, mistake review, and mastery/coverage tracking.
+6. Add adaptive drill selection and delayed retesting.
+7. Introduce safe state-based validation.
+8. Add advanced multi-step scenarios and troubleshooting drills.
+9. Expand interfaces only after the terminal-first learning engine is stable.
 
 ---
 
@@ -189,6 +202,7 @@ Possible future LinuxLingo features include:
 - RHCSA-aligned training
 - sandboxed Linux environments
 - automated system-state validation
+- container-based labs
 - web or desktop interfaces
 
 These are future layers.
@@ -199,9 +213,11 @@ The immediate priority is building a strong terminal-first Linux fluency engine 
 
 ## Project Status
 
-**Current Phase:** Initial MVP build and command-bank development.
+**Current Phase:** Active MVP and command-bank development.
 
-LinuxLingo is under active development.
+**Current corpus:** 100 drills, LL001–LL100.
+
+LinuxLingo is under active development, with GitHub serving as the active source of truth.
 
 ---
 
