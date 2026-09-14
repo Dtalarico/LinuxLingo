@@ -5,7 +5,7 @@ from pathlib import Path
 BASE_DIR = Path(__file__).parent
 BANK_PATHS = [
     BASE_DIR / "scenario_bank.json",
-    BASE_DIR / "scenario_bank_additions.json",
+    BASE_DIR / "scenario_bank_2.json",
 ]
 
 
