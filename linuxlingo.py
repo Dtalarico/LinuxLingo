@@ -2,30 +2,46 @@ import json
 import random
 from pathlib import Path
 
-BANK_PATH = Path(__file__).with_name("scenario_bank.json")
+BASE_DIR = Path(__file__).parent
+BANK_PATHS = [
+    BASE_DIR / "scenario_bank.json",
+    BASE_DIR / "scenario_bank_additions.json",
+]
 
 
 def load_drills():
-    with BANK_PATH.open("r", encoding="utf-8") as handle:
-        drills = json.load(handle)
+    combined = []
 
-    if not isinstance(drills, list):
-        raise ValueError("scenario_bank.json must contain a top-level JSON list.")
+    for bank_path in BANK_PATHS:
+        if not bank_path.exists():
+            continue
+
+        with bank_path.open("r", encoding="utf-8") as handle:
+            drills = json.load(handle)
+
+        if not isinstance(drills, list):
+            raise ValueError(f"{bank_path.name} must contain a top-level JSON list.")
+
+        combined.extend(drills)
 
     required = {"id", "prompt", "answers"}
     usable = []
+    seen_ids = set()
 
-    for drill in drills:
+    for drill in combined:
         if not isinstance(drill, dict):
             continue
         if not required.issubset(drill):
             continue
         if not isinstance(drill["answers"], list) or not drill["answers"]:
             continue
+        if drill["id"] in seen_ids:
+            raise ValueError(f"Duplicate drill id found: {drill['id']}")
+        seen_ids.add(drill["id"])
         usable.append(drill)
 
     if not usable:
-        raise ValueError("No usable drills were found in scenario_bank.json.")
+        raise ValueError("No usable drills were found in the configured scenario banks.")
 
     return usable
 
@@ -46,7 +62,7 @@ def main():
     attempts = 0
 
     print("\nWelcome to LinuxLingo MVP\n")
-    print(f"Loaded {len(drills)} drills from scenario_bank.json.")
+    print(f"Loaded {len(drills)} drills from configured scenario banks.")
     print("Type 'exit' anytime to quit.\n")
 
     while True:
