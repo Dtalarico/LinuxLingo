@@ -12,7 +12,7 @@ This document is the authoritative design specification for LinuxLingo.
 
 Older LinuxLingo concept papers and design drafts remain archived reference material. Their useful ideas are preserved and consolidated here rather than discarded merely because the current implementation is smaller than the long-term design.
 
-Current operational state belongs in `PROJECT_CONTINUITY.md`. Program logic belongs in `linuxlingo.py`. Training data belongs in `scenario_bank.json`.
+Current operational state belongs in `PROJECT_CONTINUITY.md`. Program logic belongs in `linuxlingo.py`. Training data belongs in the numbered `scenario_bank*.json` bank family.
 
 ---
 
@@ -162,12 +162,14 @@ Do not blindly convert every quiz fact into a command drill. Prefer material tha
 
 The initial LinuxLingo MVP is a Python command-line application.
 
-The current MVP proves the most important architectural separation: the Python engine loads training content from the JSON scenario bank rather than embedding a permanent command list in code.
+The current MVP proves the most important architectural separation: the Python engine loads training content from external JSON scenario banks rather than embedding a permanent command list in code.
 
 Current MVP capabilities include:
 
-- loading drills from `scenario_bank.json`
+- loading drills from configured `scenario_bank*.json` files
+- combining those banks into one runtime drill pool
 - validating basic bank structure
+- rejecting duplicate drill IDs across banks
 - selecting drills
 - presenting tasks
 - accepting typed responses
@@ -186,13 +188,22 @@ The first objective remains proving and refining the terminal-first learning mod
 
 # 8. Canonical Project Files
 
-LinuxLingo currently uses five canonical project files:
+LinuxLingo's canonical project structure includes:
 
 - `README.md` — public-facing project overview
 - `PROJECT_CONTINUITY.md` — operational handoff and current state
 - `LINUXLINGO_MASTER_SPEC.md` — canonical architecture, doctrine, and long-term design
 - `linuxlingo.py` — Python CLI engine
-- `scenario_bank.json` — canonical drill/training corpus
+- numbered scenario-bank JSON files — canonical drill/training corpus
+
+The scenario corpus is intentionally split into multiple JSON files as it grows so individual files remain readable, manageable, and easier to load, inspect, edit, and review. The naming convention is:
+
+- `scenario_bank.json` — first bank, beginning with LL001
+- `scenario_bank_2.json` — second bank, beginning after the first approximately 100 drills
+- `scenario_bank_3.json` — third bank
+- continue numerically as needed
+
+The approximately 100-drill boundary is an organizational target, not a semantic boundary. Drill IDs remain globally unique across all banks, and the Python engine combines all configured banks into one runtime corpus.
 
 `.gitignore` is repository infrastructure rather than a canonical design/data document.
 
@@ -206,9 +217,11 @@ Program behavior and training content must remain separate.
 
 Basic architecture:
 
-**`linuxlingo.py` → loads `scenario_bank.json` → selects drill → presents task → learner responds → response is evaluated → result is recorded → next drill is selected**
+**`linuxlingo.py` → loads configured scenario banks → combines and validates drills → selects drill → presents task → learner responds → response is evaluated → result is recorded → next drill is selected**
 
-The command/drill bank must not be permanently hard-coded into the Python engine.
+The command/drill corpus must not be permanently hard-coded into the Python engine.
+
+Splitting the corpus across numbered JSON banks is an organizational/storage decision only. It must not create separate learning silos or change drill semantics. The engine treats the configured banks as one logical corpus.
 
 This separation allows the corpus to grow from dozens to hundreds or thousands of exercises without rewriting the core program for every content expansion.
 
@@ -254,7 +267,7 @@ Question variation should strengthen retrieval and transfer, not merely create c
 
 # 11. Scenario Bank Structure
 
-The canonical bank is `scenario_bank.json`.
+The canonical corpus is the complete numbered `scenario_bank*.json` family, treated as one logical training bank by the engine.
 
 A drill generally contains:
 
@@ -277,11 +290,14 @@ A drill generally contains:
 The schema may evolve, but permanent principles are:
 
 - training data remains separate from program logic
-- IDs remain stable
+- IDs remain stable and globally unique across every scenario-bank file
 - provenance is preserved
 - human readability matters
 - multiple valid answers may be represented when appropriate
 - future metadata may record exposure, mastery evidence, prerequisites, and validation strategy
+- bank-file boundaries must not alter drill meaning, selection, or mastery semantics
+
+As a practical repository convention, start a new numbered bank at roughly each additional 100 drills. This keeps individual JSON files from becoming unwieldy while preserving one logical corpus at runtime.
 
 A single command may support many meaningful drills. Corpus depth matters more than artificially maximizing unique command count.
 
@@ -500,7 +516,7 @@ The objective is not omniscient memorization. It is competent operation and comp
 
 A mature training session may:
 
-1. Load the scenario bank.
+1. Load and combine the configured scenario banks.
 2. Determine eligible drills from coverage/mastery state.
 3. Select a drill based on learning need rather than pure randomness.
 4. Present the task.
@@ -565,7 +581,9 @@ Recent coursework harvesting demonstrates the intended growth model: authentic l
 
 Early development targets were approximately 50 drills, followed by 80–120 and then 200–300 drills for a substantial MVP corpus.
 
-As of the current implementation state recorded in `PROJECT_CONTINUITY.md`, the bank has passed the original 50-drill seed threshold.
+As of the current implementation state recorded in `PROJECT_CONTINUITY.md`, the corpus has passed the original 50-drill seed threshold and is stored across numbered scenario-bank files as needed.
+
+As the corpus grows, new numbered banks should generally be started at approximately 100-drill intervals to keep files manageable. This is a repository-maintenance convention, not a learning boundary.
 
 Long-term size is not fixed. Additional certification-specific packs and specialized banks may eventually contain hundreds or thousands of drills.
 
@@ -603,7 +621,9 @@ The Master Spec describes **LinuxLingo the system**, not merely the code that ex
 The current implementation is intentionally smaller than the architecture:
 
 - Python CLI engine: implemented
-- external JSON drill bank: implemented
+- external numbered JSON drill banks: implemented
+- multi-bank loading into one runtime corpus: implemented
+- duplicate-ID detection across banks: implemented
 - basic drill selection: implemented
 - normalized answer comparison: implemented
 - immediate feedback/basic scoring: implemented
@@ -617,7 +637,7 @@ The current implementation is intentionally smaller than the architecture:
 - fluency missions: future
 - specialized/certification packs: future
 
-`PROJECT_CONTINUITY.md` is authoritative for exact current counts and immediate development state.
+`PROJECT_CONTINUITY.md` is authoritative for exact current counts, active bank filenames, and immediate development state.
 
 ---
 
