@@ -89,6 +89,16 @@ A key design principle is the distinction between:
 
 The system should not treat those as the same failure.
 
+Recent lab work reinforced several additional learning-design requirements:
+
+- teach the operational purpose before compressing syntax
+- introduce one new abstraction at a time whenever practical
+- teach atomic semantics before combined commands
+- show expected success and failure states, not only the happy path
+- pair “verify” instructions with the exact observable command and expected result
+- distinguish identity, environment, path resolution, permissions, shell nesting, and reporting as separate layers
+- distinguish actual system-generated evidence from manually typed text that merely describes an outcome
+
 ---
 
 ## Command Bank Development
@@ -99,7 +109,7 @@ Preferred workflow:
 
 **LAB → LEARN → HARVEST → COMMIT → MOVE ON**
 
-As of September 14, 2026, LinuxLingo loads **115 drills (LL001–LL115)** across two numbered scenario banks.
+As of September 14, 2026, LinuxLingo loads **132 drills (LL001–LL132)** across two numbered scenario banks.
 
 Recent harvests include:
 
@@ -111,8 +121,17 @@ Recent harvests include:
 - `locate`, `updatedb`, and `locate -S`
 - `whereis` and `which`
 - Docker image/container operations
+- user and group creation with `useradd`, `passwd`, and `groupadd`
+- supplementary-group membership with `usermod -aG`
+- ownership with `chown`
+- octal permissions with `chmod`
+- permission and ownership verification with `ls -ld` and `ls -l`
+- user-identity and login-context switching with `su` and `su -`
+- identity verification with `whoami`
+- nested-shell behavior with `exit`
+- intentional permission-denied scenarios for group and other access classes
 
-The September 14 Cengage work also reinforced an important product-design lesson: training should accept valid Linux solutions where appropriate rather than teaching learners to guess a brittle autograder's preferred command string.
+The September 14 Cengage work also reinforced an important product-design lesson: training should accept valid Linux solutions where appropriate rather than teaching learners to guess a brittle autograder's preferred command string. It also showed that a lab can create confusion when it asks the learner to infer hidden state changes, success conditions, or failure meanings instead of exposing those transitions directly.
 
 ---
 
@@ -143,7 +162,7 @@ The immediate priority remains building a strong terminal-first Linux fluency en
 
 **Current Phase:** Active MVP and command-bank development.
 
-**Current loaded corpus:** 115 drills, LL001–LL115, across two numbered JSON banks.
+**Current loaded corpus:** 132 drills, LL001–LL132, across two numbered JSON banks.
 
 GitHub is the active source of truth.
 
