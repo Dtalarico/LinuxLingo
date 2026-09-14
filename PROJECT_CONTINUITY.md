@@ -12,10 +12,10 @@ Update this file after every substantial LinuxLingo work session.
 - Repository: GitHub (`Dtalarico/LinuxLingo`)
 - Development model: terminal-first Python MVP growing toward an adaptive terminal-fluency system.
 - GitHub is the active source of truth.
-- The engine now loads two JSON banks: `scenario_bank.json` and `scenario_bank_additions.json`.
+- The engine now loads two numbered JSON banks: `scenario_bank.json` and `scenario_bank_2.json`.
 - Loaded corpus: **115 drills, LL001–LL115**.
 - `scenario_bank.json` contains LL001–LL100.
-- `scenario_bank_additions.json` contains LL101–LL115 from the September 14 harvest.
+- `scenario_bank_2.json` begins with LL101 and currently contains LL101–LL115.
 
 ---
 
@@ -25,9 +25,30 @@ Update this file after every substantial LinuxLingo work session.
 - `LINUXLINGO_MASTER_SPEC.md`
 - `linuxlingo.py`
 - `scenario_bank.json`
-- `scenario_bank_additions.json`
+- `scenario_bank_2.json`
 
 `.gitignore` is repository infrastructure.
+
+---
+
+## Scenario Bank Scaling Convention
+The training corpus is deliberately split into numbered JSON files instead of allowing one file to grow indefinitely.
+
+Working convention:
+
+- `scenario_bank.json` = LL001–LL100
+- `scenario_bank_2.json` = approximately LL101–LL200
+- `scenario_bank_3.json` = approximately LL201–LL300
+- continue the numbered pattern as needed
+
+The ~100-drill boundary is an organizational target, not a hard semantic boundary. The goals are to keep individual JSON files readable, easier to inspect and maintain, and faster/cleaner to work with as the corpus grows.
+
+Rules:
+- Drill IDs remain globally unique across every bank.
+- `linuxlingo.py` combines all configured banks into one runtime drill pool.
+- Duplicate IDs across banks are rejected explicitly.
+- New coursework harvests go into the currently active numbered bank until it is roughly full, then the next numbered bank is created.
+- Source provenance remains attached to each drill regardless of which bank stores it.
 
 ---
 
@@ -78,7 +99,7 @@ Do not blindly convert every quiz fact into a drill.
 - LL071–LL081: September 4 display-lines/text-processing/AWK work.
 - LL082–LL096: September 13 Cengage directory-management/shell-history work.
 - LL097–LL100: September 13 Docker container work.
-- LL101–LL115: September 14 Cengage `find`, `locate`, `updatedb`, `whereis`, and `which` work.
+- LL101–LL115: September 14 Cengage `find`, `locate`, `updatedb`, `whereis`, and `which` work, stored in `scenario_bank_2.json`.
 
 ---
 
@@ -112,8 +133,8 @@ This is directly aligned with the Master Spec's existing validation philosophy a
 ---
 
 ## Engine State
-- Engine loads configured JSON banks at startup.
-- Current banks: `scenario_bank.json` + `scenario_bank_additions.json`.
+- Engine loads configured numbered JSON banks at startup.
+- Current banks: `scenario_bank.json` + `scenario_bank_2.json`.
 - Duplicate drill IDs are rejected explicitly.
 - Required drill fields are validated.
 - Basic whitespace normalization is used for answer comparison.
@@ -134,6 +155,7 @@ Important limitation:
 - Preserve source provenance.
 - Do not count an unintroduced concept as ordinary retrieval failure.
 - Harvest useful coursework after each lab when practical.
+- Keep scenario-bank files to roughly 100 drills each and continue the numbered-bank convention as the corpus grows.
 - Accept multiple valid Linux forms when they are genuinely equivalent.
 - Treat brittle autograder syntax as platform behavior, not as Linux doctrine.
 - Make commit messages specific enough that repository history explains what changed.
@@ -149,21 +171,23 @@ Important limitation:
 - September 13 directory-management/shell-history harvest completed.
 - September 13 Docker harvest completed.
 - September 14 find/locate/whereis/which harvest completed.
-- Engine updated to load the supplemental harvest bank and detect duplicate drill IDs.
-- README updated to reflect the 115-drill loaded corpus.
+- Engine updated to load multiple numbered scenario banks and detect duplicate drill IDs.
+- Numbered scenario-bank scaling convention documented.
+- `scenario_bank_2.json` established for LL101 onward.
+- README updated to reflect the 115-drill loaded corpus and bank-splitting convention.
 - Autograder-vs-real-Linux design lesson captured explicitly.
 
 ---
 
 ## Remaining Documentation Work
 - David should personally reread/review `LINUXLINGO_MASTER_SPEC.md` for fidelity.
+- The Master Spec should eventually be revised to replace its remaining singular-bank wording with the numbered-bank architecture when the next architecture review is done.
 - Add the Adaptive Infrastructure Tutoring Prompt as its own Markdown file when ready.
-- Later consolidate supplemental harvest banks if desired without losing provenance.
 
 ---
 
 ## Current Priority
-Continue the per-lab harvest workflow. The next completed Linux/CLI lab should be harvested for genuinely useful commands, flags, troubleshooting lessons, path semantics, and verification behavior.
+Continue the per-lab harvest workflow. Add new drills to `scenario_bank_2.json` until that bank is approximately full, then create `scenario_bank_3.json` and add it to the engine's configured bank list.
 
 ## Next Exact Task
-Finish the remaining September 14 NOS-120 labs, harvest the genuinely new material, then update the scenario corpus and this continuity file again.
+Finish the remaining September 14 NOS-120 labs, harvest the genuinely new material into `scenario_bank_2.json`, then update this continuity file again.
