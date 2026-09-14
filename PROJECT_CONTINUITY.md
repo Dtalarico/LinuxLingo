@@ -16,6 +16,7 @@ Update this file after every substantial LinuxLingo work session.
 - Loaded corpus: **132 drills, LL001–LL132**.
 - `scenario_bank.json` contains LL001–LL100.
 - `scenario_bank_2.json` begins with LL101 and currently contains LL101–LL132.
+- `LINUXLINGO_MASTER_SPEC.md` now contains the September 14 adaptive-teaching doctrine as canonical architecture, including operation-before-syntax, atomic semantics, one-abstraction-at-a-time sequencing, explicit state telemetry, expected failure states, partial-success interpretation, state-interpretation failure, nested-shell state, and evidence-vs-reporting distinctions.
 
 ---
 
@@ -66,7 +67,7 @@ Core progression:
 
 The learner should move from recognition to independent production and eventually to multi-step operational fluency.
 
-Additional teaching doctrine reinforced by the September 14 permissions/user-context lab:
+Canonical adaptive-teaching doctrine now lives in the Master Spec and includes:
 
 - **Operation before syntax.** Explain what operational problem a distinction solves before asking the learner to memorize the command form.
 - **Atomic semantics before command compression.** Teach owner, group, supplementary membership, recursion, path, identity, and environment as separate ideas before combining them in dense commands.
@@ -85,18 +86,13 @@ Current learning pipeline:
 
 **SOURCE CONTENT → INGESTION → ADAPTIVE TEACHING → LINUXLINGO RETRIEVAL/PRACTICE → TERMINAL EXECUTION → FEEDBACK → DELAYED/VARIED RETESTING → FLUENCY**
 
-Important distinction:
+Important distinctions:
 
 1. **Retrieval failure:** the learner was taught the concept but cannot independently retrieve/apply it.
 2. **Coverage failure:** the source/course/lab asks for a command or concept that the learner has not actually been introduced to.
-
-These should not be scored or remediated identically.
-
-The September 14 permissions lab added a related distinction:
-
 3. **State-interpretation failure caused by missing telemetry:** the learner may perform the right operation but be unable to interpret the result because the system or course does not expose which sub-step succeeded, failed, or remains unchanged.
 
-This should not automatically be treated as a knowledge failure. The tutor should repair the missing system model and then retest.
+These should not be scored or remediated identically. State-interpretation failure should trigger model repair, explicit verification, and later retesting rather than being treated automatically as a knowledge failure.
 
 ---
 
@@ -153,7 +149,7 @@ The September 14 session also produced strong design evidence about autograding:
 - When multiple valid command forms exist, the bank should preserve reasonable alternatives instead of teaching one arbitrary spelling as the only truth.
 - Lab-platform requirements such as repeated `history -a` should be distinguished from normal Linux operating practice.
 
-This is directly aligned with the Master Spec's existing validation philosophy and coverage-failure doctrine.
+This is directly aligned with the Master Spec's validation philosophy and coverage-failure doctrine.
 
 ---
 
@@ -188,6 +184,8 @@ Operational lessons captured from the lab:
 - `echo "Permission denied" >> file` writes literal text supplied by the user. It does not capture the original error stream and should not be described as proving or recording the actual failure unless the distinction is made explicit.
 - The learner independently reasoned that authentic evidence should come from the actual failing command rather than manually restating the failure text. stderr redirection exists for that purpose, but should not be introduced as syntax until the normal-output/error-output distinction has first been taught.
 
+These lessons are no longer continuity-only notes; they are now promoted into `LINUXLINGO_MASTER_SPEC.md` as canonical design doctrine.
+
 ---
 
 ## Engine State
@@ -213,14 +211,17 @@ Important limitation:
 - Prefer real operational scenarios over trivia.
 - Preserve source provenance.
 - Do not count an unintroduced concept as ordinary retrieval failure.
+- Do not count missing-telemetry/state-interpretation failure automatically as ordinary learner failure.
 - Harvest useful coursework after each lab when practical.
 - Keep scenario-bank files to roughly 100 drills each and continue the numbered-bank convention as the corpus grows.
 - Accept multiple valid Linux forms when they are genuinely equivalent.
 - Treat brittle autograder syntax as platform behavior, not as Linux doctrine.
+- Teach operation before syntax.
 - Teach atomic semantics before compressed syntax.
 - Prefer one new abstraction per teaching step when possible.
 - Always distinguish system state, human narration, and platform bookkeeping.
 - When teaching a state transition, expose a verification method and expected result.
+- Teach representative failure signatures before expecting the learner to diagnose them independently.
 - Make commit messages specific enough that repository history explains what changed.
 
 ---
@@ -241,13 +242,13 @@ Important limitation:
 - README updated to reflect the 132-drill loaded corpus and current harvest.
 - Autograder-vs-real-Linux design lesson captured explicitly.
 - Atomic-semantics, expected-failure, verification-telemetry, nested-shell, and evidence-vs-narration teaching lessons captured explicitly.
+- September 14 adaptive-teaching doctrine promoted into `LINUXLINGO_MASTER_SPEC.md` as canonical architecture.
 
 ---
 
 ## Remaining Documentation Work
-- David should personally reread/review `LINUXLINGO_MASTER_SPEC.md` for fidelity.
-- The Master Spec should eventually receive the September 14 adaptive-teaching doctrine during the next architecture review rather than being rewritten blindly from a partial fetch.
-- Add the actual current Adaptive Infrastructure Tutoring Prompt as its own Markdown file only after retrieving and reviewing the real current prompt source.
+- David should personally reread/review `LINUXLINGO_MASTER_SPEC.md` for fidelity when convenient.
+- Add the actual current Adaptive Infrastructure Tutoring Prompt as its own Markdown file only after retrieving and reviewing the real current prompt source and version lineage. Do not infer or invent a version number.
 
 ---
 
