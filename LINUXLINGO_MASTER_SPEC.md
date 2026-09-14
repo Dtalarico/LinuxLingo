@@ -207,7 +207,7 @@ The approximately 100-drill boundary is an organizational target, not a semantic
 
 `.gitignore` is repository infrastructure rather than a canonical design/data document.
 
-A future standalone Markdown file should preserve the current Adaptive Infrastructure Tutoring Prompt. The Master Spec defines the relationship and doctrine; the standalone prompt preserves the operational tutoring instructions without bloating this specification.
+A future standalone Markdown file should preserve the actual current Adaptive Infrastructure Tutoring Prompt once its canonical source and version are retrieved and reviewed. The Master Spec defines the relationship and doctrine; the standalone prompt should preserve the operational tutoring instructions without relying on reconstructed or assumed version history.
 
 ---
 
@@ -315,6 +315,8 @@ Future validation may use controlled environments, constrained execution, expect
 
 Recognition and conceptual questions may continue to use answer comparison.
 
+Validation must also distinguish **system evidence** from **human narration**. A learner manually typing text such as `Permission denied` into a file does not prove that the operating system generated that failure. Where a drill is intended to test an actual failure condition, future validation should inspect the real command result, exit status, error stream, or resulting system state rather than treat manually reproduced wording as equivalent evidence.
+
 ---
 
 # 13. Adaptive Tutoring Model
@@ -346,6 +348,130 @@ Important principles include:
 
 The associated Adaptive Infrastructure Tutoring Prompt should operationalize these principles for AI-assisted teaching while LinuxLingo provides structured retrieval and terminal practice.
 
+## 13.1 Operation Before Syntax
+
+A command distinction should be introduced through the operational problem it solves before the learner is expected to memorize its syntax.
+
+The tutor should answer, in order:
+
+1. What is the operator trying to accomplish?
+2. What system relationship or state is involved?
+3. Why does Linux distinguish these states or operations?
+4. What command expresses that operation?
+5. How can the learner verify the result?
+
+Syntax without an operational model produces brittle recall. The system should therefore teach **operation → relationship → command → result**, not merely command spelling.
+
+## 13.2 Atomic Semantics Before Command Compression
+
+New relationships should be learned separately before they are compressed into compound syntax.
+
+Examples include:
+
+- user identity versus shell environment
+- primary group versus supplementary group
+- user-group membership versus file group ownership
+- owner permissions versus group permissions versus other permissions
+- path resolution versus permission evaluation
+- object ownership versus recursive application
+
+If a combined command contains several new ideas, the tutor should decompose the operation into conceptual atoms first. Compression is appropriate only after the learner can explain the parts.
+
+General rule:
+
+**new concepts: expand first; familiar concepts: compress later**
+
+## 13.3 One New Abstraction per Step
+
+Whenever practical, a teaching step should introduce only one new abstraction.
+
+A learner should not be forced to infer several hidden state changes at once, such as:
+
+- which user identity is active
+- which shell environment is active
+- what the current working directory is
+- whether a path is absolute or relative
+- which permission class applies
+- whether a shell is nested
+
+These may all matter in a real system, but the teaching sequence should isolate them before combining them in realistic missions.
+
+## 13.4 State Telemetry and Verification
+
+Technical instruction must expose enough observable state for the learner to know what happened.
+
+When a step changes system state, the learner should be told, when appropriate:
+
+- what success looks like
+- what common failure looks like
+- whether silence indicates success
+- what command verifies the resulting state
+- what result should be expected from that verification
+
+A prompt that says “verify,” “confirm,” “switch context,” or “return to root” without supplying or previously teaching the observable verification method may be instructionally incomplete.
+
+LinuxLingo should train verification as part of the operation rather than as optional decoration.
+
+## 13.5 Expected Failure States
+
+Failure signatures are part of Linux fluency.
+
+Learners should deliberately encounter and interpret representative failures such as:
+
+- authentication failure
+- permission denied
+- missing file or directory
+- invalid option
+- command not found
+- ownership or group mismatch
+- failed service state
+
+A learner cannot reliably diagnose a failure mode they have never been shown. The tutor should therefore teach both **success signatures** and **failure signatures** and should distinguish an expected intentional failure from an accidental mistake.
+
+## 13.6 Partial Success and Layered Outcomes
+
+A command can partially succeed.
+
+For example, authentication and effective-user switching may succeed while a later login-environment step produces a warning because the target home directory does not exist.
+
+The tutor should identify:
+
+- which sub-operation succeeded
+- which sub-operation failed or warned
+- what state remains active afterward
+- whether the warning blocks the current task
+- how to verify the effective state
+
+Do not collapse a multi-stage outcome into a generic “worked” or “failed” label.
+
+## 13.7 State-Interpretation Failure
+
+LinuxLingo must distinguish a third instructional failure mode from ordinary coverage and retrieval failure:
+
+**State-interpretation failure:** the learner may have executed the correct operation but cannot determine what happened because the interface, lab, or instruction did not expose sufficient telemetry or did not teach the relevant success/failure signature.
+
+This should not automatically be scored as a knowledge failure. The appropriate response is model repair: expose the missing state, explain the layer distinction, verify the current condition, and then retest later.
+
+## 13.8 Shell Stack and Context Transitions
+
+Nested shells should be taught explicitly as a stack.
+
+Commands such as `su` can create nested shell contexts. `exit` closes one shell level at a time. Therefore an instruction such as “return to root” is not equivalent to “run `exit` once” unless the current stack depth is known.
+
+Training should make context transitions observable and should avoid assuming that the learner can infer hidden nesting from prompt changes alone.
+
+## 13.9 Evidence vs. Reporting
+
+LinuxLingo should distinguish:
+
+- **system-generated evidence** — actual stdout, stderr, exit status, ownership, permissions, file existence, process state, service state, or other observable condition
+- **human reporting** — text manually typed to describe what happened
+- **platform bookkeeping** — commands required only because a lab or grader expects a particular artifact or history record
+
+These are not interchangeable.
+
+A reporting command may be useful, but it must not be described as proving a state that it merely restates.
+
 ---
 
 # 14. Mastery Evidence
@@ -360,6 +486,8 @@ Stronger evidence includes:
 - successful troubleshooting
 - correct execution and verification
 - successful multi-command sequencing
+- correct interpretation of success and failure states
+- correct verification of identity, permissions, ownership, or other relevant system state
 
 Weaker evidence includes:
 
@@ -369,6 +497,7 @@ Weaker evidence includes:
 - repeated identical prompts
 - answer leakage
 - immediate repetition after the answer was shown
+- manually reproducing expected output without generating the underlying state
 
 Mastery should depend on evidence quality, not merely raw correct-answer count.
 
@@ -378,7 +507,7 @@ Mastery should depend on evidence quality, not merely raw correct-answer count.
 
 When a learner answers incorrectly, feedback should repair the underlying model rather than merely mark the answer wrong.
 
-Useful feedback may include the expected command, concise explanation, relevant flag meaning, why the submitted answer failed, and how the command fits the larger system.
+Useful feedback may include the expected command, concise explanation, relevant flag meaning, why the submitted answer failed, how the command fits the larger system, which state transition was expected, and how to verify the result.
 
 After repair, the same prompt should not immediately be treated as proof of mastery. The system should move elsewhere and return later, preferably with a different scenario.
 
@@ -390,11 +519,14 @@ Questions should avoid:
 
 - ambiguous stems
 - unstated assumptions
+- hidden state transitions that have not been taught
+- verification requests without an observable verification method when that method is not already known
 - nonsense distractors
 - answer leakage
 - technically impossible alternatives used merely as filler
 - wording that accidentally reveals the answer
 - repetitive variants that test nothing new
+- platform bookkeeping presented as if it were core Linux behavior
 
 The learner should succeed because they understand the system.
 
@@ -416,6 +548,7 @@ Difficulty should consider:
 - troubleshooting requirements
 - system impact
 - amount of reasoning required
+- number of simultaneous abstractions or hidden state transitions
 
 Obscurity alone is not meaningful difficulty.
 
@@ -504,7 +637,7 @@ The MVP may remain one-task-at-a-time while the architecture preserves this long
 
 Troubleshooting is a core Linux skill.
 
-LinuxLingo should train learners to respond to incorrect commands, wrong flags, path mistakes, permission problems, missing packages, ownership issues, failed services, network problems, and configuration errors.
+LinuxLingo should train learners to respond to incorrect commands, wrong flags, path mistakes, permission problems, missing packages, ownership issues, failed services, network problems, configuration errors, misleading warnings, and partially successful operations.
 
 Documentation tools such as `man`, `info`, `help`, `type`, `which`, and command help options are not peripheral trivia. They are part of teaching the learner how to recover when memory fails.
 
@@ -553,7 +686,7 @@ LinuxLingo may report performance by domain such as navigation, filesystem, perm
 
 A future evidence-based readiness estimate may target approximately **95% demonstrated readiness**, but this must not mean merely 95% raw quiz accuracy.
 
-Readiness should consider coverage, independent recall, delayed recall, execution, transfer to new scenarios, troubleshooting ability, category balance, and recurring error patterns.
+Readiness should consider coverage, independent recall, delayed recall, execution, transfer to new scenarios, troubleshooting ability, category balance, recurring error patterns, and ability to verify and interpret system state.
 
 ---
 
@@ -608,7 +741,8 @@ Near-term development priorities are:
 9. Add mastery/coverage tracking.
 10. Add multi-step fluency missions.
 11. Expand troubleshooting and professional-tier coverage.
-12. Consider additional interfaces only after the terminal-first learning engine is stable.
+12. Preserve operational-purpose-first teaching, atomic semantics, explicit telemetry, and expected-failure instruction as the adaptive layer is implemented.
+13. Consider additional interfaces only after the terminal-first learning engine is stable.
 
 The project should resist premature visual polish, web/mobile development, and unnecessary infrastructure before the learning engine proves itself.
 
@@ -670,7 +804,7 @@ These are future layers, not requirements for the initial MVP.
 
 LinuxLingo should function as a technical portfolio artifact demonstrating Linux knowledge, Python development, CLI design, JSON data architecture, software organization, troubleshooting logic, adaptive learning-system design, Git/GitHub workflow, and systems thinking.
 
-Its development process also has research value: the system is being refined from inside an actual Linux learning process. Friction encountered by a learner—retrieval failures, coverage gaps, poor assessment design, successful repair methods, and useful repetitions—can become design evidence rather than being discarded after the course assignment ends.
+Its development process also has research value: the system is being refined from inside an actual Linux learning process. Friction encountered by a learner—retrieval failures, coverage gaps, poor assessment design, missing state telemetry, confusing partial-success states, successful repair methods, and useful repetitions—can become design evidence rather than being discarded after the course assignment ends.
 
 The repository should remain understandable enough that another developer, instructor, employer, or technical interviewer can examine the project and understand both what currently works and what the larger architecture is intended to become.
 
