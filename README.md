@@ -40,7 +40,7 @@ The initial LinuxLingo MVP is a Python command-line application.
 
 The MVP currently:
 
-- loads drills from JSON scenario banks
+- loads drills from multiple JSON scenario banks
 - presents Linux command drills
 - accepts typed command responses
 - uses real-world scenarios
@@ -57,13 +57,18 @@ The current safe MVP does not execute arbitrary learner-entered commands. Rich s
 ## Core Architecture
 
 ### `linuxlingo.py`
-Contains the Python CLI engine and program logic. It currently loads the main bank plus a supplemental harvest bank.
+Contains the Python CLI engine and program logic. The engine loads each configured scenario-bank JSON file into one combined drill pool.
 
-### `scenario_bank.json`
-Contains the original canonical corpus through LL100.
+### Scenario banks
+The training corpus is intentionally split into numbered JSON banks so individual files stay manageable as the corpus grows.
 
-### `scenario_bank_additions.json`
-Contains newly harvested coursework drills beginning with LL101. This keeps new harvests usable immediately while preserving the existing main bank intact; later consolidation remains possible.
+Current convention:
+
+- `scenario_bank.json` — LL001–LL100
+- `scenario_bank_2.json` — begins with LL101 and is intended to carry approximately the next 100 drills
+- future banks will continue as `scenario_bank_3.json`, `scenario_bank_4.json`, and so on as needed
+
+The approximate 100-drill boundary is organizational rather than semantic. Drill IDs remain globally unique across all banks, and `linuxlingo.py` rejects duplicate IDs when loading them.
 
 ### `PROJECT_CONTINUITY.md`
 Maintains the current development state so work can continue cleanly across sessions.
@@ -94,7 +99,7 @@ Preferred workflow:
 
 **LAB → LEARN → HARVEST → COMMIT → MOVE ON**
 
-As of September 14, 2026, LinuxLingo loads **115 drills (LL001–LL115)**.
+As of September 14, 2026, LinuxLingo loads **115 drills (LL001–LL115)** across two numbered scenario banks.
 
 Recent harvests include:
 
@@ -116,12 +121,13 @@ The September 14 Cengage work also reinforced an important product-design lesson
 1. Preserve the terminal-first Python/JSON architecture.
 2. Continue harvesting real coursework and lab material after each learning unit.
 3. Preserve source provenance and troubleshooting context.
-4. Improve answer validation beyond normalized exact matching.
-5. Add performance persistence, mistake review, and mastery/coverage tracking.
-6. Add adaptive drill selection and delayed retesting.
-7. Introduce safe state-based validation.
-8. Add advanced multi-step scenarios and troubleshooting drills.
-9. Consolidate supplemental harvest banks when useful without losing provenance.
+4. Keep scenario banks to roughly 100 drills each for readability and maintenance, then start the next numbered bank.
+5. Preserve globally unique drill IDs across every bank.
+6. Improve answer validation beyond normalized exact matching.
+7. Add performance persistence, mistake review, and mastery/coverage tracking.
+8. Add adaptive drill selection and delayed retesting.
+9. Introduce safe state-based validation.
+10. Add advanced multi-step scenarios and troubleshooting drills.
 
 ---
 
@@ -137,7 +143,7 @@ The immediate priority remains building a strong terminal-first Linux fluency en
 
 **Current Phase:** Active MVP and command-bank development.
 
-**Current loaded corpus:** 115 drills, LL001–LL115.
+**Current loaded corpus:** 115 drills, LL001–LL115, across two numbered JSON banks.
 
 GitHub is the active source of truth.
 
