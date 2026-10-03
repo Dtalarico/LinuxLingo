@@ -13,9 +13,9 @@ Update this file after every substantial LinuxLingo work session.
 - Development model: terminal-first Python MVP growing toward an adaptive terminal-fluency system.
 - GitHub is the active source of truth.
 - The engine now loads two numbered JSON banks: `scenario_bank.json` and `scenario_bank_2.json`.
-- Loaded corpus: **132 drills, LL001–LL132**.
+- Loaded corpus: **160 drills, LL001–LL160**.
 - `scenario_bank.json` contains LL001–LL100.
-- `scenario_bank_2.json` begins with LL101 and currently contains LL101–LL132.
+- `scenario_bank_2.json` begins with LL101 and currently contains LL101–LL160.
 - `LINUXLINGO_MASTER_SPEC.md` now contains the September 14 adaptive-teaching doctrine as canonical architecture, including operation-before-syntax, atomic semantics, one-abstraction-at-a-time sequencing, explicit state telemetry, expected failure states, partial-success interpretation, state-interpretation failure, nested-shell state, and evidence-vs-reporting distinctions.
 
 ---
@@ -121,6 +121,7 @@ Do not promote brittle lab-platform bookkeeping into Linux doctrine. Preserve th
 - LL097–LL100: September 13 Docker container work.
 - LL101–LL115: September 14 Cengage `find`, `locate`, `updatedb`, `whereis`, and `which` work.
 - LL116–LL132: September 14 Cengage users/groups/ownership/permissions/user-context work.
+- LL133–LL160: October 3 service-management, process inspection, state interpretation, networking endpoint reasoning, and Bash completion work.
 
 ---
 
@@ -188,6 +189,37 @@ These lessons are no longer continuity-only notes; they are now promoted into `L
 
 ---
 
+## October 3 Service Management / Process / Completion Harvest
+New drill material added in LL133–LL160:
+
+- `systemctl status`, `start`, `stop`, `restart`, `reload`, `enable`, `disable`, and `is-enabled`
+- runtime-state versus boot-policy distinction
+- `ps -ef` and its UID/PID/PPID/C/STIME/TTY/TIME/CMD fields
+- `ps -ef | grep ssh`, `ufw`, and `apache2`
+- `pstree -p | grep ssh` and `pstree -p | grep apache2`
+- legacy/deprecated `service ssh restart` syntax for recognition
+- `Loaded: loaded`, `enabled`, `active (running)`, and `active (exited)`
+- Main PID, PPID 1/systemd parent relationship, daemon TTY `?`, and accumulated CPU TIME
+- IP-address versus port responsibility
+- Bash prefix completion with `systemctl re` plus double-Tab
+
+Operational and teaching lessons captured:
+
+- `systemd` is the manager; `systemctl` is the interface used to query/control it.
+- Current runtime state and boot-time policy are separate dimensions and must be taught separately.
+- `systemctl status`, `ps -ef`, and `pstree -p` expose different layers of evidence rather than being interchangeable ways to “look at a service.”
+- `active (exited)` is not inherently failure; setup-style units such as UFW can finish their work and leave the unit active without a persistent service process.
+- Restart and reload solve different operational problems: restart creates fresh process state; reload asks a running service to reread configuration when supported.
+- Deprecated syntax should be preserved as recognition knowledge without making legacy form the primary modern operating path.
+- Tab completion is a shell-discovery/self-rescue mechanism. Double-Tab may visibly list matching candidates, but this is interactive shell assistance rather than ordinary command stdout.
+- Technical teaching should distinguish “show on screen,” “produce command output,” “filter output,” and “display completion candidates.” Loose verbs create false ambiguity.
+- Plain English should accompany canonical terminology: official term + ordinary-language translation + purpose + system relationship.
+- The learner's preferred model remains: do not teach incantations; teach the system the command is exposing.
+
+These lessons have also been promoted into the Master Spec as canonical doctrine under mechanism-precise language/shell discovery and service management as a state model.
+
+---
+
 ## Engine State
 - Engine loads configured numbered JSON banks at startup.
 - Current banks: `scenario_bank.json` + `scenario_bank_2.json`.
@@ -229,17 +261,18 @@ Important limitation:
 ## Completed
 - Repository structure established.
 - Python MVP created and separated from JSON training data.
-- Scenario corpus expanded through LL132.
+- Scenario corpus expanded through LL160.
 - September 4 filesystem/navigation/Vim/wildcard harvest completed.
 - September 4 text-processing/AWK harvest completed.
 - September 13 directory-management/shell-history harvest completed.
 - September 13 Docker harvest completed.
 - September 14 find/locate/whereis/which harvest completed.
 - September 14 permissions/users/groups/identity-context harvest completed through LL132.
+- October 3 service-management/process/completion harvest completed through LL160.
 - Engine updated to load multiple numbered scenario banks and detect duplicate drill IDs.
 - Numbered scenario-bank scaling convention documented.
 - `scenario_bank_2.json` established for LL101 onward.
-- README updated to reflect the 132-drill loaded corpus and current harvest.
+- README updated to reflect the 160-drill loaded corpus and current harvest.
 - Autograder-vs-real-Linux design lesson captured explicitly.
 - Atomic-semantics, expected-failure, verification-telemetry, nested-shell, and evidence-vs-narration teaching lessons captured explicitly.
 - September 14 adaptive-teaching doctrine promoted into `LINUXLINGO_MASTER_SPEC.md` as canonical architecture.
@@ -256,4 +289,4 @@ Important limitation:
 Continue the per-lab harvest workflow. Add new drills to `scenario_bank_2.json` until that bank is approximately full, then create `scenario_bank_3.json` and add it to the engine's configured bank list.
 
 ## Next Exact Task
-Finish the remaining September 14 NOS-120 work, harvest genuinely new material into `scenario_bank_2.json`, then update this continuity file again.
+Continue the current NOS-120 lab from the next instruction after Bash/systemctl completion practice. Harvest only genuinely new material, preserving the exact lab mechanism and plain-English system model.
