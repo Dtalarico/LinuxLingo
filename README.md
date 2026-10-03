@@ -109,7 +109,7 @@ Preferred workflow:
 
 **LAB → LEARN → HARVEST → COMMIT → MOVE ON**
 
-As of September 14, 2026, LinuxLingo loads **132 drills (LL001–LL132)** across two numbered scenario banks.
+As of September 14, 2026, LinuxLingo loads **160 drills (LL001–LL160)** across two numbered scenario banks.
 
 Recent harvests include:
 
@@ -130,8 +130,28 @@ Recent harvests include:
 - identity verification with `whoami`
 - nested-shell behavior with `exit`
 - intentional permission-denied scenarios for group and other access classes
+- service management with `systemctl`: status, start, stop, restart, reload, enable, disable, and boot-policy verification
+- process inspection with `ps -ef`, `grep`, and `pstree -p`
+- service-state interpretation: `active (running)` vs `active (exited)`, Main PID, PPID, TTY, and CPU TIME
+- Bash double-Tab completion as a command-discovery/self-rescue mechanism
+- explicit separation of interactive completion candidates from command stdout
+- network endpoint reasoning: IP address selects the machine; port selects the listening service
 
 The September 14 Cengage work also reinforced an important product-design lesson: training should accept valid Linux solutions where appropriate rather than teaching learners to guess a brittle autograder's preferred command string. It also showed that a lab can create confusion when it asks the learner to infer hidden state changes, success conditions, or failure meanings instead of exposing those transitions directly.
+
+---
+
+## October 3, 2026 service-management harvest
+
+The NOS-120 service-management lab added LL133–LL160 and reinforced a system model rather than a command-list model:
+
+- `systemd` is the service/system manager; `systemctl` is the operator-facing control/query interface.
+- Current runtime state (`start`, `stop`, `restart`, `reload`, `status`) is separate from boot policy (`enable`, `disable`, `is-enabled`).
+- `systemctl status`, `ps -ef`, and `pstree -p` answer different questions: managed-unit state, flat process evidence, and process relationships.
+- `active (exited)` can represent a successful setup-style unit with no persistent process; it is not automatically a failure.
+- Deprecated `service` syntax is preserved for recognition, while modern `systemctl` operation remains primary.
+- Bash tab completion is a discovery mechanism. Double-Tab can display matching completion candidates, but that interactive display must not be confused with command stdout.
+- Teaching language must name the mechanism precisely. Vague instructions such as “display a list” should be rewritten as the actual operation when the distinction matters.
 
 ---
 
@@ -162,7 +182,7 @@ The immediate priority remains building a strong terminal-first Linux fluency en
 
 **Current Phase:** Active MVP and command-bank development.
 
-**Current loaded corpus:** 132 drills, LL001–LL132, across two numbered JSON banks.
+**Current loaded corpus:** 160 drills, LL001–LL160, across two numbered JSON banks.
 
 GitHub is the active source of truth.
 
