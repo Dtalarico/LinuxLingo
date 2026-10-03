@@ -1,35 +1,1263 @@
 [
-  {"id":"LL101","type":"command_construction","difficulty":"beginner","tier":"basic","category":"filesystem","tags":["touch","absolute-paths","multiple-files"],"prompt":"Create three empty files named image1.jpg, image2.jpg, and image3.jpg in /root with one touch command.","answers":["touch /root/image1.jpg /root/image2.jpg /root/image3.jpg"],"check":null,"explanation":"touch accepts multiple path arguments, creating each named file if it does not already exist.","source":"NOS-120 Cengage locate/find labs / 2026-09-14"},
-  {"id":"LL102","type":"scenario","difficulty":"beginner","tier":"fluency","category":"filesystem_search","tags":["updatedb","locate","database"],"prompt":"Refresh the filename database used by locate.","answers":["updatedb","sudo updatedb"],"check":null,"explanation":"updatedb rebuilds or refreshes the database that locate searches.","source":"NOS-120 Cengage locate lab / 2026-09-14"},
-  {"id":"LL103","type":"scenario","difficulty":"beginner","tier":"fluency","category":"filesystem_search","tags":["locate","statistics","database"],"prompt":"Display statistics about the locate/mlocate database.","answers":["locate -S"],"check":null,"explanation":"locate -S displays database statistics rather than filename matches.","source":"NOS-120 Cengage locate lab / 2026-09-14"},
-  {"id":"LL104","type":"command_construction","difficulty":"beginner","tier":"fluency","category":"filesystem_search","tags":["locate","wildcards","jpg"],"prompt":"Use locate to search the filename database for paths matching JPG files.","answers":["locate \"*.jpg\"","locate '*.jpg'","locate *.jpg"],"check":null,"explanation":"locate searches its database for matching pathnames; a *.jpg pattern targets JPG filenames. Quoting can keep the shell from expanding the pattern before locate receives it.","source":"NOS-120 Cengage locate lab / 2026-09-14"},
-  {"id":"LL105","type":"command_construction","difficulty":"beginner","tier":"fluency","category":"filesystem_search","tags":["locate","root","absolute-paths","jpg"],"prompt":"Use locate to search specifically under /root for JPG files.","answers":["locate \"/root/*.jpg\"","locate '/root/*.jpg'","locate /root/*.jpg"],"check":null,"explanation":"Including /root in the locate pattern narrows matches to paths beneath the root user's home directory.","source":"NOS-120 Cengage locate lab / 2026-09-14"},
-  {"id":"LL106","type":"command_construction","difficulty":"beginner","tier":"fluency","category":"filesystem_search","tags":["locate","count","jpg"],"prompt":"Use locate to count JPG matches instead of printing each matching pathname.","answers":["locate -c \"*.jpg\"","locate -c '*.jpg'","locate -c *.jpg"],"check":null,"explanation":"The -c option makes locate print only the number of matches.","source":"NOS-120 Cengage locate lab / 2026-09-14"},
-  {"id":"LL107","type":"scenario","difficulty":"beginner","tier":"fluency","category":"command_discovery","tags":["whereis","date","man-pages","executables"],"prompt":"Display the executable, manual-page, and other standard locations associated with the date command.","answers":["whereis date"],"check":null,"explanation":"whereis searches standard locations for a command's binary, source/supporting files, and manual pages.","source":"NOS-120 Cengage locate lab / 2026-09-14"},
-  {"id":"LL108","type":"scenario","difficulty":"beginner","tier":"fluency","category":"command_discovery","tags":["which","date","PATH","executables"],"prompt":"Display the executable path that the shell would use for the date command.","answers":["which date"],"check":null,"explanation":"which searches PATH and reports the executable that would be invoked.","source":"NOS-120 Cengage locate lab / 2026-09-14"},
-  {"id":"LL109","type":"command_construction","difficulty":"intermediate","tier":"fluency","category":"filesystem_search","tags":["find","name","conf","etc"],"prompt":"Search /etc for regular files whose names end in .conf.","answers":["find /etc -type f -name \"*.conf\"","find /etc -type f -name '*.conf'"],"check":null,"explanation":"find starts at /etc, -type f limits results to regular files, and -name applies a filename pattern.","source":"NOS-120 Cengage find lab / 2026-09-14"},
-  {"id":"LL110","type":"command_construction","difficulty":"intermediate","tier":"fluency","category":"filesystem_search","tags":["find","iname","case-insensitive","root"],"prompt":"Search /root for a file named employeelist.txt while ignoring letter case.","answers":["find /root -type f -iname \"employeelist.txt\"","find /root -type f -iname employeelist.txt"],"check":null,"explanation":"-iname performs a case-insensitive filename match, so EmployeeList.txt can match employeelist.txt.","source":"NOS-120 Cengage find lab / 2026-09-14"},
-  {"id":"LL111","type":"command_construction","difficulty":"intermediate","tier":"fluency","category":"filesystem_search","tags":["find","owner","user"],"prompt":"Search /home/user01 for regular files owned by user01.","answers":["find /home/user01 -type f -user user01"],"check":null,"explanation":"The -user predicate filters find results by file owner.","source":"NOS-120 Cengage find lab / 2026-09-14"},
-  {"id":"LL112","type":"command_construction","difficulty":"intermediate","tier":"fluency","category":"filesystem_search","tags":["find","size","megabytes","logs"],"prompt":"Search /var/log for regular files larger than 1 MB.","answers":["find /var/log -type f -size +1M"],"check":null,"explanation":"-size +1M selects files larger than one mebibyte-sized unit as interpreted by find.","source":"NOS-120 Cengage find lab / 2026-09-14"},
-  {"id":"LL113","type":"command_construction","difficulty":"intermediate","tier":"fluency","category":"filesystem_search","tags":["find","mmin","modified","logs"],"prompt":"Search /var/log for regular files modified within the last five minutes.","answers":["find /var/log -type f -mmin -5"],"check":null,"explanation":"-mmin -5 selects files with modification times less than five minutes ago.","source":"NOS-120 Cengage find lab / 2026-09-14"},
-  {"id":"LL114","type":"command_construction","difficulty":"intermediate","tier":"fluency","category":"filesystem_search","tags":["find","exec","nano","editing"],"prompt":"Find /root/EmployeeList.txt and open each match in Nano using find -exec.","answers":["find /root -type f -name \"EmployeeList.txt\" -exec nano {} \\;","find /root -type f -name EmployeeList.txt -exec nano {} \\;"],"check":null,"explanation":"-exec runs the specified command for each match; {} is replaced by the matched pathname and \\; terminates the -exec action.","source":"NOS-120 Cengage find lab / 2026-09-14"},
-  {"id":"LL115","type":"command_construction","difficulty":"intermediate","tier":"fluency","category":"filesystem_search","tags":["find","exec","ls","permissions"],"prompt":"Find /root/EmployeeList.txt and display its long-format permissions using ls -l through find -exec.","answers":["find /root -type f -name \"EmployeeList.txt\" -exec ls -l {} \\;","find /root -type f -name EmployeeList.txt -exec ls -l {} \\;"],"check":null,"explanation":"find locates the file and -exec ls -l displays long-format metadata including permissions for each match.","source":"NOS-120 Cengage find lab / 2026-09-14"},
-  {"id":"LL116","type":"scenario","difficulty":"beginner","tier":"fluency","category":"users_groups","tags":["useradd","accounts","users"],"prompt":"Create a local user account named PayrollManager.","answers":["useradd PayrollManager","sudo useradd PayrollManager"],"check":null,"explanation":"useradd creates the local user account. Account creation is separate from assigning a password or creating other account resources.","source":"NOS-120 Cengage permissions/users lab / 2026-09-14"},
-  {"id":"LL117","type":"scenario","difficulty":"beginner","tier":"fluency","category":"users_groups","tags":["passwd","passwords","users"],"prompt":"Start the interactive password-setting process for PayrollEmployee.","answers":["passwd PayrollEmployee","sudo passwd PayrollEmployee"],"check":null,"explanation":"passwd USER changes or sets that user's password interactively when run with sufficient privilege.","source":"NOS-120 Cengage permissions/users lab / 2026-09-14"},
-  {"id":"LL118","type":"scenario","difficulty":"beginner","tier":"fluency","category":"users_groups","tags":["groupadd","groups"],"prompt":"Create a group named Payroll.","answers":["groupadd Payroll","sudo groupadd Payroll"],"check":null,"explanation":"groupadd creates a new local group.","source":"NOS-120 Cengage permissions/users lab / 2026-09-14"},
-  {"id":"LL119","type":"command_construction","difficulty":"intermediate","tier":"fluency","category":"users_groups","tags":["usermod","supplementary-groups","append","Payroll"],"prompt":"Add PayrollEmployee to the supplementary group Payroll without removing any existing supplementary-group memberships.","answers":["usermod -aG Payroll PayrollEmployee","sudo usermod -aG Payroll PayrollEmployee"],"check":null,"explanation":"-G specifies the supplementary-group list and -a appends instead of replacing existing supplementary memberships. This changes which group the user belongs to; it does not change file ownership.","source":"NOS-120 Cengage permissions/users lab / 2026-09-14"},
-  {"id":"LL120","type":"command_construction","difficulty":"intermediate","tier":"fluency","category":"permissions_ownership","tags":["chown","recursive","owner","group","PayrollData"],"prompt":"Recursively make PayrollManager the user owner and Payroll the group owner of /PayrollData and everything beneath it.","answers":["chown -R PayrollManager:Payroll /PayrollData","chown -R PayrollManager:Payroll /PayrollData/","sudo chown -R PayrollManager:Payroll /PayrollData","sudo chown -R PayrollManager:Payroll /PayrollData/"],"check":null,"explanation":"chown OWNER:GROUP changes file or directory ownership. -R applies the ownership change recursively through the directory tree. This changes who filesystem objects belong to, not which groups a user belongs to.","source":"NOS-120 Cengage permissions/users lab / 2026-09-14"},
-  {"id":"LL121","type":"command_construction","difficulty":"intermediate","tier":"fluency","category":"permissions","tags":["chmod","octal","directories","750"],"prompt":"Set /PayrollData so the owner has rwx, the group has r-x, and others have no permissions.","answers":["chmod 750 /PayrollData","chmod 750 /PayrollData/","sudo chmod 750 /PayrollData","sudo chmod 750 /PayrollData/"],"check":null,"explanation":"750 maps to owner rwx (7), group r-x (5), and others --- (0). Directory write permission controls creating/removing entries, while execute permits traversal.","source":"NOS-120 Cengage permissions/users lab / 2026-09-14"},
-  {"id":"LL122","type":"command_construction","difficulty":"intermediate","tier":"fluency","category":"permissions","tags":["chmod","octal","files","640"],"prompt":"Set /PayrollData/file1 so the owner has rw-, the group has r--, and others have no permissions.","answers":["chmod 640 /PayrollData/file1","sudo chmod 640 /PayrollData/file1"],"check":null,"explanation":"640 maps to owner rw- (6), group r-- (4), and others --- (0).",
-"source":"NOS-120 Cengage permissions/users lab / 2026-09-14"},
-  {"id":"LL123","type":"scenario","difficulty":"beginner","tier":"fluency","category":"verification","tags":["ls","directory-object","permissions","ownership"],"prompt":"Display the long-format metadata for the /PayrollData directory object itself rather than listing its contents.","answers":["ls -ld /PayrollData","ls -ld /PayrollData/"],"check":null,"explanation":"-l requests long format and -d tells ls to show the directory object itself instead of descending to list its contents.","source":"NOS-120 Cengage permissions/users lab / 2026-09-14"},
-  {"id":"LL124","type":"scenario","difficulty":"beginner","tier":"fluency","category":"verification","tags":["ls","file","permissions","ownership"],"prompt":"Display long-format metadata for /PayrollData/file1.","answers":["ls -l /PayrollData/file1"],"check":null,"explanation":"ls -l on a file displays long-format metadata including permission bits, owner, and group.","source":"NOS-120 Cengage permissions/users lab / 2026-09-14"},
-  {"id":"LL125","type":"scenario","difficulty":"intermediate","tier":"fluency","category":"identity_context","tags":["su","user-identity","environment"],"prompt":"Switch your effective user identity to PayrollEmployee while keeping more of the current shell environment instead of starting a login-style shell.","answers":["su PayrollEmployee"],"check":null,"explanation":"su USER changes to that user's identity and permissions while preserving more of the current shell environment. It is different from su - USER, which requests a login-style environment.","source":"NOS-120 Cengage permissions/users lab plus operational clarification / 2026-09-14"},
-  {"id":"LL126","type":"scenario","difficulty":"intermediate","tier":"fluency","category":"identity_context","tags":["su","login-shell","environment","credentials"],"prompt":"Switch to PayrollEmployee using a login-style shell so Linux also attempts to load that user's login environment and home context.","answers":["su - PayrollEmployee"],"check":null,"explanation":"su - USER changes user identity and requests a login-style environment. Authentication may succeed even if a later environment step, such as changing to a missing home directory, produces a warning.","source":"NOS-120 Cengage permissions/users lab plus operational clarification / 2026-09-14"},
-  {"id":"LL127","type":"scenario","difficulty":"beginner","tier":"fluency","category":"identity_context","tags":["whoami","verification","identity"],"prompt":"Verify which effective user account your current shell is running as.","answers":["whoami"],"check":null,"explanation":"whoami prints the effective username and gives an observable verification of the current user identity.","source":"NOS-120 Cengage permissions/users lab operational verification / 2026-09-14"},
-  {"id":"LL128","type":"scenario","difficulty":"beginner","tier":"fluency","category":"identity_context","tags":["exit","nested-shells","su"],"prompt":"Leave the current su-created shell and return one shell level toward the account you were using before it.","answers":["exit"],"check":null,"explanation":"exit closes the current shell. With nested su sessions, one exit returns only one level; reaching root may require more than one exit depending on the shell stack.","source":"NOS-120 Cengage permissions/users lab operational clarification / 2026-09-14"},
-  {"id":"LL129","type":"scenario","difficulty":"intermediate","tier":"fluency","category":"permissions","tags":["cat","group-permissions","PayrollEmployee","read"],"prompt":"You are PayrollEmployee, a supplementary member of Payroll. /PayrollData is 750 and /PayrollData/file1 is 640 with group owner Payroll. Read file1.","answers":["cat /PayrollData/file1"],"check":null,"explanation":"PayrollEmployee receives the group permission path: directory r-x allows traversal and file r-- allows reading, so cat can read the file.","source":"NOS-120 Cengage permissions/users lab / 2026-09-14"},
-  {"id":"LL130","type":"scenario","difficulty":"intermediate","tier":"fluency","category":"permissions","tags":["touch","group-permissions","PayrollEmployee","permission-denied"],"prompt":"You are PayrollEmployee, a supplementary member of Payroll. Attempt to create /PayrollData/anotherfile even though the Payroll group has r-x, not write, on the directory.","answers":["touch /PayrollData/anotherfile"],"check":null,"explanation":"The command itself is correct for the requested attempt, but Linux should deny the creation because the directory's group permissions are r-x and do not include write. This is an intentional failure-state drill.","source":"NOS-120 Cengage permissions/users lab / 2026-09-14"},
-  {"id":"LL131","type":"scenario","difficulty":"intermediate","tier":"fluency","category":"identity_context","tags":["su","NonPayrollEmployee","login-shell"],"prompt":"Switch to NonPayrollEmployee using a login-style shell before testing what an unrelated user can access.","answers":["su - NonPayrollEmployee"],"check":null,"explanation":"su - requests the target user's identity plus login-style environment. A missing-home-directory warning can occur after the identity switch and should be interpreted separately from authentication failure.","source":"NOS-120 Cengage permissions/users lab plus operational clarification / 2026-09-14"},
-  {"id":"LL132","type":"scenario","difficulty":"intermediate","tier":"fluency","category":"permissions","tags":["cat","others-permissions","NonPayrollEmployee","permission-denied"],"prompt":"You are NonPayrollEmployee, who is neither PayrollManager nor a member of Payroll. Attempt to read /PayrollData/file1.","answers":["cat /PayrollData/file1"],"check":null,"explanation":"The attempt should fail because /PayrollData gives others --- and file1 also gives others ---. The absolute path identifies the target; permission evaluation depends on the effective user and applicable owner/group/other class.","source":"NOS-120 Cengage permissions/users lab / 2026-09-14"}
+  {
+    "id": "LL101",
+    "type": "command_construction",
+    "difficulty": "beginner",
+    "tier": "basic",
+    "category": "filesystem",
+    "tags": [
+      "touch",
+      "absolute-paths",
+      "multiple-files"
+    ],
+    "prompt": "Create three empty files named image1.jpg, image2.jpg, and image3.jpg in /root with one touch command.",
+    "answers": [
+      "touch /root/image1.jpg /root/image2.jpg /root/image3.jpg"
+    ],
+    "check": null,
+    "explanation": "touch accepts multiple path arguments, creating each named file if it does not already exist.",
+    "source": "NOS-120 Cengage locate/find labs / 2026-09-14"
+  },
+  {
+    "id": "LL102",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "filesystem_search",
+    "tags": [
+      "updatedb",
+      "locate",
+      "database"
+    ],
+    "prompt": "Refresh the filename database used by locate.",
+    "answers": [
+      "updatedb",
+      "sudo updatedb"
+    ],
+    "check": null,
+    "explanation": "updatedb rebuilds or refreshes the database that locate searches.",
+    "source": "NOS-120 Cengage locate lab / 2026-09-14"
+  },
+  {
+    "id": "LL103",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "filesystem_search",
+    "tags": [
+      "locate",
+      "statistics",
+      "database"
+    ],
+    "prompt": "Display statistics about the locate/mlocate database.",
+    "answers": [
+      "locate -S"
+    ],
+    "check": null,
+    "explanation": "locate -S displays database statistics rather than filename matches.",
+    "source": "NOS-120 Cengage locate lab / 2026-09-14"
+  },
+  {
+    "id": "LL104",
+    "type": "command_construction",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "filesystem_search",
+    "tags": [
+      "locate",
+      "wildcards",
+      "jpg"
+    ],
+    "prompt": "Use locate to search the filename database for paths matching JPG files.",
+    "answers": [
+      "locate \"*.jpg\"",
+      "locate '*.jpg'",
+      "locate *.jpg"
+    ],
+    "check": null,
+    "explanation": "locate searches its database for matching pathnames; a *.jpg pattern targets JPG filenames. Quoting can keep the shell from expanding the pattern before locate receives it.",
+    "source": "NOS-120 Cengage locate lab / 2026-09-14"
+  },
+  {
+    "id": "LL105",
+    "type": "command_construction",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "filesystem_search",
+    "tags": [
+      "locate",
+      "root",
+      "absolute-paths",
+      "jpg"
+    ],
+    "prompt": "Use locate to search specifically under /root for JPG files.",
+    "answers": [
+      "locate \"/root/*.jpg\"",
+      "locate '/root/*.jpg'",
+      "locate /root/*.jpg"
+    ],
+    "check": null,
+    "explanation": "Including /root in the locate pattern narrows matches to paths beneath the root user's home directory.",
+    "source": "NOS-120 Cengage locate lab / 2026-09-14"
+  },
+  {
+    "id": "LL106",
+    "type": "command_construction",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "filesystem_search",
+    "tags": [
+      "locate",
+      "count",
+      "jpg"
+    ],
+    "prompt": "Use locate to count JPG matches instead of printing each matching pathname.",
+    "answers": [
+      "locate -c \"*.jpg\"",
+      "locate -c '*.jpg'",
+      "locate -c *.jpg"
+    ],
+    "check": null,
+    "explanation": "The -c option makes locate print only the number of matches.",
+    "source": "NOS-120 Cengage locate lab / 2026-09-14"
+  },
+  {
+    "id": "LL107",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "command_discovery",
+    "tags": [
+      "whereis",
+      "date",
+      "man-pages",
+      "executables"
+    ],
+    "prompt": "Display the executable, manual-page, and other standard locations associated with the date command.",
+    "answers": [
+      "whereis date"
+    ],
+    "check": null,
+    "explanation": "whereis searches standard locations for a command's binary, source/supporting files, and manual pages.",
+    "source": "NOS-120 Cengage locate lab / 2026-09-14"
+  },
+  {
+    "id": "LL108",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "command_discovery",
+    "tags": [
+      "which",
+      "date",
+      "PATH",
+      "executables"
+    ],
+    "prompt": "Display the executable path that the shell would use for the date command.",
+    "answers": [
+      "which date"
+    ],
+    "check": null,
+    "explanation": "which searches PATH and reports the executable that would be invoked.",
+    "source": "NOS-120 Cengage locate lab / 2026-09-14"
+  },
+  {
+    "id": "LL109",
+    "type": "command_construction",
+    "difficulty": "intermediate",
+    "tier": "fluency",
+    "category": "filesystem_search",
+    "tags": [
+      "find",
+      "name",
+      "conf",
+      "etc"
+    ],
+    "prompt": "Search /etc for regular files whose names end in .conf.",
+    "answers": [
+      "find /etc -type f -name \"*.conf\"",
+      "find /etc -type f -name '*.conf'"
+    ],
+    "check": null,
+    "explanation": "find starts at /etc, -type f limits results to regular files, and -name applies a filename pattern.",
+    "source": "NOS-120 Cengage find lab / 2026-09-14"
+  },
+  {
+    "id": "LL110",
+    "type": "command_construction",
+    "difficulty": "intermediate",
+    "tier": "fluency",
+    "category": "filesystem_search",
+    "tags": [
+      "find",
+      "iname",
+      "case-insensitive",
+      "root"
+    ],
+    "prompt": "Search /root for a file named employeelist.txt while ignoring letter case.",
+    "answers": [
+      "find /root -type f -iname \"employeelist.txt\"",
+      "find /root -type f -iname employeelist.txt"
+    ],
+    "check": null,
+    "explanation": "-iname performs a case-insensitive filename match, so EmployeeList.txt can match employeelist.txt.",
+    "source": "NOS-120 Cengage find lab / 2026-09-14"
+  },
+  {
+    "id": "LL111",
+    "type": "command_construction",
+    "difficulty": "intermediate",
+    "tier": "fluency",
+    "category": "filesystem_search",
+    "tags": [
+      "find",
+      "owner",
+      "user"
+    ],
+    "prompt": "Search /home/user01 for regular files owned by user01.",
+    "answers": [
+      "find /home/user01 -type f -user user01"
+    ],
+    "check": null,
+    "explanation": "The -user predicate filters find results by file owner.",
+    "source": "NOS-120 Cengage find lab / 2026-09-14"
+  },
+  {
+    "id": "LL112",
+    "type": "command_construction",
+    "difficulty": "intermediate",
+    "tier": "fluency",
+    "category": "filesystem_search",
+    "tags": [
+      "find",
+      "size",
+      "megabytes",
+      "logs"
+    ],
+    "prompt": "Search /var/log for regular files larger than 1 MB.",
+    "answers": [
+      "find /var/log -type f -size +1M"
+    ],
+    "check": null,
+    "explanation": "-size +1M selects files larger than one mebibyte-sized unit as interpreted by find.",
+    "source": "NOS-120 Cengage find lab / 2026-09-14"
+  },
+  {
+    "id": "LL113",
+    "type": "command_construction",
+    "difficulty": "intermediate",
+    "tier": "fluency",
+    "category": "filesystem_search",
+    "tags": [
+      "find",
+      "mmin",
+      "modified",
+      "logs"
+    ],
+    "prompt": "Search /var/log for regular files modified within the last five minutes.",
+    "answers": [
+      "find /var/log -type f -mmin -5"
+    ],
+    "check": null,
+    "explanation": "-mmin -5 selects files with modification times less than five minutes ago.",
+    "source": "NOS-120 Cengage find lab / 2026-09-14"
+  },
+  {
+    "id": "LL114",
+    "type": "command_construction",
+    "difficulty": "intermediate",
+    "tier": "fluency",
+    "category": "filesystem_search",
+    "tags": [
+      "find",
+      "exec",
+      "nano",
+      "editing"
+    ],
+    "prompt": "Find /root/EmployeeList.txt and open each match in Nano using find -exec.",
+    "answers": [
+      "find /root -type f -name \"EmployeeList.txt\" -exec nano {} \\;",
+      "find /root -type f -name EmployeeList.txt -exec nano {} \\;"
+    ],
+    "check": null,
+    "explanation": "-exec runs the specified command for each match; {} is replaced by the matched pathname and \\; terminates the -exec action.",
+    "source": "NOS-120 Cengage find lab / 2026-09-14"
+  },
+  {
+    "id": "LL115",
+    "type": "command_construction",
+    "difficulty": "intermediate",
+    "tier": "fluency",
+    "category": "filesystem_search",
+    "tags": [
+      "find",
+      "exec",
+      "ls",
+      "permissions"
+    ],
+    "prompt": "Find /root/EmployeeList.txt and display its long-format permissions using ls -l through find -exec.",
+    "answers": [
+      "find /root -type f -name \"EmployeeList.txt\" -exec ls -l {} \\;",
+      "find /root -type f -name EmployeeList.txt -exec ls -l {} \\;"
+    ],
+    "check": null,
+    "explanation": "find locates the file and -exec ls -l displays long-format metadata including permissions for each match.",
+    "source": "NOS-120 Cengage find lab / 2026-09-14"
+  },
+  {
+    "id": "LL116",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "users_groups",
+    "tags": [
+      "useradd",
+      "accounts",
+      "users"
+    ],
+    "prompt": "Create a local user account named PayrollManager.",
+    "answers": [
+      "useradd PayrollManager",
+      "sudo useradd PayrollManager"
+    ],
+    "check": null,
+    "explanation": "useradd creates the local user account. Account creation is separate from assigning a password or creating other account resources.",
+    "source": "NOS-120 Cengage permissions/users lab / 2026-09-14"
+  },
+  {
+    "id": "LL117",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "users_groups",
+    "tags": [
+      "passwd",
+      "passwords",
+      "users"
+    ],
+    "prompt": "Start the interactive password-setting process for PayrollEmployee.",
+    "answers": [
+      "passwd PayrollEmployee",
+      "sudo passwd PayrollEmployee"
+    ],
+    "check": null,
+    "explanation": "passwd USER changes or sets that user's password interactively when run with sufficient privilege.",
+    "source": "NOS-120 Cengage permissions/users lab / 2026-09-14"
+  },
+  {
+    "id": "LL118",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "users_groups",
+    "tags": [
+      "groupadd",
+      "groups"
+    ],
+    "prompt": "Create a group named Payroll.",
+    "answers": [
+      "groupadd Payroll",
+      "sudo groupadd Payroll"
+    ],
+    "check": null,
+    "explanation": "groupadd creates a new local group.",
+    "source": "NOS-120 Cengage permissions/users lab / 2026-09-14"
+  },
+  {
+    "id": "LL119",
+    "type": "command_construction",
+    "difficulty": "intermediate",
+    "tier": "fluency",
+    "category": "users_groups",
+    "tags": [
+      "usermod",
+      "supplementary-groups",
+      "append",
+      "Payroll"
+    ],
+    "prompt": "Add PayrollEmployee to the supplementary group Payroll without removing any existing supplementary-group memberships.",
+    "answers": [
+      "usermod -aG Payroll PayrollEmployee",
+      "sudo usermod -aG Payroll PayrollEmployee"
+    ],
+    "check": null,
+    "explanation": "-G specifies the supplementary-group list and -a appends instead of replacing existing supplementary memberships. This changes which group the user belongs to; it does not change file ownership.",
+    "source": "NOS-120 Cengage permissions/users lab / 2026-09-14"
+  },
+  {
+    "id": "LL120",
+    "type": "command_construction",
+    "difficulty": "intermediate",
+    "tier": "fluency",
+    "category": "permissions_ownership",
+    "tags": [
+      "chown",
+      "recursive",
+      "owner",
+      "group",
+      "PayrollData"
+    ],
+    "prompt": "Recursively make PayrollManager the user owner and Payroll the group owner of /PayrollData and everything beneath it.",
+    "answers": [
+      "chown -R PayrollManager:Payroll /PayrollData",
+      "chown -R PayrollManager:Payroll /PayrollData/",
+      "sudo chown -R PayrollManager:Payroll /PayrollData",
+      "sudo chown -R PayrollManager:Payroll /PayrollData/"
+    ],
+    "check": null,
+    "explanation": "chown OWNER:GROUP changes file or directory ownership. -R applies the ownership change recursively through the directory tree. This changes who filesystem objects belong to, not which groups a user belongs to.",
+    "source": "NOS-120 Cengage permissions/users lab / 2026-09-14"
+  },
+  {
+    "id": "LL121",
+    "type": "command_construction",
+    "difficulty": "intermediate",
+    "tier": "fluency",
+    "category": "permissions",
+    "tags": [
+      "chmod",
+      "octal",
+      "directories",
+      "750"
+    ],
+    "prompt": "Set /PayrollData so the owner has rwx, the group has r-x, and others have no permissions.",
+    "answers": [
+      "chmod 750 /PayrollData",
+      "chmod 750 /PayrollData/",
+      "sudo chmod 750 /PayrollData",
+      "sudo chmod 750 /PayrollData/"
+    ],
+    "check": null,
+    "explanation": "750 maps to owner rwx (7), group r-x (5), and others --- (0). Directory write permission controls creating/removing entries, while execute permits traversal.",
+    "source": "NOS-120 Cengage permissions/users lab / 2026-09-14"
+  },
+  {
+    "id": "LL122",
+    "type": "command_construction",
+    "difficulty": "intermediate",
+    "tier": "fluency",
+    "category": "permissions",
+    "tags": [
+      "chmod",
+      "octal",
+      "files",
+      "640"
+    ],
+    "prompt": "Set /PayrollData/file1 so the owner has rw-, the group has r--, and others have no permissions.",
+    "answers": [
+      "chmod 640 /PayrollData/file1",
+      "sudo chmod 640 /PayrollData/file1"
+    ],
+    "check": null,
+    "explanation": "640 maps to owner rw- (6), group r-- (4), and others --- (0).",
+    "source": "NOS-120 Cengage permissions/users lab / 2026-09-14"
+  },
+  {
+    "id": "LL123",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "verification",
+    "tags": [
+      "ls",
+      "directory-object",
+      "permissions",
+      "ownership"
+    ],
+    "prompt": "Display the long-format metadata for the /PayrollData directory object itself rather than listing its contents.",
+    "answers": [
+      "ls -ld /PayrollData",
+      "ls -ld /PayrollData/"
+    ],
+    "check": null,
+    "explanation": "-l requests long format and -d tells ls to show the directory object itself instead of descending to list its contents.",
+    "source": "NOS-120 Cengage permissions/users lab / 2026-09-14"
+  },
+  {
+    "id": "LL124",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "verification",
+    "tags": [
+      "ls",
+      "file",
+      "permissions",
+      "ownership"
+    ],
+    "prompt": "Display long-format metadata for /PayrollData/file1.",
+    "answers": [
+      "ls -l /PayrollData/file1"
+    ],
+    "check": null,
+    "explanation": "ls -l on a file displays long-format metadata including permission bits, owner, and group.",
+    "source": "NOS-120 Cengage permissions/users lab / 2026-09-14"
+  },
+  {
+    "id": "LL125",
+    "type": "scenario",
+    "difficulty": "intermediate",
+    "tier": "fluency",
+    "category": "identity_context",
+    "tags": [
+      "su",
+      "user-identity",
+      "environment"
+    ],
+    "prompt": "Switch your effective user identity to PayrollEmployee while keeping more of the current shell environment instead of starting a login-style shell.",
+    "answers": [
+      "su PayrollEmployee"
+    ],
+    "check": null,
+    "explanation": "su USER changes to that user's identity and permissions while preserving more of the current shell environment. It is different from su - USER, which requests a login-style environment.",
+    "source": "NOS-120 Cengage permissions/users lab plus operational clarification / 2026-09-14"
+  },
+  {
+    "id": "LL126",
+    "type": "scenario",
+    "difficulty": "intermediate",
+    "tier": "fluency",
+    "category": "identity_context",
+    "tags": [
+      "su",
+      "login-shell",
+      "environment",
+      "credentials"
+    ],
+    "prompt": "Switch to PayrollEmployee using a login-style shell so Linux also attempts to load that user's login environment and home context.",
+    "answers": [
+      "su - PayrollEmployee"
+    ],
+    "check": null,
+    "explanation": "su - USER changes user identity and requests a login-style environment. Authentication may succeed even if a later environment step, such as changing to a missing home directory, produces a warning.",
+    "source": "NOS-120 Cengage permissions/users lab plus operational clarification / 2026-09-14"
+  },
+  {
+    "id": "LL127",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "identity_context",
+    "tags": [
+      "whoami",
+      "verification",
+      "identity"
+    ],
+    "prompt": "Verify which effective user account your current shell is running as.",
+    "answers": [
+      "whoami"
+    ],
+    "check": null,
+    "explanation": "whoami prints the effective username and gives an observable verification of the current user identity.",
+    "source": "NOS-120 Cengage permissions/users lab operational verification / 2026-09-14"
+  },
+  {
+    "id": "LL128",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "identity_context",
+    "tags": [
+      "exit",
+      "nested-shells",
+      "su"
+    ],
+    "prompt": "Leave the current su-created shell and return one shell level toward the account you were using before it.",
+    "answers": [
+      "exit"
+    ],
+    "check": null,
+    "explanation": "exit closes the current shell. With nested su sessions, one exit returns only one level; reaching root may require more than one exit depending on the shell stack.",
+    "source": "NOS-120 Cengage permissions/users lab operational clarification / 2026-09-14"
+  },
+  {
+    "id": "LL129",
+    "type": "scenario",
+    "difficulty": "intermediate",
+    "tier": "fluency",
+    "category": "permissions",
+    "tags": [
+      "cat",
+      "group-permissions",
+      "PayrollEmployee",
+      "read"
+    ],
+    "prompt": "You are PayrollEmployee, a supplementary member of Payroll. /PayrollData is 750 and /PayrollData/file1 is 640 with group owner Payroll. Read file1.",
+    "answers": [
+      "cat /PayrollData/file1"
+    ],
+    "check": null,
+    "explanation": "PayrollEmployee receives the group permission path: directory r-x allows traversal and file r-- allows reading, so cat can read the file.",
+    "source": "NOS-120 Cengage permissions/users lab / 2026-09-14"
+  },
+  {
+    "id": "LL130",
+    "type": "scenario",
+    "difficulty": "intermediate",
+    "tier": "fluency",
+    "category": "permissions",
+    "tags": [
+      "touch",
+      "group-permissions",
+      "PayrollEmployee",
+      "permission-denied"
+    ],
+    "prompt": "You are PayrollEmployee, a supplementary member of Payroll. Attempt to create /PayrollData/anotherfile even though the Payroll group has r-x, not write, on the directory.",
+    "answers": [
+      "touch /PayrollData/anotherfile"
+    ],
+    "check": null,
+    "explanation": "The command itself is correct for the requested attempt, but Linux should deny the creation because the directory's group permissions are r-x and do not include write. This is an intentional failure-state drill.",
+    "source": "NOS-120 Cengage permissions/users lab / 2026-09-14"
+  },
+  {
+    "id": "LL131",
+    "type": "scenario",
+    "difficulty": "intermediate",
+    "tier": "fluency",
+    "category": "identity_context",
+    "tags": [
+      "su",
+      "NonPayrollEmployee",
+      "login-shell"
+    ],
+    "prompt": "Switch to NonPayrollEmployee using a login-style shell before testing what an unrelated user can access.",
+    "answers": [
+      "su - NonPayrollEmployee"
+    ],
+    "check": null,
+    "explanation": "su - requests the target user's identity plus login-style environment. A missing-home-directory warning can occur after the identity switch and should be interpreted separately from authentication failure.",
+    "source": "NOS-120 Cengage permissions/users lab plus operational clarification / 2026-09-14"
+  },
+  {
+    "id": "LL132",
+    "type": "scenario",
+    "difficulty": "intermediate",
+    "tier": "fluency",
+    "category": "permissions",
+    "tags": [
+      "cat",
+      "others-permissions",
+      "NonPayrollEmployee",
+      "permission-denied"
+    ],
+    "prompt": "You are NonPayrollEmployee, who is neither PayrollManager nor a member of Payroll. Attempt to read /PayrollData/file1.",
+    "answers": [
+      "cat /PayrollData/file1"
+    ],
+    "check": null,
+    "explanation": "The attempt should fail because /PayrollData gives others --- and file1 also gives others ---. The absolute path identifies the target; permission evaluation depends on the effective user and applicable owner/group/other class.",
+    "source": "NOS-120 Cengage permissions/users lab / 2026-09-14"
+  },
+  {
+    "id": "LL133",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "services",
+    "tags": [
+      "systemctl",
+      "status",
+      "ssh",
+      "systemd"
+    ],
+    "prompt": "Use systemctl to inspect the current status of the SSH service.",
+    "answers": [
+      "systemctl status ssh.service",
+      "sudo systemctl status ssh.service"
+    ],
+    "check": null,
+    "explanation": "systemctl status asks systemd for the service's current runtime and unit state. In this lab the SSH unit was displayed as ssh.service.",
+    "source": "NOS-120 Cengage LD-007 Manage Services lab / 2026-10-03"
+  },
+  {
+    "id": "LL134",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "services",
+    "tags": [
+      "systemctl",
+      "status",
+      "ufw",
+      "systemd"
+    ],
+    "prompt": "Use systemctl to inspect the current status of the UFW firewall service.",
+    "answers": [
+      "systemctl status ufw.service",
+      "sudo systemctl status ufw.service"
+    ],
+    "check": null,
+    "explanation": "systemctl status ufw.service shows how systemd currently sees the UFW unit, including whether it is loaded, enabled, and active.",
+    "source": "NOS-120 Cengage LD-007 Manage Services lab / 2026-10-03"
+  },
+  {
+    "id": "LL135",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "services",
+    "tags": [
+      "systemctl",
+      "status",
+      "apache2",
+      "systemd"
+    ],
+    "prompt": "Use systemctl to inspect the current status of the Apache web-server service.",
+    "answers": [
+      "systemctl status apache2.service",
+      "sudo systemctl status apache2.service"
+    ],
+    "check": null,
+    "explanation": "systemctl status apache2.service reports Apache's systemd unit state and recent service messages.",
+    "source": "NOS-120 Cengage LD-007 Manage Services lab / 2026-10-03"
+  },
+  {
+    "id": "LL136",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "services",
+    "tags": [
+      "systemctl",
+      "start",
+      "ssh",
+      "runtime-state"
+    ],
+    "prompt": "Start the SSH service now without changing its boot-time enablement policy.",
+    "answers": [
+      "systemctl start ssh.service",
+      "sudo systemctl start ssh.service"
+    ],
+    "check": null,
+    "explanation": "start changes the service's current runtime state. It does not by itself configure whether the service starts automatically at boot.",
+    "source": "NOS-120 Cengage LD-007 Manage Services lab / 2026-10-03"
+  },
+  {
+    "id": "LL137",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "services",
+    "tags": [
+      "systemctl",
+      "stop",
+      "ssh",
+      "runtime-state"
+    ],
+    "prompt": "Stop the SSH service now without changing its boot-time enablement policy.",
+    "answers": [
+      "systemctl stop ssh.service",
+      "sudo systemctl stop ssh.service"
+    ],
+    "check": null,
+    "explanation": "stop changes current runtime state only. Boot policy is controlled separately by enable or disable.",
+    "source": "NOS-120 Cengage LD-007 Manage Services lab / 2026-10-03"
+  },
+  {
+    "id": "LL138",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "services",
+    "tags": [
+      "systemctl",
+      "restart",
+      "sshd",
+      "runtime-state"
+    ],
+    "prompt": "Restart the SSH daemon using systemctl.",
+    "answers": [
+      "systemctl restart sshd.service",
+      "sudo systemctl restart sshd.service",
+      "systemctl restart ssh.service",
+      "sudo systemctl restart ssh.service"
+    ],
+    "check": null,
+    "explanation": "restart performs a full stop-and-start cycle, creating fresh process state. The lab's restart hint used sshd.service, while some systems expose the unit as ssh.service.",
+    "source": "NOS-120 Cengage LD-007 Manage Services lab / 2026-10-03"
+  },
+  {
+    "id": "LL139",
+    "type": "scenario",
+    "difficulty": "intermediate",
+    "tier": "fluency",
+    "category": "services",
+    "tags": [
+      "systemctl",
+      "reload",
+      "sshd",
+      "configuration"
+    ],
+    "prompt": "Tell the SSH daemon to reread its configuration without a full stop-and-start cycle.",
+    "answers": [
+      "systemctl reload sshd.service",
+      "sudo systemctl reload sshd.service",
+      "systemctl reload ssh.service",
+      "sudo systemctl reload ssh.service"
+    ],
+    "check": null,
+    "explanation": "reload asks a running service to reread configuration without fully restarting, when that service supports reload. The lab's hint used sshd.service.",
+    "source": "NOS-120 Cengage LD-007 Manage Services lab / 2026-10-03"
+  },
+  {
+    "id": "LL140",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "services",
+    "tags": [
+      "systemctl",
+      "enable",
+      "ssh",
+      "boot-policy"
+    ],
+    "prompt": "Configure the SSH service to start automatically at boot.",
+    "answers": [
+      "systemctl enable ssh.service",
+      "sudo systemctl enable ssh.service",
+      "systemctl enable sshd.service",
+      "sudo systemctl enable sshd.service"
+    ],
+    "check": null,
+    "explanation": "enable changes boot policy; it does not mean the service must already be running right now.",
+    "source": "NOS-120 Cengage LD-007 Manage Services lab / 2026-10-03"
+  },
+  {
+    "id": "LL141",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "services",
+    "tags": [
+      "systemctl",
+      "disable",
+      "ssh",
+      "boot-policy"
+    ],
+    "prompt": "Configure the SSH service so it will not start automatically at boot.",
+    "answers": [
+      "systemctl disable ssh.service",
+      "sudo systemctl disable ssh.service",
+      "systemctl disable sshd.service",
+      "sudo systemctl disable sshd.service"
+    ],
+    "check": null,
+    "explanation": "disable changes boot policy without necessarily stopping a service that is already running.",
+    "source": "NOS-120 Cengage LD-007 Manage Services lab / 2026-10-03"
+  },
+  {
+    "id": "LL142",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "services",
+    "tags": [
+      "systemctl",
+      "is-enabled",
+      "verification",
+      "boot-policy"
+    ],
+    "prompt": "Ask systemd whether the SSH service is configured to start automatically at boot.",
+    "answers": [
+      "systemctl is-enabled ssh.service",
+      "sudo systemctl is-enabled ssh.service",
+      "systemctl is-enabled sshd.service",
+      "sudo systemctl is-enabled sshd.service"
+    ],
+    "check": null,
+    "explanation": "is-enabled directly verifies boot-time enablement state and is a better observation step than blindly toggling disable and enable without checking the result.",
+    "source": "NOS-120 service-management lab operational clarification / 2026-10-03"
+  },
+  {
+    "id": "LL143",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "processes",
+    "tags": [
+      "ps",
+      "-e",
+      "-f",
+      "process-list"
+    ],
+    "prompt": "Display every process in full-format process-list output.",
+    "answers": [
+      "ps -ef",
+      "ps -e -f"
+    ],
+    "check": null,
+    "explanation": "ps reports process status; -e selects every process and -f requests the full-format listing with fields such as UID, PID, PPID, STIME, TTY, TIME, and CMD.",
+    "source": "NOS-120 Cengage LD-007 Manage Services lab / 2026-10-03"
+  },
+  {
+    "id": "LL144",
+    "type": "command_construction",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "processes",
+    "tags": [
+      "ps",
+      "grep",
+      "pipe",
+      "ssh"
+    ],
+    "prompt": "List all processes in full format, then filter the output for lines containing ssh.",
+    "answers": [
+      "ps -ef | grep ssh"
+    ],
+    "check": null,
+    "explanation": "The pipe sends ps -ef output into grep, which keeps lines containing ssh. The grep command itself may also appear because its own command line contains the search text.",
+    "source": "NOS-120 Cengage LD-007 Manage Services lab / 2026-10-03"
+  },
+  {
+    "id": "LL145",
+    "type": "command_construction",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "processes",
+    "tags": [
+      "ps",
+      "grep",
+      "pipe",
+      "ufw"
+    ],
+    "prompt": "List all processes in full format, then filter the output for lines containing ufw.",
+    "answers": [
+      "ps -ef | grep ufw"
+    ],
+    "check": null,
+    "explanation": "ps -ef produces the process table and grep ufw filters that text for UFW-related lines. A service can still be active(exited) even when no persistent UFW process appears.",
+    "source": "NOS-120 Cengage LD-007 Manage Services lab / 2026-10-03"
+  },
+  {
+    "id": "LL146",
+    "type": "command_construction",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "processes",
+    "tags": [
+      "ps",
+      "grep",
+      "pipe",
+      "apache2"
+    ],
+    "prompt": "List all processes in full format, then filter the output for lines containing apache2.",
+    "answers": [
+      "ps -ef | grep apache2"
+    ],
+    "check": null,
+    "explanation": "This combines a flat process listing with text filtering to reveal Apache's main and worker processes.",
+    "source": "NOS-120 Cengage LD-007 Manage Services lab / 2026-10-03"
+  },
+  {
+    "id": "LL147",
+    "type": "command_construction",
+    "difficulty": "intermediate",
+    "tier": "fluency",
+    "category": "processes",
+    "tags": [
+      "pstree",
+      "-p",
+      "grep",
+      "ssh",
+      "relationships"
+    ],
+    "prompt": "Show the process tree with PIDs, then filter it for SSH-related process relationships.",
+    "answers": [
+      "pstree -p | grep ssh"
+    ],
+    "check": null,
+    "explanation": "pstree shows parent/child process relationships; -p includes PIDs, and grep ssh narrows the displayed tree to SSH-related lines.",
+    "source": "NOS-120 Cengage LD-007 Manage Services lab / 2026-10-03"
+  },
+  {
+    "id": "LL148",
+    "type": "command_construction",
+    "difficulty": "intermediate",
+    "tier": "fluency",
+    "category": "processes",
+    "tags": [
+      "pstree",
+      "-p",
+      "grep",
+      "apache2",
+      "relationships"
+    ],
+    "prompt": "Show the process tree with PIDs, then filter it for Apache process relationships.",
+    "answers": [
+      "pstree -p | grep apache2"
+    ],
+    "check": null,
+    "explanation": "pstree -p makes Apache's main process and subordinate worker-process relationships visible rather than presenting only a flat process table.",
+    "source": "NOS-120 Cengage LD-007 Manage Services lab / 2026-10-03"
+  },
+  {
+    "id": "LL149",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "services",
+    "tags": [
+      "service",
+      "ssh",
+      "restart",
+      "deprecated",
+      "legacy"
+    ],
+    "prompt": "Using the older service command syntax requested by the lab, restart SSH.",
+    "answers": [
+      "service ssh restart",
+      "sudo service ssh restart"
+    ],
+    "check": null,
+    "explanation": "service ssh restart is legacy/deprecated service-management syntax. Modern systemd systems generally use systemctl, but legacy syntax remains useful to recognize in older scripts, documentation, and environments.",
+    "source": "NOS-120 Cengage LD-007 Manage Services lab / 2026-10-03"
+  },
+  {
+    "id": "LL150",
+    "type": "knowledge",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "services",
+    "tags": [
+      "systemctl",
+      "loaded",
+      "status-output"
+    ],
+    "prompt": "In systemctl status output, what does 'Loaded: loaded' mean?",
+    "answers": [
+      "systemd knows about the unit",
+      "the unit file is loaded",
+      "systemd has loaded the unit definition",
+      "the service unit definition is loaded"
+    ],
+    "check": null,
+    "explanation": "Loaded: loaded means systemd knows about and has loaded the unit definition. It does not by itself mean the service is currently running.",
+    "source": "NOS-120 service-management lab interpretation / 2026-10-03"
+  },
+  {
+    "id": "LL151",
+    "type": "knowledge",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "services",
+    "tags": [
+      "systemctl",
+      "enabled",
+      "boot-policy"
+    ],
+    "prompt": "In systemctl status output, what does 'enabled' tell you?",
+    "answers": [
+      "it is configured to start at boot",
+      "the service is configured to start automatically at boot",
+      "start automatically at boot",
+      "boot-time startup is enabled"
+    ],
+    "check": null,
+    "explanation": "enabled describes boot policy, not necessarily current runtime state. A service can be enabled but currently stopped.",
+    "source": "NOS-120 service-management lab interpretation / 2026-10-03"
+  },
+  {
+    "id": "LL152",
+    "type": "knowledge",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "services",
+    "tags": [
+      "systemctl",
+      "active-running",
+      "runtime-state"
+    ],
+    "prompt": "What does 'Active: active (running)' mean in systemctl status output?",
+    "answers": [
+      "the service is currently running",
+      "the service process is running",
+      "it is running now",
+      "currently active and running"
+    ],
+    "check": null,
+    "explanation": "active (running) means the service has an active long-running process right now.",
+    "source": "NOS-120 service-management lab interpretation / 2026-10-03"
+  },
+  {
+    "id": "LL153",
+    "type": "knowledge",
+    "difficulty": "intermediate",
+    "tier": "fluency",
+    "category": "services",
+    "tags": [
+      "systemctl",
+      "active-exited",
+      "oneshot",
+      "runtime-state"
+    ],
+    "prompt": "What does 'Active: active (exited)' mean for a service such as UFW?",
+    "answers": [
+      "the service completed successfully and its process exited",
+      "its setup completed successfully and the service process exited",
+      "active state remains after the process exited",
+      "the service is active even though no long-running process remains"
+    ],
+    "check": null,
+    "explanation": "active (exited) can mean a one-shot or setup-style service successfully applied its work and then its process ended. It is not automatically an error.",
+    "source": "NOS-120 service-management lab interpretation / 2026-10-03"
+  },
+  {
+    "id": "LL154",
+    "type": "knowledge",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "processes",
+    "tags": [
+      "pid",
+      "main-pid",
+      "systemctl",
+      "process-identity"
+    ],
+    "prompt": "What does 'Main PID' identify in systemctl status output?",
+    "answers": [
+      "the main process id for the service",
+      "the service's main process id",
+      "the pid of the main service process",
+      "main service process"
+    ],
+    "check": null,
+    "explanation": "Main PID identifies the operating-system process ID of the service's primary process, which can then be correlated with process tools and logs.",
+    "source": "NOS-120 service-management lab interpretation / 2026-10-03"
+  },
+  {
+    "id": "LL155",
+    "type": "knowledge",
+    "difficulty": "intermediate",
+    "tier": "fluency",
+    "category": "processes",
+    "tags": [
+      "ppid",
+      "pid-1",
+      "systemd",
+      "parent-process"
+    ],
+    "prompt": "In ps -ef output, an sshd process has PPID 1. What relationship does that usually show on a systemd-based system?",
+    "answers": [
+      "systemd is its parent process",
+      "its parent is systemd",
+      "the process was launched under pid 1 systemd",
+      "pid 1 systemd is the parent"
+    ],
+    "check": null,
+    "explanation": "PPID is the parent process ID. On a systemd-based system, PID 1 is normally systemd, so PPID 1 connects the daemon process to the system service manager.",
+    "source": "NOS-120 service-management lab interpretation / 2026-10-03"
+  },
+  {
+    "id": "LL156",
+    "type": "knowledge",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "processes",
+    "tags": [
+      "tty",
+      "daemon",
+      "ps"
+    ],
+    "prompt": "In ps -ef output, what does a '?' in the TTY column usually mean for a daemon?",
+    "answers": [
+      "no controlling terminal",
+      "the process has no controlling terminal",
+      "no normal terminal is attached",
+      "it is not attached to a terminal"
+    ],
+    "check": null,
+    "explanation": "TTY identifies the controlling terminal. A question mark normally means no controlling terminal is attached, which is expected for many background daemons.",
+    "source": "NOS-120 service-management lab interpretation / 2026-10-03"
+  },
+  {
+    "id": "LL157",
+    "type": "knowledge",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "processes",
+    "tags": [
+      "time",
+      "cpu",
+      "ps"
+    ],
+    "prompt": "In ps -ef output, what does the TIME column represent?",
+    "answers": [
+      "accumulated cpu time",
+      "cpu time used by the process",
+      "total cpu time consumed",
+      "accumulated processor time"
+    ],
+    "check": null,
+    "explanation": "TIME is accumulated CPU time consumed by the process, not how long the process has existed in wall-clock time.",
+    "source": "NOS-120 service-management lab interpretation / 2026-10-03"
+  },
+  {
+    "id": "LL158",
+    "type": "knowledge",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "networking",
+    "tags": [
+      "ip-address",
+      "port",
+      "service",
+      "socket"
+    ],
+    "prompt": "In the address 192.168.1.50:22, what different jobs do the IP address and port perform?",
+    "answers": [
+      "the ip identifies the machine and the port identifies the service",
+      "ip gets traffic to the machine and port gets it to the service",
+      "the ip address identifies the host and port 22 identifies the service endpoint",
+      "ip identifies the host; port identifies the service"
+    ],
+    "check": null,
+    "explanation": "The network uses the IP address to reach the machine. The operating system uses the destination port to deliver traffic to the listening service or socket, such as SSH on port 22.",
+    "source": "NOS-120 service-management lab operational clarification / 2026-10-03"
+  },
+  {
+    "id": "LL159",
+    "type": "command_construction",
+    "difficulty": "beginner",
+    "tier": "basic",
+    "category": "shell_discovery",
+    "tags": [
+      "bash",
+      "tab-completion",
+      "systemctl",
+      "prefix"
+    ],
+    "prompt": "Before pressing Tab twice to ask Bash for systemctl subcommands beginning with 're', what text should be on the command line?",
+    "answers": [
+      "systemctl re"
+    ],
+    "check": null,
+    "explanation": "The prefix systemctl re narrows Bash completion candidates to systemctl subcommands beginning with re; pressing Tab twice then displays the matching completion choices.",
+    "source": "NOS-120 Cengage LD-007 Manage Services tab-completion lab / 2026-10-03"
+  },
+  {
+    "id": "LL160",
+    "type": "knowledge",
+    "difficulty": "beginner",
+    "tier": "basic",
+    "category": "shell_discovery",
+    "tags": [
+      "bash",
+      "tab-completion",
+      "double-tab",
+      "completion"
+    ],
+    "prompt": "When several Bash completions are possible, what does pressing Tab twice do?",
+    "answers": [
+      "shows the matching completions",
+      "displays the matching completions",
+      "prints the possible completions",
+      "shows the possible completions",
+      "displays the possible completions"
+    ],
+    "check": null,
+    "explanation": "Double-Tab is an interactive shell-completion mechanism: when multiple candidates match, Bash displays the possible completions. That displayed completion list is not the same thing as command stdout that can be piped or redirected.",
+    "source": "NOS-120 Cengage LD-007 Manage Services tab-completion lab plus operational clarification / 2026-10-03"
+  }
 ]
