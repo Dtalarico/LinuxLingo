@@ -474,6 +474,66 @@ A reporting command may be useful, but it must not be described as proving a sta
 
 ---
 
+## 13.10 Mechanism-Precise Language and Shell Discovery
+
+Technical verbs must identify the mechanism being taught, especially when two mechanisms produce superficially similar screen output.
+
+For example, these are distinct:
+
+- a command writing text to stdout
+- a pipeline filtering that stdout
+- Bash interactively displaying completion candidates after Tab completion
+- a service manager reporting unit state
+- a process tool reporting kernel process state
+
+An instruction such as “display a list” is too loose when the actual lesson is “press Tab twice to make Bash show the matching completion candidates.” The learner should not have to infer whether the source of the visible text is command output, shell assistance, a pager, a service manager, or another interface layer.
+
+Canonical teaching rule:
+
+**name the mechanism → describe it in plain English → show the exact action → explain what evidence it produces**
+
+Plain English is not a substitute for technical terminology. Preserve the official term, then translate it immediately into usable language and connect it to the larger system.
+
+Shell completion is also a self-rescue skill. Learners should be taught that:
+
+- Tab attempts completion
+- when multiple matches remain, double-Tab can display the matching candidates
+- a typed prefix such as `systemctl re` narrows the completion candidates
+- completion candidates are interactive shell assistance, not ordinary command stdout and not automatically pipeable/redirectable output
+
+For large command families such as `systemctl`, the goal is not immediate memorization of every verb. Teach the high-frequency operational verbs first, then teach discovery mechanisms that let the learner recover less-frequent vocabulary when needed.
+
+---
+
+## 13.11 Service Management as a State Model
+
+Service management should be taught as relationships between distinct kinds of state rather than as a flat list of `systemctl` commands.
+
+Core model:
+
+- `systemd` = the manager
+- `systemctl` = the control/query interface used to communicate with that manager
+- runtime state = what the service is doing now
+- boot policy = what the system is configured to do at startup
+- process evidence = what processes actually exist
+- relationship evidence = how those processes are related
+
+High-value runtime verbs include `status`, `start`, `stop`, `restart`, and `reload`. Boot-policy verbs include `enable`, `disable`, and direct verification with `is-enabled`.
+
+Training must explicitly show that these dimensions can differ. A service can be running while disabled at boot, or stopped while enabled for the next boot.
+
+The service view, process view, and process-tree view are complementary:
+
+- `systemctl status` reports systemd's managed-unit view
+- `ps -ef` reports a flat process view
+- `pstree -p` reports parent/subordinate process relationships
+
+Status interpretation should include representative fields and states such as `Loaded`, `enabled`, `Active: active (running)`, `Active: active (exited)`, Main PID, and recent logs.
+
+Legacy/deprecated interfaces such as `service` should normally be taught for recognition and compatibility, not allowed to displace the current operational path unless the target environment specifically requires them.
+
+---
+
 # 14. Mastery Evidence
 
 Not every correct answer proves equal understanding.
