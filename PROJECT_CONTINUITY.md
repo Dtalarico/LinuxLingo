@@ -13,7 +13,7 @@ Update this file after every substantial LinuxLingo work session.
 - Development model: terminal-first Python MVP growing toward an adaptive terminal-fluency system.
 - GitHub is the active source of truth.
 - The engine now loads two numbered JSON banks: `scenario_bank.json` and `scenario_bank_2.json`.
-- Loaded corpus: **160 drills, LL001–LL160**.
+- Loaded corpus: **171 drills, LL001–LL171**.
 - `scenario_bank.json` contains LL001–LL100.
 - `scenario_bank_2.json` begins with LL101 and currently contains LL101–LL160.
 - `LINUXLINGO_MASTER_SPEC.md` now contains the September 14 adaptive-teaching doctrine as canonical architecture, including operation-before-syntax, atomic semantics, one-abstraction-at-a-time sequencing, explicit state telemetry, expected failure states, partial-success interpretation, state-interpretation failure, nested-shell state, and evidence-vs-reporting distinctions.
@@ -290,3 +290,33 @@ Continue the per-lab harvest workflow. Add new drills to `scenario_bank_2.json` 
 
 ## Next Exact Task
 Continue the current NOS-120 lab from the next instruction after Bash/systemctl completion practice. Harvest only genuinely new material, preserving the exact lab mechanism and plain-English system model.
+
+---
+
+## October 4, 2026 — Manage Server Startup harvest
+
+**Harvested:** LL161–LL171.
+
+New material:
+- `useradd -m user01`
+- `echo "user01:Passw0rd!" | chpasswd`
+- `id user01`
+- `systemctl get-default`
+- `systemctl isolate multi-user.target`
+- `systemctl isolate graphical.target`
+- `systemctl set-default multi-user.target`
+- `systemctl set-default graphical.target`
+- `systemctl reboot`
+- runtime target vs persistent boot default
+- `readlink -f /etc/systemd/system/default.target` for direct state verification
+
+Observed Cengage grading defect:
+- Linux correctly reported `graphical.target` with `systemctl get-default`.
+- `readlink -f /etc/systemd/system/default.target` resolved to the graphical target.
+- systemd explicitly recreated the `default.target` symlink to `graphical.target`.
+- Cengage still failed the GUI-default objective and produced an 82% score.
+- Preserve this as concrete evidence for LinuxLingo's doctrine that system-state correctness and autograder acceptance are separate concerns.
+
+**Current corpus:** 171 drills, LL001–LL171.
+
+**Next work:** Continue the current NOS-120 lab sequence, harvest only genuinely new mechanisms/syntax, then proceed with the planned Linux midterm study cycle.
