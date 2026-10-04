@@ -1259,5 +1259,243 @@
     "check": null,
     "explanation": "Double-Tab is an interactive shell-completion mechanism: when multiple candidates match, Bash displays the possible completions. That displayed completion list is not the same thing as command stdout that can be piped or redirected.",
     "source": "NOS-120 Cengage LD-007 Manage Services tab-completion lab plus operational clarification / 2026-10-03"
+  },
+  {
+    "id": "LL161",
+    "type": "command_construction",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "users_groups",
+    "tags": [
+      "useradd",
+      "home-directory",
+      "-m",
+      "accounts"
+    ],
+    "prompt": "Create a local user account named user01 and create its home directory at the same time.",
+    "answers": [
+      "useradd -m user01",
+      "sudo useradd -m user01"
+    ],
+    "check": null,
+    "explanation": "useradd creates the account; -m tells useradd to create the user's home directory. Account creation and home-directory creation are related but distinct actions.",
+    "source": "NOS-120 Cengage LD-008 Manage Server Startup lab / 2026-10-04"
+  },
+  {
+    "id": "LL162",
+    "type": "command_construction",
+    "difficulty": "intermediate",
+    "tier": "fluency",
+    "category": "users_groups",
+    "tags": [
+      "chpasswd",
+      "echo",
+      "pipe",
+      "passwords",
+      "automation"
+    ],
+    "prompt": "Non-interactively set user01's password to Passw0rd! by piping a username:password pair into chpasswd.",
+    "answers": [
+      "echo \"user01:Passw0rd!\" | chpasswd",
+      "echo 'user01:Passw0rd!' | chpasswd"
+    ],
+    "check": null,
+    "explanation": "chpasswd reads username:password pairs from standard input, making it useful for scripted or bulk account provisioning. This differs from passwd USER, which is normally interactive.",
+    "source": "NOS-120 Cengage LD-008 Manage Server Startup lab / 2026-10-04"
+  },
+  {
+    "id": "LL163",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "identity",
+    "tags": [
+      "id",
+      "uid",
+      "gid",
+      "groups",
+      "verification"
+    ],
+    "prompt": "Verify that the user01 account exists and display its UID, primary GID, and group memberships.",
+    "answers": [
+      "id user01"
+    ],
+    "check": null,
+    "explanation": "id USER asks the system for identity information about a named account. Successful output shows numeric identity and group information; an unknown user produces an error.",
+    "source": "NOS-120 Cengage LD-008 Manage Server Startup lab / 2026-10-04"
+  },
+  {
+    "id": "LL164",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "systemd_targets",
+    "tags": [
+      "systemctl",
+      "get-default",
+      "targets",
+      "boot-default"
+    ],
+    "prompt": "Display the systemd target configured as the machine's default boot target.",
+    "answers": [
+      "systemctl get-default",
+      "sudo systemctl get-default"
+    ],
+    "check": null,
+    "explanation": "systemctl get-default reports the target systemd will aim for on a normal boot, such as graphical.target or multi-user.target.",
+    "source": "NOS-120 Cengage LD-008 Manage Server Startup lab / 2026-10-04"
+  },
+  {
+    "id": "LL165",
+    "type": "command_construction",
+    "difficulty": "intermediate",
+    "tier": "fluency",
+    "category": "systemd_targets",
+    "tags": [
+      "systemctl",
+      "isolate",
+      "multi-user.target",
+      "runtime-target",
+      "cli"
+    ],
+    "prompt": "Immediately switch the currently running system from the graphical environment to the non-graphical multi-user target.",
+    "answers": [
+      "systemctl isolate multi-user.target",
+      "sudo systemctl isolate multi-user.target"
+    ],
+    "check": null,
+    "explanation": "isolate changes the current runtime target now. multi-user.target provides a multi-user non-graphical environment; this does not by itself change the next boot's default target.",
+    "source": "NOS-120 Cengage LD-008 Manage Server Startup lab / 2026-10-04"
+  },
+  {
+    "id": "LL166",
+    "type": "command_construction",
+    "difficulty": "intermediate",
+    "tier": "fluency",
+    "category": "systemd_targets",
+    "tags": [
+      "systemctl",
+      "isolate",
+      "graphical.target",
+      "runtime-target",
+      "gui"
+    ],
+    "prompt": "Immediately switch the currently running system from the CLI-style multi-user target back to the graphical target.",
+    "answers": [
+      "systemctl isolate graphical.target",
+      "sudo systemctl isolate graphical.target"
+    ],
+    "check": null,
+    "explanation": "isolate graphical.target changes the current runtime state to the graphical target. It is a runtime transition, not a boot-default change.",
+    "source": "NOS-120 Cengage LD-008 Manage Server Startup lab / 2026-10-04"
+  },
+  {
+    "id": "LL167",
+    "type": "command_construction",
+    "difficulty": "intermediate",
+    "tier": "fluency",
+    "category": "systemd_targets",
+    "tags": [
+      "systemctl",
+      "set-default",
+      "multi-user.target",
+      "boot-default",
+      "cli"
+    ],
+    "prompt": "Configure the system so future normal boots use the non-graphical multi-user target by default.",
+    "answers": [
+      "systemctl set-default multi-user.target",
+      "sudo systemctl set-default multi-user.target"
+    ],
+    "check": null,
+    "explanation": "set-default changes the persistent default target used on future boots. It does not necessarily change the target the machine is running in right now.",
+    "source": "NOS-120 Cengage LD-008 Manage Server Startup lab / 2026-10-04"
+  },
+  {
+    "id": "LL168",
+    "type": "command_construction",
+    "difficulty": "intermediate",
+    "tier": "fluency",
+    "category": "systemd_targets",
+    "tags": [
+      "systemctl",
+      "set-default",
+      "graphical.target",
+      "boot-default",
+      "gui"
+    ],
+    "prompt": "Configure the system so future normal boots use the graphical target by default.",
+    "answers": [
+      "systemctl set-default graphical.target",
+      "sudo systemctl set-default graphical.target"
+    ],
+    "check": null,
+    "explanation": "set-default graphical.target makes the graphical target the persistent boot default. systemctl get-default can be used afterward to verify the result.",
+    "source": "NOS-120 Cengage LD-008 Manage Server Startup lab / 2026-10-04"
+  },
+  {
+    "id": "LL169",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "system_control",
+    "tags": [
+      "systemctl",
+      "reboot",
+      "systemd",
+      "restart"
+    ],
+    "prompt": "Restart the entire system through the systemd control interface.",
+    "answers": [
+      "systemctl reboot",
+      "sudo systemctl reboot"
+    ],
+    "check": null,
+    "explanation": "systemctl reboot asks systemd to restart the machine. Traditional reboot usually reaches the same result on modern systemd systems, but this form keeps the action inside the systemctl/systemd control model.",
+    "source": "NOS-120 Cengage LD-008 Manage Server Startup lab / 2026-10-04"
+  },
+  {
+    "id": "LL170",
+    "type": "knowledge",
+    "difficulty": "intermediate",
+    "tier": "fluency",
+    "category": "systemd_targets",
+    "tags": [
+      "systemctl",
+      "isolate",
+      "set-default",
+      "runtime",
+      "boot-policy"
+    ],
+    "prompt": "What is the difference between 'systemctl isolate TARGET' and 'systemctl set-default TARGET'?",
+    "answers": [
+      "isolate changes the current runtime target and set-default changes the future boot default",
+      "isolate switches targets now; set-default changes what target is used on future boots",
+      "isolate is runtime; set-default is persistent boot default"
+    ],
+    "check": null,
+    "explanation": "isolate changes the active operating target immediately. set-default changes the persistent default.target link used for future boots. Current runtime state and future boot policy are separate dimensions.",
+    "source": "NOS-120 Cengage LD-008 Manage Server Startup lab operational distinction / 2026-10-04"
+  },
+  {
+    "id": "LL171",
+    "type": "knowledge",
+    "difficulty": "intermediate",
+    "tier": "fluency",
+    "category": "verification",
+    "tags": [
+      "systemctl",
+      "readlink",
+      "default.target",
+      "autograder",
+      "state-verification"
+    ],
+    "prompt": "A lab grader says the GUI boot default is wrong, but 'systemctl get-default' reports graphical.target. What stronger state check can verify the actual default.target symlink?",
+    "answers": [
+      "readlink -f /etc/systemd/system/default.target"
+    ],
+    "check": null,
+    "explanation": "readlink -f resolves the default.target symbolic link to its real target. If it resolves to graphical.target while systemctl get-default also reports graphical.target, the Linux state is correct even if an external grader fails to recognize it.",
+    "source": "NOS-120 Cengage LD-008 grader troubleshooting / 2026-10-04"
   }
 ]
