@@ -109,7 +109,7 @@ Preferred workflow:
 
 **LAB → LEARN → HARVEST → COMMIT → MOVE ON**
 
-As of September 14, 2026, LinuxLingo loads **160 drills (LL001–LL160)** across two numbered scenario banks.
+As of October 4, 2026, LinuxLingo loads **171 drills (LL001–LL171)** across two numbered scenario banks.
 
 Recent harvests include:
 
@@ -153,6 +153,25 @@ The NOS-120 service-management lab added LL133–LL160 and reinforced a system m
 - Bash tab completion is a discovery mechanism. Double-Tab can display matching completion candidates, but that interactive display must not be confused with command stdout.
 - Teaching language must name the mechanism precisely. Vague instructions such as “display a list” should be rewritten as the actual operation when the distinction matters.
 
+
+---
+
+## October 4, 2026 startup-target harvest
+
+The NOS-120 Manage Server Startup lab added LL161–LL171 and expanded LinuxLingo from service control into systemd target and boot-state reasoning:
+
+- `useradd -m` as explicit account-plus-home-directory creation
+- `chpasswd` as non-interactive/script-friendly password provisioning
+- `id USER` for account identity and group verification
+- `systemctl get-default` for default boot-target inspection
+- `systemctl isolate multi-user.target` and `graphical.target` for immediate runtime-target changes
+- `systemctl set-default multi-user.target` and `graphical.target` for persistent boot-default changes
+- `systemctl reboot` as whole-system control through systemd
+- explicit separation of **current runtime target** from **future boot default**
+- `readlink -f /etc/systemd/system/default.target` as a stronger state-verification technique when an external grader disagrees with the machine
+
+The lab also produced another concrete autograder lesson: Linux state can be demonstrably correct while an external grader continues to report failure. LinuxLingo should privilege verifiable system state over brittle platform bookkeeping whenever safe and practical.
+
 ---
 
 ## Development Strategy
@@ -182,7 +201,7 @@ The immediate priority remains building a strong terminal-first Linux fluency en
 
 **Current Phase:** Active MVP and command-bank development.
 
-**Current loaded corpus:** 160 drills, LL001–LL160, across two numbered JSON banks.
+**Current loaded corpus:** 171 drills, LL001–LL171, across two numbered JSON banks.
 
 GitHub is the active source of truth.
 
