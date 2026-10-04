@@ -889,3 +889,30 @@ The project should never become a passive content library wearing the costume of
 **Linux is not learned by reading.**
 
 **Linux is learned by typing.**
+
+---
+
+## October 4 Manage Server Startup / Targets Harvest
+
+New drill material added in LL161–LL171:
+
+- explicit home-directory creation with `useradd -m`
+- scripted/non-interactive password provisioning with `chpasswd`
+- account verification with `id USER`
+- default-target inspection with `systemctl get-default`
+- immediate target changes with `systemctl isolate`
+- persistent boot-default changes with `systemctl set-default`
+- whole-system reboot through `systemctl reboot`
+- `multi-user.target` versus `graphical.target`
+- direct symbolic-link verification with `readlink -f /etc/systemd/system/default.target`
+
+Operational and teaching lessons captured:
+
+- Account creation and home-directory creation must be taught as separate effects even when one command can request both.
+- `passwd USER` is interactive human-at-keyboard password management; `chpasswd` is useful when credentials are supplied non-interactively for automation or bulk provisioning.
+- `whoami` answers “who is the current effective user?” while `id USER` answers “what identity and group information does the system know about this account?”
+- systemd target control has two independent dimensions: **current runtime target** and **persistent default boot target**.
+- `systemctl isolate TARGET` changes the running system now. `systemctl set-default TARGET` changes future normal boot behavior.
+- `graphical.target` and `multi-user.target` are not merely labels: isolating between them visibly changes whether the graphical desktop is active.
+- Verification should use the strongest available system evidence. `systemctl get-default` is the normal semantic check; resolving `/etc/systemd/system/default.target` with `readlink -f` can independently confirm the underlying symlink.
+- A grader failure must not be conflated with a Linux failure. In this lab, the machine reported and exposed the correct graphical default while Cengage continued to mark the GUI-default objective incorrect. LinuxLingo should preserve actual state evidence and treat platform bookkeeping as a separate layer.
