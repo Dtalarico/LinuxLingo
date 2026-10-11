@@ -320,10 +320,3 @@ Observed Cengage grading defect:
 **Current corpus:** 171 drills, LL001–LL171.
 
 **Next work:** Continue the current NOS-120 lab sequence, harvest only genuinely new mechanisms/syntax, then proceed with the planned Linux midterm study cycle.
-
-
----
-
-## October 11, 2026 — RHCSA Independent Practice Lab Design (Planned)
-
-Added `docs/RHCSA_INDEPENDENT_LAB_DESIGN_2026-10-11.md` as the future operating plan for RHEL 10 task-based, verifiable independent practice using the learner's existing Red Hat VM and subscription. Practice modes: guided DO → SEE → NAME → REMEMBER, assisted repetition, independent ticket, authentic verification, delayed retest. Includes evidence ledger, safe VM snapshots, and June 2027 as an aspirational readiness target. Red Hat Interactive Labs product catalog is **not** the requested RHCSA-specific curriculum. **No implementation or actual lab mastery claimed.** Current priority remains NOS-120 Chapter 4, Block 1, Question 11 of 20; return there when learner chooses.
