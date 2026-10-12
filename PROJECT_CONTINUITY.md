@@ -7,6 +7,18 @@ Update this file after every substantial LinuxLingo work session.
 
 ---
 
+## Instructional authorship and cross-session handoff
+
+The project's goal includes teaching the student to **write clear, accurate technical and engineering records independently**, not merely collecting entries that an AI assistant writes on the student's behalf. Earlier assistant-written records are useful continuity artifacts but are **not evidence of independent student authorship**.
+
+Progressive writing apprenticeship: **assistant demonstrates → student and assistant co-write → student drafts and assistant critiques → student documents and verifies independently**. Preserve the student's reasoning, command choices, mistakes, troubleshooting and authentic system evidence. State assistance received honestly; do not replace student learning with automatic polishing.
+
+**When starting a new chat or work session:** read this continuity file, the README and the relevant sections of the Master Spec before making project assumptions. Recover the last verified implementation state, open decisions, learning method, student-authored versus assisted evidence, and next exact task. Ask for live verification of any system state that may have changed. GitHub is durable recorded context, **not a copy of the assistant's internal memory**, and no assistant should claim to know unrecorded past actions. Update continuity after substantive work without erasing history or exposing secrets.
+
+Related repositories: [RHCSA training framework](https://github.com/Dtalarico/rhca-training/blob/main/docs/PRACTICAL_LAB_FRAMEWORK.md) governs practical Linux administration competence; [Baby Cloud](https://github.com/Dtalarico/baby-cloud) records integrated infrastructure engineering. LinuxLingo remains a separate terminal-fluency training application and corpus. Do not equate completing drills or having assistant-authored entries with independent administration or documentation proficiency.
+
+---
+
 ## Current Project State
 - Project: LinuxLingo
 - Repository: GitHub (`Dtalarico/LinuxLingo`)
