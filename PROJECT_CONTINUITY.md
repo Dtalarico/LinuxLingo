@@ -27,7 +27,7 @@ Related repositories: [RHCSA training framework](https://github.com/Dtalarico/rh
 - The engine now loads two numbered JSON banks: `scenario_bank.json` and `scenario_bank_2.json`.
 - Loaded corpus: **171 drills, LL001–LL171**.
 - `scenario_bank.json` contains LL001–LL100.
-- `scenario_bank_2.json` begins with LL101 and currently contains LL101–LL160.
+- `scenario_bank_2.json` begins with LL101 and currently contains LL101–LL171 (71 drills; verified against the JSON bank on October 26, 2026).
 - `LINUXLINGO_MASTER_SPEC.md` now contains the September 14 adaptive-teaching doctrine as canonical architecture, including operation-before-syntax, atomic semantics, one-abstraction-at-a-time sequencing, explicit state telemetry, expected failure states, partial-success interpretation, state-interpretation failure, nested-shell state, and evidence-vs-reporting distinctions.
 
 ---
