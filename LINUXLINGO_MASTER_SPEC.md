@@ -926,3 +926,24 @@ Operational and teaching lessons captured:
 - `graphical.target` and `multi-user.target` are not merely labels: isolating between them visibly changes whether the graphical desktop is active.
 - Verification should use the strongest available system evidence. `systemctl get-default` is the normal semantic check; resolving `/etc/systemd/system/default.target` with `readlink -f` can independently confirm the underlying symlink.
 - A grader failure must not be conflated with a Linux failure. In this lab, the machine reported and exposed the correct graphical default while Cengage continued to mark the GUI-default objective incorrect. LinuxLingo should preserve actual state evidence and treat platform bookkeeping as a separate layer.
+
+
+---
+
+## Documentation Provenance and Historical Evolution — 2026-10-27
+
+**Status:** Approved additive policy integration. **Authority:** Project author.
+
+LinuxLingo now maintains [LL-DOC-001](docs/documentation-policy.md), a dedicated documentation, evidence, authorship, and historical-continuity policy. This section adds a reference and records its adoption; it does **not** displace or rewrite any instructional requirement elsewhere in this Master Specification.
+
+The documentation standard draws explicitly from Baby Cloud's [BC-DOC-001](https://github.com/Dtalarico/baby-cloud/blob/main/docs/documentation-policy.md), while preserving LinuxLingo's original `problem → reasoning → command → execution → verification` and `LAB → LEARN → HARVEST → COMMIT → MOVE ON` architectures.
+
+Document material design choices using the original intent, known assumptions, constraints, alternatives, rationale, decision authority, contemporaneous evidence, implementation, verification, unresolved questions, and any later correction. Keep PROPOSED, APPROVED, EXECUTED, and VERIFIED distinct. Corrections shall make the chronology intelligible instead of silently overwriting earlier understanding.
+
+Operational teaching and harvested drills must retain source provenance, observable success and failure states, explicit verification, partially successful outcomes, and the distinction between retrieval failure, coverage failure, and state-interpretation failure. Distinguish system-generated evidence from human narration and external lab grading. Keep assistance and independent student competence independently attributable.
+
+Write for an intelligent nontechnical reader while retaining exact technical terms and command semantics. Use progressively student-authored documentation rather than permanent assistant ghostwriting. A new contributor should be able to reconstruct the current state and its history using repository records without relying on conversation memory.
+
+The Adaptive Infrastructure Tutoring Prompt v11 (2026-10-18 addendum to preserved earlier versions) reinforces operational purpose, functional distinctions, expected output orientation, scoped reference reading, reasonable-assumption repair, and an established guided lab sequence. Its specific conversational assessment protocol remains a separate instructional authority; this Master Spec and LL-DOC-001 do not claim the MVP implements those features.
+
+**Preservation boundary:** The prior Master Spec remains intact above. This is a dated additive clarification. Actual application capabilities and corpus counts remain governed by the implementation files and `PROJECT_CONTINUITY.md`.
