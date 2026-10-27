@@ -212,3 +212,12 @@ GitHub is the active source of truth.
 **David Michael Talarico**
 
 Cloud Infrastructure student focused on Linux, systems administration, cloud computing, networking, and virtualization.
+
+
+---
+
+## Documentation philosophy and historical accountability — 2026-10-27
+
+**The future must know what the past was thinking.** LinuxLingo documents both how the software changes and how the understanding behind it develops. Decisions, assumptions, evidence, corrections, instructional discoveries, assistance levels, and verified results should remain traceable. Documentation is written for intelligent nontechnical readers as well as engineers.
+
+See [LL-DOC-001 — Documentation, Provenance, and Historical Continuity](docs/documentation-policy.md) for the approved documentation standard. The [Master Spec](LINUXLINGO_MASTER_SPEC.md) remains authoritative for instructional design and architecture; [Project Continuity](PROJECT_CONTINUITY.md) records current state, recent changes, and next steps. The policy complements rather than replaces those records. Historical material must not be silently rewritten merely to make the present appear tidier.
