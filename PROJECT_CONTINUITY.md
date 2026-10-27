@@ -332,3 +332,26 @@ Observed Cengage grading defect:
 **Current corpus:** 171 drills, LL001–LL171.
 
 **Next work:** Continue the current NOS-120 lab sequence, harvest only genuinely new mechanisms/syntax, then proceed with the planned Linux midterm study cycle.
+
+
+---
+
+## October 27, 2026 — Shared documentation philosophy synthesis (approved and implemented)
+
+**Authority:** Project author approved the staged append-only implementation after review of the proposed policy and six-file scope.
+
+**Sources reviewed:** All 7 files on the LinuxLingo main tree, all 17 files on the Baby Cloud main tree, and the supplied full Adaptive Infrastructure Tutoring Prompt v11 (with preserved prior modules). Tree inventories were not truncated. This current-tree review was **not** an exhaustive audit of earlier Git revisions.
+
+**Original intent:** Preserve both repositories' existing principles, strengthening LinuxLingo with Baby Cloud's human-readable historical decision provenance, and carrying relevant LinuxLingo operational/evidence distinctions back to Baby Cloud. The shared standards are complementary, not a merger of project identities.
+
+**Approved and executed LinuxLingo changes:**
+1. New `docs/documentation-policy.md` (LL-DOC-001): append-only historical model, human readability, provenance, decision-state labels, evidence fidelity, learner independence, and continuity.
+2. Dated appendix to `LINUXLINGO_MASTER_SPEC.md`: policy relationship and teaching-specific provenance.
+3. Dated appendix to `README.md`: accessible public orientation and links.
+4. This dated continuity entry.
+
+**Implementation exclusions:** No edits to `linuxlingo.py`, `scenario_bank.json`, `scenario_bank_2.json`, `.gitignore`, historical harvest narratives, or the existing body of the Master Spec. The earlier correction of LL101–LL171 remains separate; the 171-drill corpus is not a consequence of this policy work. Adding the actual v11 source as its own repository artifact remains a separately reviewable task.
+
+**Verification gate:** Git commit identifiers for the changes are available in the main branch history. The new policy's text and appended sections should be retrieved again for post-commit comparison. Existing code and learning functionality have not been changed by this documentation initiative.
+
+**Next step:** Complete the separately approved reciprocal additions to Baby Cloud policy and README, then resume coursework. Future documentation or instructional updates require their own evidence and authorization.
