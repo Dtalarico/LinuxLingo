@@ -201,7 +201,7 @@ The immediate priority remains building a strong terminal-first Linux fluency en
 
 **Current Phase:** Active MVP and command-bank development.
 
-**Current loaded corpus:** 171 drills, LL001–LL171, across two numbered JSON banks.
+**Current loaded corpus:** 185 drills, LL001–LL185, across two numbered JSON banks.
 
 GitHub is the active source of truth.
 
@@ -221,3 +221,11 @@ Cloud Infrastructure student focused on Linux, systems administration, cloud com
 **The future must know what the past was thinking.** LinuxLingo documents both how the software changes and how the understanding behind it develops. Decisions, assumptions, evidence, corrections, instructional discoveries, assistance levels, and verified results should remain traceable. Documentation is written for intelligent nontechnical readers as well as engineers.
 
 See [LL-DOC-001 — Documentation, Provenance, and Historical Continuity](docs/documentation-policy.md) for the approved documentation standard. The [Master Spec](LINUXLINGO_MASTER_SPEC.md) remains authoritative for instructional design and architecture; [Project Continuity](PROJECT_CONTINUITY.md) records current state, recent changes, and next steps. The policy complements rather than replaces those records. Historical material must not be silently rewritten merely to make the present appear tidier.
+
+---
+
+## October 30, 2026 — Process-management harvest
+
+The NOS-120 supplemental process-management study added **14 drills (LL172–LL185)** on interactive process inspection, signal selection, PID/name targeting, niceness, and verification. The full active corpus now contains **185 drills** across the two numbered scenario banks. Existing service-management drills were retained rather than duplicated.
+
+A documented teaching case reinforced an important design principle: do not require a beginner to infer an unstated initial state or the purpose of a combined option. In particular, `nice -n` applies a relative adjustment to inherited niceness, and `ps -o` controls displayed fields while `ps -p` controls process selection. See the October 30 appendices in the [Master Specification](LINUXLINGO_MASTER_SPEC.md) and [Project Continuity](PROJECT_CONTINUITY.md). Guided understanding is not treated as independent execution or mastery evidence.
