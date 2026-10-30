@@ -1497,5 +1497,289 @@
     "check": null,
     "explanation": "readlink -f resolves the default.target symbolic link to its real target. If it resolves to graphical.target while systemctl get-default also reports graphical.target, the Linux state is correct even if an external grader fails to recognize it.",
     "source": "NOS-120 Cengage LD-008 grader troubleshooting / 2026-10-04"
+  },
+  {
+    "id": "LL172",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "processes",
+    "tags": [
+      "top",
+      "interactive",
+      "monitoring"
+    ],
+    "prompt": "Open an interactive display of running Linux processes and their resource usage.",
+    "answers": [
+      "top"
+    ],
+    "check": null,
+    "explanation": "top is an interactive process monitor; it shows changing process information rather than a one-time ps snapshot.",
+    "source": "NOS-120 supplemental process-management video and guided operational study / 2026-10-30"
+  },
+  {
+    "id": "LL173",
+    "type": "knowledge",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "processes",
+    "tags": [
+      "top",
+      "sort",
+      "interactive",
+      "highlight"
+    ],
+    "prompt": "While top is running, which key highlights the active sort field?",
+    "answers": [
+      "x"
+    ],
+    "check": null,
+    "explanation": "The x key toggles highlighting of the active sort column. The < and > keys move the sort field; Shift+P and Shift+M select CPU and memory sorting.",
+    "source": "NOS-120 supplemental process-management video and guided operational study / 2026-10-30"
+  },
+  {
+    "id": "LL174",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "processes",
+    "tags": [
+      "ps",
+      "-o",
+      "output-columns"
+    ],
+    "prompt": "Use ps to display only PID, niceness, and command-name columns for its normally selected processes.",
+    "answers": [
+      "ps -o pid,ni,comm"
+    ],
+    "check": null,
+    "explanation": "-o controls which fields are printed; pid is process ID, ni is niceness, and comm is command name. Without an explicit selection option, ps uses its default process selection.",
+    "source": "NOS-120 supplemental process-management video and guided operational study / 2026-10-30"
+  },
+  {
+    "id": "LL175",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "processes",
+    "tags": [
+      "ps",
+      "-p",
+      "pid",
+      "selection"
+    ],
+    "prompt": "Display the default process-status columns for the process whose example PID is 1234.",
+    "answers": [
+      "ps -p 1234"
+    ],
+    "check": null,
+    "explanation": "-p selects a process by PID. Here 1234 is a hypothetical example, not a known process on the learner's machine. This selects which process appears, not which columns appear.",
+    "source": "NOS-120 supplemental process-management video and guided operational study / 2026-10-30"
+  },
+  {
+    "id": "LL176",
+    "type": "command_construction",
+    "difficulty": "intermediate",
+    "tier": "fluency",
+    "category": "processes",
+    "tags": [
+      "ps",
+      "-o",
+      "-p",
+      "selection",
+      "output-columns"
+    ],
+    "prompt": "For an illustrative process with PID 1234, display only PID, niceness, and command name.",
+    "answers": [
+      "ps -o pid,ni,comm -p 1234",
+      "ps -p 1234 -o pid,ni,comm"
+    ],
+    "check": null,
+    "explanation": "-p selects the process, while -o selects columns. Combining them answers two separate questions: which process, and which information. PID 1234 is illustrative.",
+    "source": "NOS-120 supplemental process-management video and guided operational study / 2026-10-30"
+  },
+  {
+    "id": "LL177",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "processes",
+    "tags": [
+      "pidof",
+      "process-id",
+      "name"
+    ],
+    "prompt": "Find the PIDs of running processes named bash.",
+    "answers": [
+      "pidof bash"
+    ],
+    "check": null,
+    "explanation": "pidof looks up process IDs by executable name and may return several PIDs. It does not terminate or change processes.",
+    "source": "NOS-120 supplemental process-management video and guided operational study / 2026-10-30"
+  },
+  {
+    "id": "LL178",
+    "type": "scenario",
+    "difficulty": "intermediate",
+    "tier": "fluency",
+    "category": "processes",
+    "tags": [
+      "pkill",
+      "signal",
+      "process-name"
+    ],
+    "prompt": "Request graceful termination of processes whose names match the pattern firefox, without manually supplying PIDs.",
+    "answers": [
+      "pkill firefox"
+    ],
+    "check": null,
+    "explanation": "pkill matches processes by name/pattern and sends SIGTERM by default. A pattern can match more than one process, so inspect targets before signaling.",
+    "source": "NOS-120 supplemental process-management video and guided operational study / 2026-10-30"
+  },
+  {
+    "id": "LL179",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "processes",
+    "tags": [
+      "kill",
+      "sigterm",
+      "pid"
+    ],
+    "prompt": "Request graceful termination of the illustrative process with PID 1234 using the default signal.",
+    "answers": [
+      "kill 1234"
+    ],
+    "check": null,
+    "explanation": "kill PID sends SIGTERM by default. SIGTERM requests termination and allows ordinary signal handling; PID 1234 is an example and must be replaced with a verified target before real use.",
+    "source": "NOS-120 supplemental process-management video and guided operational study / 2026-10-30"
+  },
+  {
+    "id": "LL180",
+    "type": "scenario",
+    "difficulty": "intermediate",
+    "tier": "fluency",
+    "category": "processes",
+    "tags": [
+      "kill",
+      "sigkill",
+      "signals",
+      "list"
+    ],
+    "prompt": "List the signal names available to the kill utility rather than terminating a process.",
+    "answers": [
+      "kill -l"
+    ],
+    "check": null,
+    "explanation": "kill -l lists signal names. SIGTERM (15) requests termination; SIGKILL (9) cannot be caught or ignored and is generally reserved for last resort. kill -L may show a table on supporting implementations.",
+    "source": "NOS-120 supplemental process-management video and guided operational study / 2026-10-30"
+  },
+  {
+    "id": "LL181",
+    "type": "knowledge",
+    "difficulty": "intermediate",
+    "tier": "fluency",
+    "category": "process_priority",
+    "tags": [
+      "nice",
+      "inheritance",
+      "relative",
+      "assumptions"
+    ],
+    "prompt": "A shell has niceness 5. Ignoring scheduling limits, what niceness will a child command get if launched with nice -n 4?",
+    "answers": [
+      "9",
+      "niceness 9",
+      "+9"
+    ],
+    "check": null,
+    "explanation": "nice -n 4 requests a relative increase of 4 from the launching process's inherited niceness: 5 + 4 = 9. It does not set an absolute value of 4.",
+    "source": "NOS-120 supplemental process-management video and guided operational study / 2026-10-30"
+  },
+  {
+    "id": "LL182",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "process_priority",
+    "tags": [
+      "nice",
+      "-n",
+      "explicit-syntax",
+      "launch"
+    ],
+    "prompt": "Start the illustrative executable ./script.sh with an explicit positive niceness adjustment of 10.",
+    "answers": [
+      "nice -n 10 ./script.sh"
+    ],
+    "check": null,
+    "explanation": "-n introduces the adjustment; 10 is positive. The command starts at inherited niceness plus 10 (subject to allowed range), not necessarily absolute 10. This drill illustrates syntax and does not claim the file exists.",
+    "source": "NOS-120 supplemental process-management video and guided operational study / 2026-10-30"
+  },
+  {
+    "id": "LL183",
+    "type": "scenario",
+    "difficulty": "intermediate",
+    "tier": "fluency",
+    "category": "process_priority",
+    "tags": [
+      "renice",
+      "absolute",
+      "pid",
+      "gnu-linux"
+    ],
+    "prompt": "On GNU/Linux, set the existing illustrative process with PID 1234 to the absolute niceness value 4.",
+    "answers": [
+      "renice -n 4 -p 1234",
+      "renice --priority 4 -p 1234"
+    ],
+    "check": null,
+    "explanation": "On GNU/Linux, renice sets a target process's niceness; -p selects the PID. Unlike nice, this acts on an existing process. Actual changes require permission; 1234 is a placeholder.",
+    "source": "NOS-120 supplemental process-management video and guided operational study / 2026-10-30"
+  },
+  {
+    "id": "LL184",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "process_priority",
+    "tags": [
+      "ps",
+      "ni",
+      "verify",
+      "pid"
+    ],
+    "prompt": "Inspect the current niceness of illustrative PID 1234, showing PID, NI and command name.",
+    "answers": [
+      "ps -o pid,ni,comm -p 1234",
+      "ps -p 1234 -o pid,ni,comm"
+    ],
+    "check": null,
+    "explanation": "Observe current niceness before or after a change. The NI column shows the process's reported niceness; do not treat the requested adjustment alone as verification.",
+    "source": "NOS-120 supplemental process-management video and guided operational study / 2026-10-30"
+  },
+  {
+    "id": "LL185",
+    "type": "knowledge",
+    "difficulty": "intermediate",
+    "tier": "fluency",
+    "category": "process_priority",
+    "tags": [
+      "workflow",
+      "observe",
+      "verify",
+      "nice",
+      "renice"
+    ],
+    "prompt": "You need an existing process to have a verified niceness of 4. What is the appropriate sequence of operations?",
+    "answers": [
+      "inspect its current nice value, use renice to set 4, then inspect it again",
+      "inspect, renice to 4, verify",
+      "observe current niceness; renice to 4; verify resulting niceness"
+    ],
+    "check": null,
+    "explanation": "First observe process state, then use renice for an absolute setting on GNU/Linux, then independently re-read NI. nice is for launching a new command with a relative adjustment, not modifying a running process.",
+    "source": "NOS-120 supplemental process-management video and guided operational study / 2026-10-30"
   }
 ]
