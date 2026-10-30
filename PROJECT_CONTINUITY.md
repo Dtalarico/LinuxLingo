@@ -355,3 +355,27 @@ Observed Cengage grading defect:
 **Verification gate:** Git commit identifiers for the changes are available in the main branch history. The new policy's text and appended sections should be retrieved again for post-commit comparison. Existing code and learning functionality have not been changed by this documentation initiative.
 
 **Next step:** Complete the separately approved reciprocal additions to Baby Cloud policy and README, then resume coursework. Future documentation or instructional updates require their own evidence and authorization.
+
+---
+
+## October 30, 2026 — Supplemental process-management harvest and instructional clarification
+
+**Status:** APPROVED by project author for append-only implementation on October 30; video observed and questions discussed, not independent terminal demonstrations.
+
+**Source:** A 16-minute NOS-120 supplemental process-management video (the video presenter is distinct from course instructor Darvish), followed by an extended guided discussion. Source observations are separated from explanations, examples, and proposed exercises; no claim is made that the author executed every command.
+
+**Corpus addition:** LL172–LL185 (14 drills), appended to `scenario_bank_2.json`. Existing LL001–LL171 remain in their original order. Corpus total: **185**. The engine and bank configuration remain unchanged.
+
+**New learning areas:** interactive `top` monitoring and sorting; `ps -o` field selection versus `ps -p` process selection; `pidof`; `pkill`; `kill` signals; explicit `nice -n` relative adjustments; `renice` changes to existing processes; inspecting NI; and observe–change–verify reasoning. Previously covered `ps -ef` and `systemctl start` mechanisms were not duplicated. Video examples including `systemctl start auditd`, `ps -edf`, and signal-display variants are retained here as source context for later review, not as claims of a successful machine operation. Distribution/service policy may restrict `auditd` manual startup.
+
+**Instructional incident — hidden initial state:** The video described `nice -n 10` as producing niceness 10 without explicitly establishing the launching process's niceness. The author asked what the initial value was. The precise model is **inherited niceness + requested relative adjustment = resulting niceness**, within system permissions and limits; zero is common but is not a verified universal starting state. A beginner cannot be expected to know which premises an instructor considers typical. State the premise and show a way to observe it.
+
+**Instructional incident — unnecessary command compression:** During tutoring, the assistant introduced `ps -o pid,ni,comm -p 1234` before explaining why both options were present. The author questioned the complexity. Repair: `-o` answers *which fields?*; `-p` answers *which process?*; only combine them when the task requires both. The example PID 1234 was invented for teaching and must not be represented as a real observed PID.
+
+**Instructional incident — ambiguous marks and values:** The discussion distinguished `nice -4` (legacy shorthand for a positive adjustment on the GNU utility) from `nice -n -4` (a negative numeric adjustment), and relative `nice` from GNU/Linux `renice` absolute target values. Prefer explicit `-n` teaching syntax; a dash used as an option marker is not automatically a numeric negative sign. Permissions for raising scheduling priority must be addressed.
+
+**Teaching conclusion:** Simplification that hides necessary preconditions can increase learning complexity. For beginners, explain the operation, initial conditions, each new option, observable output, failure modes, and verification **before** condensing syntax. This extends, rather than replaces, existing operation-before-syntax and atomic-semantics rules. Distinguish **observed video content**, **guided reasoning**, **validated drill content**, and **independently executed terminal evidence**.
+
+**Historical/assistance attribution:** The author supplied the questions, challenged assumptions and unnecessary complexity, approved scope, and contributed the learning insight; the assistant drafted the new drill/data and documentation text. This does not establish independent student authorship or measured mastery.
+
+**Next work:** Resume per-lab harvests. Revisit process scheduling with an actual terminal session for independent retrieval, output inspection, and evidence of results; treat the first video harvest as exposure and guided understanding rather than demonstrated mastery.
