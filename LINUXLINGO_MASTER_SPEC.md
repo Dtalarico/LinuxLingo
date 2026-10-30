@@ -947,3 +947,17 @@ Write for an intelligent nontechnical reader while retaining exact technical ter
 The Adaptive Infrastructure Tutoring Prompt v11 (2026-10-18 addendum to preserved earlier versions) reinforces operational purpose, functional distinctions, expected output orientation, scoped reference reading, reasonable-assumption repair, and an established guided lab sequence. Its specific conversational assessment protocol remains a separate instructional authority; this Master Spec and LL-DOC-001 do not claim the MVP implements those features.
 
 **Preservation boundary:** The prior Master Spec remains intact above. This is a dated additive clarification. Actual application capabilities and corpus counts remain governed by the implementation files and `PROJECT_CONTINUITY.md`.
+
+---
+
+## October 30, 2026 — Explicit initial state and unearned complexity: process-management case study
+
+**Provenance:** NOS-120 supplemental process-management video plus guided discussion, October 30, 2026. This dated addition records a concrete application of the existing operation-first, atomic-semantics, and verification doctrine; it does not replace older instructions.
+
+A video explanation of `nice -n 10` omitted the premise that the launching process ordinarily has niceness 0. This omission makes a contingent result appear absolute. Teach the inherited starting state and the relative adjustment before stating the output. Typical configurations are examples, not unspoken requirements a beginner must infer. The distinction between `nice` for launching a process and GNU/Linux `renice` for changing an existing process should be operationally motivated.
+
+A related tutoring failure presented `ps -o pid,ni,comm -p 1234` before explaining the independent questions answered by `-o` (selected output fields) and `-p` (selected process). The user correctly challenged why both were necessary. Introduce each option on its own, then combine them only for an explicitly stated task. Never present an illustrative PID as observed system state.
+
+**Design rule:** Identify the task and relevant initial conditions; demonstrate one mechanism at a time; state assumptions, privilege constraints and common alternatives; show expected evidence and verification; only then introduce shorthand or composite commands. A shorter instructor sentence is not a simpler lesson if it hides a critical premise. Unnecessary complexity includes both extra syntax and missing explanations that force learners to reverse-engineer intent.
+
+**Evidence status:** Video observation and guided reasoning were documented. No independent command execution, delayed retest, or mastery outcome was demonstrated in this session. Drills LL172–LL185 are proposed practice artifacts, not proof of competence. See the dated `PROJECT_CONTINUITY.md` entry for full harvest context.
