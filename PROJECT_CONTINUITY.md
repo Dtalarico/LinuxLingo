@@ -402,3 +402,16 @@ Observed Cengage grading defect:
 **Assistance and authorship:** The author supplied video screenshots, discovered and reasoned about the relative-path issue, asked scheduling and storage questions, and authorized updating the repository. The assistant explained mechanisms and drafted scenario content and this historical entry. No claims of independently completed exercises or tests.
 
 **Next step:** Resume NOS-120 cron/scripting lab using the existing screenshot-first, command-review-before-execution workflow. Verify actual commands and results in the lab before upgrading any learning claim from exposure to demonstrated proficiency.
+
+
+---
+
+## October 31, 2026 — Cengage LA-006 automation lab harvest
+
+**Authorization:** Author approved an additive harvest. **Execution:** Added LL201–LL215 to new scenario_bank_3.json; updated linuxlingo.py to load the third bank; added dated Master Spec discussion. Earlier 200 drills remain intact. Target corpus is 215 drills across three banks, pending smoke test.
+
+**Observed work:** Created and inspected an at job; configured /etc/crontab for weekday backups; created an executable Bash reporting script and redirected its output; configured a oneshot systemd service and weekday timer; ran daemon-reload, enable --now, and list-timers --all. The terminal displayed the new timer with its associated service and next activation on November 2 at 08:00. The lab verifier passed. This does not establish that a future scheduled run has occurred.
+
+**Attribution:** Student reasoned independently about the timer/service architecture, cron weekday placement, and output redirection; assistant supplied or reviewed several commands. A mistyped enable command was rejected and corrected. This is assisted lab execution with observed verification, not unaided delayed recall. The earlier video-only LL186–LL200 harvest remains separately documented.
+
+**Next:** Verify bank loading, ID uniqueness, total count and interactive execution. Add a systemctl quick-reference and delayed recall exercises in a separately reviewed learning session.
