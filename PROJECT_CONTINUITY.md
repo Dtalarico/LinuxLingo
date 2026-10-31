@@ -379,3 +379,26 @@ Observed Cengage grading defect:
 **Historical/assistance attribution:** The author supplied the questions, challenged assumptions and unnecessary complexity, approved scope, and contributed the learning insight; the assistant drafted the new drill/data and documentation text. This does not establish independent student authorship or measured mastery.
 
 **Next work:** Resume per-lab harvests. Revisit process scheduling with an actual terminal session for independent retrieval, output inspection, and evidence of results; treat the first video harvest as exposure and guided understanding rather than demonstrated mastery.
+
+
+---
+
+## October 31, 2026 — at/cron scheduling video harvest
+
+**Status:** APPROVED by author for repository update. Video viewed and discussed; no independent terminal execution or lab completion claimed.
+
+**Source:** Supplemental RHCSA RHEL 8 video, “Schedule tasks using at and cron,” with author-provided screenshots and guided discussion. Some screenshots were blurry and were not treated as verified command evidence. The presenter’s demonstrations were on RHEL 8, not the author’s lab machine.
+
+**Corpus change:** Added LL186–LL200 (15 drills) to `scenario_bank_2.json`, following LL185. Corpus total **200** (LL001–LL200); existing entries and engine unchanged. Commit `3050b8b112121c1af1908428fd91c2bb1b5b8b14`. Source is observed video/guided reasoning, not demonstrated student mastery.
+
+**Observed video mechanisms:** `at now + 1 minute`, interactive `at>` commands followed by Ctrl+D/end-of-input, `atq`, `atrm`, `at 3pm + 3 days -f script.sh`, `crontab -e`, `crontab -l`, `crontab -u cengland -e`, and the system cron locations under `/etc`. A failed `atrm 1` returned “Cannot find jobid 1”; the job was no longer pending, but execution was not independently established by that message. The video showed `atrm 3` without an error, but no subsequent queue verification. The video demonstrated `man at` and discussed manual/reference documentation. The author also requested `info cron` and `info at` as useful reference commands; their Info-node availability is installation-dependent.
+
+**Scheduling model:** `at` submits one-time work, whereas cron runs recurring jobs whenever its schedule matches. Cron's five standard time fields were explored, including comma-separated hours and weekdays: `30 9,15 * * 1,4` means Monday/Thursday at 09:30 and 15:30. For the first Friday of a month, the discussion explained why `0 9 1-7 * 5` is unsuitable under common Cronie/Vixie OR semantics for restricted day-of-month/day-of-week fields, and illustrated a shell weekday condition with an escaped percent sign. More complex fallback examples were hypothetical requirements analysis, not code executed or approved for deployment.
+
+**Paths and execution context:** The instructor's root-owned crontab included `echo "test" > crontest.txt` without an absolute output path. A later listing located `/root/crontest.txt`. The author recognized that relative redirection and the cron working directory caused the unexpected location. Distinguish root the account, `/root` the home directory, and `/` the filesystem root. Do not generalize that every cron implementation or every root job always starts in `/root`. The instructor's separate script invocation used `/home/cengland/Documents/script.sh`.
+
+**Other learning:** `ls -lhtra` was decomposed; `-t` (modification-time ordering) was newly identified by the author, and `-r` reverses that ordering. `ls -lhS` sorts by size (uppercase S), while `ls -lsh` displays allocated disk usage alongside logical size (lowercase s). `du -sh` and `df -h` were discussed as related capacity-inspection tools; not demonstrated by the video in this session. Author emphasized that storage capacity planning focuses on actual allocated usage, and that correct requirements matter before correct scripts.
+
+**Assistance and authorship:** The author supplied video screenshots, discovered and reasoned about the relative-path issue, asked scheduling and storage questions, and authorized updating the repository. The assistant explained mechanisms and drafted scenario content and this historical entry. No claims of independently completed exercises or tests.
+
+**Next step:** Resume NOS-120 cron/scripting lab using the existing screenshot-first, command-review-before-execution workflow. Verify actual commands and results in the lab before upgrading any learning claim from exposure to demonstrated proficiency.
