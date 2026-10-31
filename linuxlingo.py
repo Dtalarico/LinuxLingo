@@ -6,6 +6,7 @@ BASE_DIR = Path(__file__).parent
 BANK_PATHS = [
     BASE_DIR / "scenario_bank.json",
     BASE_DIR / "scenario_bank_2.json",
+    BASE_DIR / "scenario_bank_3.json",
 ]
 
 
