@@ -1,0 +1,287 @@
+[
+  {
+    "id": "LL201",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "at",
+    "tags": [
+      "at",
+      "2026-10-31",
+      "lab-harvest"
+    ],
+    "prompt": "Schedule /usr/local/bin/BackupScript.sh to run once, 30 minutes from now, by piping the command into at.",
+    "answers": [
+      "echo \"/usr/local/bin/BackupScript.sh\" | at now + 30 minutes"
+    ],
+    "check": null,
+    "explanation": "The pipe sends the script invocation to at; the at daemon queues a one-time job.",
+    "source": "NOS-120 Cengage LA-006 administrative task automation lab, 2026-10-31 (guided execution; verifier passed)"
+  },
+  {
+    "id": "LL202",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "at",
+    "tags": [
+      "at",
+      "2026-10-31",
+      "lab-harvest"
+    ],
+    "prompt": "Display pending one-time at jobs.",
+    "answers": [
+      "atq"
+    ],
+    "check": null,
+    "explanation": "atq displays pending at jobs, including job IDs and scheduled times.",
+    "source": "NOS-120 Cengage LA-006 administrative task automation lab, 2026-10-31 (guided execution; verifier passed)"
+  },
+  {
+    "id": "LL203",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "cron",
+    "tags": [
+      "cron",
+      "2026-10-31",
+      "lab-harvest"
+    ],
+    "prompt": "Edit the system-wide cron table at /etc/crontab using Vim.",
+    "answers": [
+      "vim /etc/crontab"
+    ],
+    "check": null,
+    "explanation": "/etc/crontab is the system-wide file, not a user's crontab edited with crontab -e.",
+    "source": "NOS-120 Cengage LA-006 administrative task automation lab, 2026-10-31 (guided execution; verifier passed)"
+  },
+  {
+    "id": "LL204",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "cron",
+    "tags": [
+      "cron",
+      "2026-10-31",
+      "lab-harvest"
+    ],
+    "prompt": "Give the exact system-wide /etc/crontab entry to run BackupScript.sh as root at 02:15 Monday through Friday.",
+    "answers": [
+      "15 2 * * 1-5 root /usr/local/bin/BackupScript.sh"
+    ],
+    "check": null,
+    "explanation": "The system crontab includes a user field after five schedule fields. Day-of-week 1-5 means Monday-Friday; day-of-month is *.",
+    "source": "NOS-120 Cengage LA-006 administrative task automation lab, 2026-10-31 (guided execution; verifier passed)"
+  },
+  {
+    "id": "LL205",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "cron",
+    "tags": [
+      "cron",
+      "2026-10-31",
+      "lab-harvest"
+    ],
+    "prompt": "Inspect /etc/crontab for the line containing BackupScript.sh.",
+    "answers": [
+      "grep BackupScript.sh /etc/crontab"
+    ],
+    "check": null,
+    "explanation": "grep searches file contents. A pipeline from cat is possible but unnecessary.",
+    "source": "NOS-120 Cengage LA-006 administrative task automation lab, 2026-10-31 (guided execution; verifier passed)"
+  },
+  {
+    "id": "LL206",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "bash",
+    "tags": [
+      "bash",
+      "2026-10-31",
+      "lab-harvest"
+    ],
+    "prompt": "Make /usr/local/bin/ServerStatsScript.sh executable by owner, group, and others while allowing only the owner to write.",
+    "answers": [
+      "chmod 755 /usr/local/bin/ServerStatsScript.sh"
+    ],
+    "check": null,
+    "explanation": "755 grants rwx to owner and r-x to group and others.",
+    "source": "NOS-120 Cengage LA-006 administrative task automation lab, 2026-10-31 (guided execution; verifier passed)"
+  },
+  {
+    "id": "LL207",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "bash",
+    "tags": [
+      "bash",
+      "2026-10-31",
+      "lab-harvest"
+    ],
+    "prompt": "Create the absolute directory /server.",
+    "answers": [
+      "mkdir /server"
+    ],
+    "check": null,
+    "explanation": "An absolute path begins at the filesystem root, regardless of current working directory.",
+    "source": "NOS-120 Cengage LA-006 administrative task automation lab, 2026-10-31 (guided execution; verifier passed)"
+  },
+  {
+    "id": "LL208",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "redirection",
+    "tags": [
+      "redirection",
+      "2026-10-31",
+      "lab-harvest"
+    ],
+    "prompt": "Run the ServerStatsScript.sh program and write its standard output to /server/server.txt, replacing previous contents.",
+    "answers": [
+      "/usr/local/bin/ServerStatsScript.sh > /server/server.txt"
+    ],
+    "check": null,
+    "explanation": "The > operator redirects stdout into a file; it does not capture stderr unless separately redirected.",
+    "source": "NOS-120 Cengage LA-006 administrative task automation lab, 2026-10-31 (guided execution; verifier passed)"
+  },
+  {
+    "id": "LL209",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "systemd",
+    "tags": [
+      "systemd",
+      "2026-10-31",
+      "lab-harvest"
+    ],
+    "prompt": "Create or edit the service unit configuration file system-info.service in /etc/systemd/system with Vim.",
+    "answers": [
+      "vim /etc/systemd/system/system-info.service"
+    ],
+    "check": null,
+    "explanation": "This file describes what the service executes; a Type=oneshot service finishes after its command completes.",
+    "source": "NOS-120 Cengage LA-006 administrative task automation lab, 2026-10-31 (guided execution; verifier passed)"
+  },
+  {
+    "id": "LL210",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "systemd",
+    "tags": [
+      "systemd",
+      "2026-10-31",
+      "lab-harvest"
+    ],
+    "prompt": "Create or edit the timer unit configuration file system-info.timer in /etc/systemd/system with Vim.",
+    "answers": [
+      "vim /etc/systemd/system/system-info.timer"
+    ],
+    "check": null,
+    "explanation": "The timer determines when to activate the associated service; editing does not itself activate it.",
+    "source": "NOS-120 Cengage LA-006 administrative task automation lab, 2026-10-31 (guided execution; verifier passed)"
+  },
+  {
+    "id": "LL211",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "systemd",
+    "tags": [
+      "systemd",
+      "2026-10-31",
+      "lab-harvest"
+    ],
+    "prompt": "In a systemd timer file, which directive schedules the service at 08:00 Monday through Friday?",
+    "answers": [
+      "OnCalendar=Mon-Fri 08:00"
+    ],
+    "check": null,
+    "explanation": "OnCalendar defines the recurring calendar schedule within the [Timer] section.",
+    "source": "NOS-120 Cengage LA-006 administrative task automation lab, 2026-10-31 (guided execution; verifier passed)"
+  },
+  {
+    "id": "LL212",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "systemd",
+    "tags": [
+      "systemd",
+      "2026-10-31",
+      "lab-harvest"
+    ],
+    "prompt": "In a systemd timer file, which directive explicitly identifies the service unit to activate?",
+    "answers": [
+      "Unit=system-info.service"
+    ],
+    "check": null,
+    "explanation": "The Unit= directive selects the target unit; timer and service are distinct configuration files.",
+    "source": "NOS-120 Cengage LA-006 administrative task automation lab, 2026-10-31 (guided execution; verifier passed)"
+  },
+  {
+    "id": "LL213",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "systemd",
+    "tags": [
+      "systemd",
+      "2026-10-31",
+      "lab-harvest"
+    ],
+    "prompt": "After adding new service and timer unit files, make the running systemd manager reread unit definitions.",
+    "answers": [
+      "systemctl daemon-reload"
+    ],
+    "check": null,
+    "explanation": "daemon-reload reloads the manager's unit definitions; it does not start the new timer.",
+    "source": "NOS-120 Cengage LA-006 administrative task automation lab, 2026-10-31 (guided execution; verifier passed)"
+  },
+  {
+    "id": "LL214",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "systemd",
+    "tags": [
+      "systemd",
+      "2026-10-31",
+      "lab-harvest"
+    ],
+    "prompt": "Enable system-info.timer at boot and start it immediately in a single command.",
+    "answers": [
+      "systemctl enable --now system-info.timer"
+    ],
+    "check": null,
+    "explanation": "enable establishes boot activation; --now additionally starts the timer immediately. The timer activates the service on schedule.",
+    "source": "NOS-120 Cengage LA-006 administrative task automation lab, 2026-10-31 (guided execution; verifier passed)"
+  },
+  {
+    "id": "LL215",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "systemd",
+    "tags": [
+      "systemd",
+      "2026-10-31",
+      "lab-harvest"
+    ],
+    "prompt": "Display all systemd timers, including inactive ones.",
+    "answers": [
+      "systemctl list-timers --all"
+    ],
+    "check": null,
+    "explanation": "list-timers displays timer scheduling and activated units; --all includes inactive timers.",
+    "source": "NOS-120 Cengage LA-006 administrative task automation lab, 2026-10-31 (guided execution; verifier passed)"
+  }
+]
