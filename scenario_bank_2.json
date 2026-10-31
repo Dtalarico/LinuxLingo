@@ -1781,5 +1781,295 @@
     "check": null,
     "explanation": "First observe process state, then use renice for an absolute setting on GNU/Linux, then independently re-read NI. nice is for launching a new command with a relative adjustment, not modifying a running process.",
     "source": "NOS-120 supplemental process-management video and guided operational study / 2026-10-30"
+  },
+  {
+    "id": "LL186",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "at",
+    "tags": [
+      "at",
+      "2026-10-31",
+      "video-harvest"
+    ],
+    "prompt": "Schedule interactive one-time job entry for one minute from now.",
+    "answers": [
+      "at now + 1 minute"
+    ],
+    "check": null,
+    "explanation": "At the at> prompt, enter the command(s) and press Ctrl+D to submit; the job runs once, provided atd is running.",
+    "source": "RHCSA RHEL 8 at/cron video observed and guided discussion, 2026-10-31 (not independently executed)"
+  },
+  {
+    "id": "LL187",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "at",
+    "tags": [
+      "at",
+      "2026-10-31",
+      "video-harvest"
+    ],
+    "prompt": "List currently pending one-time at jobs.",
+    "answers": [
+      "atq"
+    ],
+    "check": null,
+    "explanation": "A queued job can be listed before execution; a completed job no longer appears.",
+    "source": "RHCSA RHEL 8 at/cron video observed and guided discussion, 2026-10-31 (not independently executed)"
+  },
+  {
+    "id": "LL188",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "at",
+    "tags": [
+      "at",
+      "2026-10-31",
+      "video-harvest"
+    ],
+    "prompt": "Remove pending at job number 3.",
+    "answers": [
+      "atrm 3"
+    ],
+    "check": null,
+    "explanation": "Use the actual job ID from atq. Removal fails if the job no longer exists.",
+    "source": "RHCSA RHEL 8 at/cron video observed and guided discussion, 2026-10-31 (not independently executed)"
+  },
+  {
+    "id": "LL189",
+    "type": "scenario",
+    "difficulty": "intermediate",
+    "tier": "fluency",
+    "category": "at",
+    "tags": [
+      "at",
+      "2026-10-31",
+      "video-harvest"
+    ],
+    "prompt": "Queue commands contained in script.sh to run at 3 PM three days from now.",
+    "answers": [
+      "at 3pm + 3 days -f script.sh"
+    ],
+    "check": null,
+    "explanation": "The -f option reads commands from the file at submission time; changes to the original file do not rewrite the queued commands. File is illustrative.",
+    "source": "RHCSA RHEL 8 at/cron video observed and guided discussion, 2026-10-31 (not independently executed)"
+  },
+  {
+    "id": "LL190",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "cron",
+    "tags": [
+      "cron",
+      "2026-10-31",
+      "video-harvest"
+    ],
+    "prompt": "Edit the current user's cron schedule.",
+    "answers": [
+      "crontab -e"
+    ],
+    "check": null,
+    "explanation": "The job runs with that crontab owner's privileges; sudo crontab -e usually edits root's crontab.",
+    "source": "RHCSA RHEL 8 at/cron video observed and guided discussion, 2026-10-31 (not independently executed)"
+  },
+  {
+    "id": "LL191",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "cron",
+    "tags": [
+      "cron",
+      "2026-10-31",
+      "video-harvest"
+    ],
+    "prompt": "List the current user's installed cron entries.",
+    "answers": [
+      "crontab -l"
+    ],
+    "check": null,
+    "explanation": "Inspect the installed crontab after editing rather than assuming an editor save succeeded.",
+    "source": "RHCSA RHEL 8 at/cron video observed and guided discussion, 2026-10-31 (not independently executed)"
+  },
+  {
+    "id": "LL192",
+    "type": "scenario",
+    "difficulty": "intermediate",
+    "tier": "fluency",
+    "category": "cron",
+    "tags": [
+      "cron",
+      "2026-10-31",
+      "video-harvest"
+    ],
+    "prompt": "Write the five-field cron schedule for 9:30 AM and 3:30 PM on Mondays and Thursdays.",
+    "answers": [
+      "30 9,15 * * 1,4"
+    ],
+    "check": null,
+    "explanation": "Minute 30, hours 9 and 15, any date/month, weekday 1 (Monday) or 4 (Thursday); four executions per week.",
+    "source": "RHCSA RHEL 8 at/cron video observed and guided discussion, 2026-10-31 (not independently executed)"
+  },
+  {
+    "id": "LL193",
+    "type": "knowledge",
+    "difficulty": "intermediate",
+    "tier": "fluency",
+    "category": "cron",
+    "tags": [
+      "cron",
+      "2026-10-31",
+      "video-harvest"
+    ],
+    "prompt": "Why does the traditional cron expression '0 9 1-7 * 5' not mean only the first Friday?",
+    "answers": [
+      "restricted day-of-month and day-of-week fields use OR",
+      "cron matches days 1 through 7 or any friday"
+    ],
+    "check": null,
+    "explanation": "In common Vixie/Cronie cron semantics, restricting both day fields results in OR behavior. To require both, restrict dates 1-7 and test weekday in shell.",
+    "source": "RHCSA RHEL 8 at/cron video observed and guided discussion, 2026-10-31 (not independently executed)"
+  },
+  {
+    "id": "LL194",
+    "type": "scenario",
+    "difficulty": "intermediate",
+    "tier": "fluency",
+    "category": "cron",
+    "tags": [
+      "cron",
+      "2026-10-31",
+      "video-harvest"
+    ],
+    "prompt": "Write a user-crontab entry that runs /path/to/script.sh at 9 AM on the first Friday of each month, using a shell condition.",
+    "answers": [
+      "0 9 1-7 * * [ \"$(date +\\%u)\" -eq 5 ] && /path/to/script.sh"
+    ],
+    "check": null,
+    "explanation": "The shell condition checks ISO weekday Friday=5. Escape % in crontab command fields; replace illustrative absolute path with a real script path.",
+    "source": "RHCSA RHEL 8 at/cron video observed and guided discussion, 2026-10-31 (not independently executed)"
+  },
+  {
+    "id": "LL195",
+    "type": "knowledge",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "cron",
+    "tags": [
+      "cron",
+      "2026-10-31",
+      "video-harvest"
+    ],
+    "prompt": "Why can 'echo test > crontest.txt' write somewhere unexpected when cron runs it?",
+    "answers": [
+      "the output path is relative to the cron job working directory",
+      "relative paths depend on the job working directory"
+    ],
+    "check": null,
+    "explanation": "User identity determines privileges, not the working directory. On the demonstrated RHEL root crontab the file appeared in /root; use an absolute output path.",
+    "source": "RHCSA RHEL 8 at/cron video observed and guided discussion, 2026-10-31 (not independently executed)"
+  },
+  {
+    "id": "LL196",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "filesystem",
+    "tags": [
+      "filesystem",
+      "2026-10-31",
+      "video-harvest"
+    ],
+    "prompt": "List files in long human-readable form, sorted by modification time oldest first, including hidden entries.",
+    "answers": [
+      "ls -lhtra",
+      "ls -l -h -t -r -a"
+    ],
+    "check": null,
+    "explanation": "-t sorts by modification time newest first, -r reverses it, -a includes hidden files.",
+    "source": "RHCSA RHEL 8 at/cron video observed and guided discussion, 2026-10-31 (not independently executed)"
+  },
+  {
+    "id": "LL197",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "filesystem",
+    "tags": [
+      "filesystem",
+      "2026-10-31",
+      "video-harvest"
+    ],
+    "prompt": "List files in long human-readable form sorted by file size, largest first.",
+    "answers": [
+      "ls -lhS",
+      "ls -l -h -S"
+    ],
+    "check": null,
+    "explanation": "Uppercase -S sorts by logical file size. Lowercase -s displays allocated blocks; these are different.",
+    "source": "RHCSA RHEL 8 at/cron video observed and guided discussion, 2026-10-31 (not independently executed)"
+  },
+  {
+    "id": "LL198",
+    "type": "knowledge",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "filesystem",
+    "tags": [
+      "filesystem",
+      "2026-10-31",
+      "video-harvest"
+    ],
+    "prompt": "What does the extra leftmost size in 'ls -lsh' represent, compared with the size column?",
+    "answers": [
+      "allocated disk space versus logical file size",
+      "allocated blocks versus logical size"
+    ],
+    "check": null,
+    "explanation": "-s reports allocated disk usage, humanized by -h; sparse files and filesystem features can make allocation smaller than logical size.",
+    "source": "RHCSA RHEL 8 at/cron video observed and guided discussion, 2026-10-31 (not independently executed)"
+  },
+  {
+    "id": "LL199",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "documentation",
+    "tags": [
+      "documentation",
+      "2026-10-31",
+      "video-harvest"
+    ],
+    "prompt": "Open the traditional manual page for at.",
+    "answers": [
+      "man at"
+    ],
+    "check": null,
+    "explanation": "man at is a reference page; info at may provide Info documentation if installed.",
+    "source": "RHCSA RHEL 8 at/cron video observed and guided discussion, 2026-10-31 (not independently executed)"
+  },
+  {
+    "id": "LL200",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "documentation",
+    "tags": [
+      "documentation",
+      "2026-10-31",
+      "video-harvest"
+    ],
+    "prompt": "Attempt to open the GNU Info documentation for cron.",
+    "answers": [
+      "info cron"
+    ],
+    "check": null,
+    "explanation": "Availability of a matching Info node depends on installed documentation; man cron is another reference source.",
+    "source": "RHCSA RHEL 8 at/cron video observed and guided discussion, 2026-10-31 (not independently executed)"
   }
 ]
