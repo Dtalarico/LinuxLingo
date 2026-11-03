@@ -415,3 +415,24 @@ Observed Cengage grading defect:
 **Attribution:** Student reasoned independently about the timer/service architecture, cron weekday placement, and output redirection; assistant supplied or reviewed several commands. A mistyped enable command was rejected and corrected. This is assisted lab execution with observed verification, not unaided delayed recall. The earlier video-only LL186–LL200 harvest remains separately documented.
 
 **Next:** Verify bank loading, ID uniqueness, total count and interactive execution. Add a systemctl quick-reference and delayed recall exercises in a separately reviewed learning session.
+
+
+---
+
+## November 3, 2026 — TechWorld with Nana Linux video: command harvest checkpoint
+
+**Status:** APPROVED for this additive continuity checkpoint by the author. Video discussion only; no new scenario drills, code changes, terminal execution, tests, or demonstrated mastery claimed. This records candidates and teaching priorities for a later reviewed harvest.
+
+**Source/provenance:** Author's spoken notes while watching a Linux commands/troubleshooting video identified as TechWorld with Nana. Exact video title, URL, cheat sheet, and exact presenter examples have not yet been independently captured or verified. Reminder scheduled to find/save the cheat sheet later on November 3.
+
+**Corpus inventory at checkpoint:** Three scenario banks contain 215 drills total (LL001–LL215: 100 + 100 + 15). Checked command-related drill fields in all three banks before classifying the following items; do not interpret absence of a command-specific drill as proof the command never appears in any documentation.
+
+**NEW DRILL CANDIDATES (not yet added):** `uname` (kernel/system identification, including `-r` and `-m`); `wc` (line/word/byte counts); `diff` (compare configuration files); `curl` (test URLs/HTTP endpoints). No command-specific drills found for these in the existing scenario banks at this checkpoint. Proposed scenarios need independent review, unique IDs, provenance, and author approval before adding.
+
+**EXISTING COVERAGE / PRACTICE PRIORITY:** `find` is already covered by LL096 and LL109–LL115: modified dates, filename patterns, case-insensitive matching, ownership, size, recent modification, and `-exec`. Author explicitly wants stronger independent `find` proficiency. Video example as reported by author: `find / -name "*.conf"` (author's spoken transcription had spacing around `-name`; canonical syntax shown here). A narrower `find /etc -type f -name "*.conf"` matches existing LL109 closely. Do not add a duplicate drill merely to repeat this syntax; prioritize retrieval, variation, and verification practice.
+
+**AUTHOR-REPORTED FAMILIARITY:** `pwd`, `cd`, `ls`, `cat`, `grep`, pipes, redirection, and `cp`. These were not individually audited for coverage in this checkpoint and familiarity is not a mastery claim.
+
+**TROUBLESHOOTING CURRICULUM CANDIDATE:** Author values the video's application-not-running example, but identified a prerequisite gap: an instructor may assume the learner already knows what PostgreSQL is or which port it uses. PostgreSQL's conventional default TCP port is 5432, but actual application and database configuration must be discovered, not guessed. Suggested guided workflow: identify application/dependencies → inspect relevant configuration → discover listening ports/processes (e.g. `ss -lntp`) → check service state → test connectivity with a suitable tool → compare configuration versions → verify the result. These are proposed teaching steps, not observed lab execution or a confirmed video transcript. Explicitly distinguish defaults from actual observed service state, and coverage failure from retrieval failure.
+
+**Next:** Obtain the video/cheat-sheet source; compare proposed exercises with current banks to prevent duplicate scenarios; co-design useful variations, especially `find` and troubleshooting; add new drills only with author review and separate approval. Maintain append-only historical documentation and honest evidence labels.
