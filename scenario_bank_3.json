@@ -283,5 +283,165 @@
     "check": null,
     "explanation": "list-timers displays timer scheduling and activated units; --all includes inactive timers.",
     "source": "NOS-120 Cengage LA-006 administrative task automation lab, 2026-10-31 (guided execution; verifier passed)"
+  },
+  {
+    "id": "LL216",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "uname",
+    "tags": [
+      "uname",
+      "2026-11-03",
+      "video-harvest",
+      "guided-discussion"
+    ],
+    "prompt": "Display the running Linux kernel release.",
+    "answers": [
+      "uname -r"
+    ],
+    "check": null,
+    "explanation": "The -r option prints the kernel release, useful when comparing node versions.",
+    "source": "TechWorld with Nana Linux commands video, author-reported command harvest, 2026-11-03 (guided discussion; no independent terminal execution)"
+  },
+  {
+    "id": "LL217",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "uname",
+    "tags": [
+      "uname",
+      "2026-11-03",
+      "video-harvest",
+      "guided-discussion"
+    ],
+    "prompt": "Display the machine hardware architecture, such as aarch64 or x86_64.",
+    "answers": [
+      "uname -m"
+    ],
+    "check": null,
+    "explanation": "The -m option reports the machine hardware name; it is useful when checking Raspberry Pi node architecture.",
+    "source": "TechWorld with Nana Linux commands video, author-reported command harvest, 2026-11-03 (guided discussion; no independent terminal execution)"
+  },
+  {
+    "id": "LL218",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "wc",
+    "tags": [
+      "wc",
+      "2026-11-03",
+      "video-harvest",
+      "guided-discussion"
+    ],
+    "prompt": "Count the number of lines in notes.txt.",
+    "answers": [
+      "wc -l notes.txt"
+    ],
+    "check": null,
+    "explanation": "wc -l counts newline characters in the file, commonly used as a line count.",
+    "source": "TechWorld with Nana Linux commands video, author-reported command harvest, 2026-11-03 (guided discussion; no independent terminal execution)"
+  },
+  {
+    "id": "LL219",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "wc",
+    "tags": [
+      "wc",
+      "2026-11-03",
+      "video-harvest",
+      "guided-discussion"
+    ],
+    "prompt": "Count the number of words in notes.txt.",
+    "answers": [
+      "wc -w notes.txt"
+    ],
+    "check": null,
+    "explanation": "wc -w counts words separated by whitespace.",
+    "source": "TechWorld with Nana Linux commands video, author-reported command harvest, 2026-11-03 (guided discussion; no independent terminal execution)"
+  },
+  {
+    "id": "LL220",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "diff",
+    "tags": [
+      "diff",
+      "2026-11-03",
+      "video-harvest",
+      "guided-discussion"
+    ],
+    "prompt": "Compare config.conf with config.conf.bak and display their differences.",
+    "answers": [
+      "diff config.conf config.conf.bak"
+    ],
+    "check": null,
+    "explanation": "diff shows differences between the two files; no output with a zero exit status means the compared content matches.",
+    "source": "TechWorld with Nana Linux commands video, author-reported command harvest, 2026-11-03 (guided discussion; no independent terminal execution)"
+  },
+  {
+    "id": "LL221",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "diff",
+    "tags": [
+      "diff",
+      "2026-11-03",
+      "video-harvest",
+      "guided-discussion"
+    ],
+    "prompt": "Produce a unified-format comparison of config.conf.bak (old) and config.conf (new).",
+    "answers": [
+      "diff -u config.conf.bak config.conf"
+    ],
+    "check": null,
+    "explanation": "The -u option gives a unified diff. File order matters: the first is treated as old and the second as new.",
+    "source": "TechWorld with Nana Linux commands video, author-reported command harvest, 2026-11-03 (guided discussion; no independent terminal execution)"
+  },
+  {
+    "id": "LL222",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "curl",
+    "tags": [
+      "curl",
+      "2026-11-03",
+      "video-harvest",
+      "guided-discussion"
+    ],
+    "prompt": "Request only HTTP response headers from an HTTP service on localhost port 8080.",
+    "answers": [
+      "curl -I http://localhost:8080"
+    ],
+    "check": null,
+    "explanation": "curl -I sends an HTTP HEAD request; the service must support HEAD. A response alone does not prove the application is healthy.",
+    "source": "TechWorld with Nana Linux commands video, author-reported command harvest, 2026-11-03 (guided discussion; no independent terminal execution)"
+  },
+  {
+    "id": "LL223",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "curl",
+    "tags": [
+      "curl",
+      "2026-11-03",
+      "video-harvest",
+      "guided-discussion"
+    ],
+    "prompt": "Retrieve the HTTP response body from http://localhost:8080/ and print it to the terminal.",
+    "answers": [
+      "curl http://localhost:8080/"
+    ],
+    "check": null,
+    "explanation": "curl fetches the URL and prints the response body by default; an HTTP error response may still be returned, so inspect status separately when troubleshooting.",
+    "source": "TechWorld with Nana Linux commands video, author-reported command harvest, 2026-11-03 (guided discussion; no independent terminal execution)"
   }
 ]
