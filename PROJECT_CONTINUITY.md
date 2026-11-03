@@ -436,3 +436,16 @@ Observed Cengage grading defect:
 **TROUBLESHOOTING CURRICULUM CANDIDATE:** Author values the video's application-not-running example, but identified a prerequisite gap: an instructor may assume the learner already knows what PostgreSQL is or which port it uses. PostgreSQL's conventional default TCP port is 5432, but actual application and database configuration must be discovered, not guessed. Suggested guided workflow: identify application/dependencies → inspect relevant configuration → discover listening ports/processes (e.g. `ss -lntp`) → check service state → test connectivity with a suitable tool → compare configuration versions → verify the result. These are proposed teaching steps, not observed lab execution or a confirmed video transcript. Explicitly distinguish defaults from actual observed service state, and coverage failure from retrieval failure.
 
 **Next:** Obtain the video/cheat-sheet source; compare proposed exercises with current banks to prevent duplicate scenarios; co-design useful variations, especially `find` and troubleshooting; add new drills only with author review and separate approval. Maintain append-only historical documentation and honest evidence labels.
+
+
+---
+
+## November 3, 2026 — command candidates promoted to scenario bank
+
+**Authorization:** Author explicitly directed: “Put the commands in the bank baby.” **Execution:** Appended eight drills, LL216–LL223, to existing `scenario_bank_3.json` (no prior drills removed or changed); the bank now has 23 drills. Total corpus: **223** across three banks (100 + 100 + 23). Bank change commit: `69080e6b0d0e196bb033bb0a92b6d778daf90820`.
+
+**New exercises:** LL216–LL217 `uname -r` / `uname -m`; LL218–LL219 `wc -l` / `wc -w`; LL220–LL221 `diff` / `diff -u`; LL222–LL223 `curl -I` / `curl`. The examples are assistant-authored practice applications of the commands identified in the video discussion, **not verbatim confirmed presenter examples**. Provenance in each drill explicitly labels the author-reported TechWorld with Nana video harvest and guided discussion. `find` remains covered by LL096 and LL109–LL115; no duplicate `find` drill was added.
+
+**Verification:** Re-fetched all three banks after the commit and parsed them as JSON; observed 223 total drill entries, 223 unique IDs, and complete contiguous LL001–LL223 IDs. This is structural data verification, **not** a Python engine runtime smoke test or student performance assessment. No terminal exercises were executed and no mastery is claimed.
+
+**Next:** Run a local engine smoke test when a working copy is available; practice `find` and the new drills with varied tasks and observed terminal output. Capture the original video/cheat sheet URL for precise source attribution when available.
