@@ -248,3 +248,8 @@ See [GUIDED_LINUX_PRACTICE_RESOURCES.md](GUIDED_LINUX_PRACTICE_RESOURCES.md) for
 ## November 8, 2026 — RPM/APT software-management harvest
 
 The NOS-120 guided LD-004 lab produced 15 additional practice drills, **LL231–LL245**, covering `apt-cache` package inventories/metadata/dependencies, `apt-get` installation and purging, `dpkg -L`, viewing files, working directories, and package-installation log searches. The current corpus is **245 drills across three numbered banks (100 + 100 + 45)**. The accompanying [Project Continuity](PROJECT_CONTINUITY.md) and [Master Specification](LINUXLINGO_MASTER_SPEC.md) preserve the verifier's hidden directory assumption, confirmed four-check midlab success, independent versus assisted recall, and learning-design requirements. The final uninstall grader result was not observed; do not infer a completed overall lab grade.
+
+
+## November 8, 2026 — LD-005 guided package management harvest
+
+Added **LL246–LL264** (19 drills), bringing the active corpus to **264 drills** across the three banks (100 + 100 + 64). Follow-on coverage includes `dpkg -l` versus `dpkg -L`, `apt-cache depends`, package install/upgrade/download, APT log discovery and `grep` output interpretation, local `.deb` packages, version checks, purging, and orphaned dependency cleanup. The dated continuity and master-spec appendices preserve the instructional distinction between locating logs and blindly memorizing filenames, as well as the author's simpler direct-download alternative. The LD-005 run was guided; final checker grade and delayed mastery were not observed.
