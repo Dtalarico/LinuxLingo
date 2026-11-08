@@ -229,3 +229,12 @@ See [LL-DOC-001 — Documentation, Provenance, and Historical Continuity](docs/d
 The NOS-120 supplemental process-management study added **14 drills (LL172–LL185)** on interactive process inspection, signal selection, PID/name targeting, niceness, and verification. The full active corpus now contains **185 drills** across the two numbered scenario banks. Existing service-management drills were retained rather than duplicated.
 
 A documented teaching case reinforced an important design principle: do not require a beginner to infer an unstated initial state or the purpose of a combined option. In particular, `nice -n` applies a relative adjustment to inherited niceness, and `ps -o` controls displayed fields while `ps -p` controls process selection. See the October 30 appendices in the [Master Specification](LINUXLINGO_MASTER_SPEC.md) and [Project Continuity](PROJECT_CONTINUITY.md). Guided understanding is not treated as independent execution or mastery evidence.
+
+
+---
+
+## November 8, 2026 — Current corpus and Snap/PowerShell harvest
+
+The earlier dated corpus snapshots above remain historical. As of this update, the active corpus contains **230 drills (LL001–LL230)** across three numbered scenario banks: 100 + 100 + 30. The Python loader explicitly includes all three banks. See `PROJECT_CONTINUITY.md` for the November 8 evidence record and `LINUXLINGO_MASTER_SPEC.md` for the new dated clarification on consistent command-versus-instruction answer formatting.
+
+The seven new LL224–LL230 drills cover Snap search/info/list/install, separate APT versus Snap inventories, starting PowerShell from Ubuntu, and the PowerShell `Get-Host` command. The Cengage simulation was guided; this addition does not assert independent delayed mastery or a verified overall simulation grade.
