@@ -585,5 +585,338 @@
     "check": null,
     "explanation": "Get-Host reports the host, and the observed output identified ConsoleHost version 7.3.2. It is a PowerShell cmdlet, not a Bash command. $PSVersionTable is an alternative for inspecting the PowerShell engine version, but this lab specifically demonstrated Get-Host.",
     "source": "NOS-120 LabConnection Simulation 11.1 Configure Snap Packages, 2026-11-08; user screenshots and guided discussion (not independent delayed recall)"
+  },
+  {
+    "id": "LL231",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "apt-cache",
+    "tags": [
+      "apt-cache",
+      "2026-11-08",
+      "lab-harvest",
+      "guided-execution",
+      "working-directory",
+      "redirection"
+    ],
+    "prompt": "On an Ubuntu training VM, list all package names known to APT and append them to software-inventory.txt in the current directory.",
+    "answers": [
+      "apt-cache pkgnames >> software-inventory.txt"
+    ],
+    "check": null,
+    "explanation": "pkgnames is the apt-cache subcommand; >> appends stdout to a relative-path file in the current working directory. Check pwd; apt-cache pkgnames lists available/known package names, not strictly only installed packages.",
+    "source": "NOS-120 Cengage LD-004 Manage Software with RPM and APT, 2026-11-08; author screenshots and guided discussion; Cengage checks passed for inventories and package installations, later completion/uninstall verification not observed"
+  },
+  {
+    "id": "LL232",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "pwd",
+    "tags": [
+      "pwd",
+      "2026-11-08",
+      "lab-harvest",
+      "guided-execution",
+      "working-directory"
+    ],
+    "prompt": "Before redirecting output to a relative filename, display the current working directory.",
+    "answers": [
+      "pwd"
+    ],
+    "check": null,
+    "explanation": "pwd reveals which directory a relative filename will resolve under; becoming root with sudo su does not automatically move to /root.",
+    "source": "NOS-120 Cengage LD-004 Manage Software with RPM and APT, 2026-11-08; author screenshots and guided discussion; Cengage checks passed for inventories and package installations, later completion/uninstall verification not observed"
+  },
+  {
+    "id": "LL233",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "cd",
+    "tags": [
+      "cd",
+      "2026-11-08",
+      "lab-harvest",
+      "guided-execution",
+      "working-directory",
+      "verification"
+    ],
+    "prompt": "A lab verifier expects software-inventory.txt in /home/labuser, but the shell is in /home/labuser/Desktop. Change to the required directory before generating the file.",
+    "answers": [
+      "cd /home/labuser"
+    ],
+    "check": null,
+    "explanation": "A relative output file lands in the current directory. An absolute cd fixes the destination; this was the observed solution to a hidden verifier expectation on Linux01.",
+    "source": "NOS-120 Cengage LD-004 Manage Software with RPM and APT, 2026-11-08; author screenshots and guided discussion; Cengage checks passed for inventories and package installations, later completion/uninstall verification not observed"
+  },
+  {
+    "id": "LL234",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "ls",
+    "tags": [
+      "ls",
+      "2026-11-08",
+      "lab-harvest",
+      "guided-execution",
+      "verification",
+      "paths"
+    ],
+    "prompt": "Without changing files, inspect whether software-inventory.txt exists in both /home/labuser and its Desktop subdirectory.",
+    "answers": [
+      "ls -l /home/labuser/software-inventory.txt /home/labuser/Desktop/software-inventory.txt"
+    ],
+    "check": null,
+    "explanation": "ls -l reports each location separately, including missing-file errors, to distinguish successful file creation from wrong-location errors.",
+    "source": "NOS-120 Cengage LD-004 Manage Software with RPM and APT, 2026-11-08; author screenshots and guided discussion; Cengage checks passed for inventories and package installations, later completion/uninstall verification not observed"
+  },
+  {
+    "id": "LL235",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "less",
+    "tags": [
+      "less",
+      "2026-11-08",
+      "lab-harvest",
+      "guided-execution",
+      "pager"
+    ],
+    "prompt": "Open software-inventory.txt in a terminal pager without changing its contents.",
+    "answers": [
+      "less software-inventory.txt"
+    ],
+    "check": null,
+    "explanation": "less is the program; software-inventory.txt is the argument. Exit with q. No less.txt command or -p search option is required.",
+    "source": "NOS-120 Cengage LD-004 Manage Software with RPM and APT, 2026-11-08; author screenshots and guided discussion; Cengage checks passed for inventories and package installations, later completion/uninstall verification not observed"
+  },
+  {
+    "id": "LL236",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "apt-cache",
+    "tags": [
+      "apt-cache",
+      "2026-11-08",
+      "lab-harvest",
+      "guided-execution",
+      "package-metadata"
+    ],
+    "prompt": "Display package metadata including version, maintainer and description for zsh.",
+    "answers": [
+      "apt-cache show zsh"
+    ],
+    "check": null,
+    "explanation": "show is an apt-cache subcommand; zsh is its target package. Reading output requires recognizing subcommand-versus-package structure.",
+    "source": "NOS-120 Cengage LD-004 Manage Software with RPM and APT, 2026-11-08; author screenshots and guided discussion; Cengage checks passed for inventories and package installations, later completion/uninstall verification not observed"
+  },
+  {
+    "id": "LL237",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "apt-get",
+    "tags": [
+      "apt-get",
+      "2026-11-08",
+      "lab-harvest",
+      "guided-execution",
+      "installation"
+    ],
+    "prompt": "Install the zsh package on the disposable Ubuntu lab VM.",
+    "answers": [
+      "sudo apt-get install zsh",
+      "apt-get install zsh"
+    ],
+    "check": null,
+    "explanation": "install is an apt-get operation. sudo is unnecessary from an existing root shell; check the installation result rather than assuming command acceptance proves success.",
+    "source": "NOS-120 Cengage LD-004 Manage Software with RPM and APT, 2026-11-08; author screenshots and guided discussion; Cengage checks passed for inventories and package installations, later completion/uninstall verification not observed"
+  },
+  {
+    "id": "LL238",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "apt-cache",
+    "tags": [
+      "apt-cache",
+      "2026-11-08",
+      "lab-harvest",
+      "guided-execution",
+      "dependencies",
+      "successful-recall"
+    ],
+    "prompt": "Display FileZilla's required and recommended package relationships.",
+    "answers": [
+      "apt-cache depends filezilla"
+    ],
+    "check": null,
+    "explanation": "depends prints Depends, Recommends and sometimes Suggests; a recommendation is not necessarily mandatory. The student recalled depends independently for FileZilla after guided exposure using zsh.",
+    "source": "NOS-120 Cengage LD-004 Manage Software with RPM and APT, 2026-11-08; author screenshots and guided discussion; Cengage checks passed for inventories and package installations, later completion/uninstall verification not observed"
+  },
+  {
+    "id": "LL239",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "dpkg",
+    "tags": [
+      "dpkg",
+      "2026-11-08",
+      "lab-harvest",
+      "guided-execution",
+      "files",
+      "case-sensitive"
+    ],
+    "prompt": "List files belonging to an installed FileZilla package, not just its installed status.",
+    "answers": [
+      "dpkg -L filezilla",
+      "dpkg --listfiles filezilla"
+    ],
+    "check": null,
+    "explanation": "-L (uppercase L) lists installed file paths; -l (lowercase L) lists package status. 'dpkg list filezilla' is not dpkg syntax.",
+    "source": "NOS-120 Cengage LD-004 Manage Software with RPM and APT, 2026-11-08; author screenshots and guided discussion; Cengage checks passed for inventories and package installations, later completion/uninstall verification not observed"
+  },
+  {
+    "id": "LL240",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "zgrep",
+    "tags": [
+      "zgrep",
+      "2026-11-08",
+      "lab-harvest",
+      "guided-execution",
+      "logs",
+      "text-search"
+    ],
+    "prompt": "Search current and rotated dpkg logs for lines containing the literal installation event marker ' install '.",
+    "answers": [
+      "zgrep ' install ' /var/log/dpkg.log*"
+    ],
+    "check": null,
+    "explanation": "dpkg logs live under /var/log and rotated logs may be compressed. zgrep can search both plain and gzipped matching files. The word install is log content, not a command option; this alone does not constrain results to the current month.",
+    "source": "NOS-120 Cengage LD-004 Manage Software with RPM and APT, 2026-11-08; author screenshots and guided discussion; Cengage checks passed for inventories and package installations, later completion/uninstall verification not observed"
+  },
+  {
+    "id": "LL241",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "grep",
+    "tags": [
+      "grep",
+      "2026-11-08",
+      "lab-harvest",
+      "guided-execution",
+      "logs",
+      "date-filter"
+    ],
+    "prompt": "Filter the output of a log-search pipeline to entries containing the current year-month in YYYY-MM format.",
+    "answers": [
+      "grep \"$(date +%Y-%m)\"",
+      "grep -i \"$(date +%Y-%m)\""
+    ],
+    "check": null,
+    "explanation": "Command substitution inserts the current year and month for searching timestamped lines; this assumes YYYY-MM log timestamps. The lower-case -i option is optional for numeric dates.",
+    "source": "NOS-120 Cengage LD-004 Manage Software with RPM and APT, 2026-11-08; author screenshots and guided discussion; Cengage checks passed for inventories and package installations, later completion/uninstall verification not observed"
+  },
+  {
+    "id": "LL242",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "apt-get",
+    "tags": [
+      "apt-get",
+      "2026-11-08",
+      "lab-harvest",
+      "guided-execution",
+      "purge"
+    ],
+    "prompt": "Completely uninstall zsh and its package-managed configuration files on a disposable Ubuntu training VM.",
+    "answers": [
+      "sudo apt-get remove --purge zsh",
+      "apt-get remove --purge zsh",
+      "sudo apt-get purge zsh",
+      "apt-get purge zsh"
+    ],
+    "check": null,
+    "explanation": "remove alone ordinarily preserves package-managed configuration files; remove --purge and purge are equivalent here. Cengage displayed remove --purge as its preferred syntax.",
+    "source": "NOS-120 Cengage LD-004 Manage Software with RPM and APT, 2026-11-08; author screenshots and guided discussion; Cengage checks passed for inventories and package installations, later completion/uninstall verification not observed"
+  },
+  {
+    "id": "LL243",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "apt-get",
+    "tags": [
+      "apt-get",
+      "2026-11-08",
+      "lab-harvest",
+      "guided-execution",
+      "dependencies",
+      "purge"
+    ],
+    "prompt": "After removing a training package, propose removal of no-longer-needed automatically installed dependencies and their package-managed configuration files.",
+    "answers": [
+      "sudo apt-get autoremove --purge",
+      "apt-get autoremove --purge"
+    ],
+    "check": null,
+    "explanation": "Review APT's proposed removals before approving; autoremove can affect packages beyond the original target. Run only in the intended training VM.",
+    "source": "NOS-120 Cengage LD-004 Manage Software with RPM and APT, 2026-11-08; author screenshots and guided discussion; Cengage checks passed for inventories and package installations, later completion/uninstall verification not observed"
+  },
+  {
+    "id": "LL244",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "apt-get",
+    "tags": [
+      "apt-get",
+      "2026-11-08",
+      "lab-harvest",
+      "guided-execution",
+      "purge"
+    ],
+    "prompt": "Completely uninstall filezilla and purge its package-managed configuration on the disposable Linux02 VM.",
+    "answers": [
+      "sudo apt-get remove --purge filezilla",
+      "apt-get remove --purge filezilla",
+      "sudo apt-get purge filezilla",
+      "apt-get purge filezilla"
+    ],
+    "check": null,
+    "explanation": "Same operation as zsh, now transferred to FileZilla on a different VM. Do not infer that the Cengage verifier has passed unless its result is observed.",
+    "source": "NOS-120 Cengage LD-004 Manage Software with RPM and APT, 2026-11-08; author screenshots and guided discussion; Cengage checks passed for inventories and package installations, later completion/uninstall verification not observed"
+  },
+  {
+    "id": "LL245",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "apt-cache",
+    "tags": [
+      "apt-cache",
+      "2026-11-08",
+      "lab-harvest",
+      "guided-execution",
+      "dependencies"
+    ],
+    "prompt": "On Ubuntu, display zsh's package dependency relationships without installing or removing anything.",
+    "answers": [
+      "apt-cache depends zsh"
+    ],
+    "check": null,
+    "explanation": "depends is the relationship-inspection subcommand. Distinguish dependencies from installed-file inventories and installation status.",
+    "source": "NOS-120 Cengage LD-004 Manage Software with RPM and APT, 2026-11-08; author screenshots and guided discussion; Cengage checks passed for inventories and package installations, later completion/uninstall verification not observed"
   }
 ]
