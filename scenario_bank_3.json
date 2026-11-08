@@ -918,5 +918,410 @@
     "check": null,
     "explanation": "depends is the relationship-inspection subcommand. Distinguish dependencies from installed-file inventories and installation status.",
     "source": "NOS-120 Cengage LD-004 Manage Software with RPM and APT, 2026-11-08; author screenshots and guided discussion; Cengage checks passed for inventories and package installations, later completion/uninstall verification not observed"
+  },
+  {
+    "id": "LL246",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "dpkg",
+    "tags": [
+      "dpkg",
+      "2026-11-08",
+      "lab-harvest",
+      "guided-discussion",
+      "ld-005"
+    ],
+    "prompt": "List known Debian package statuses and identify installed packages.",
+    "answers": [
+      "dpkg -l"
+    ],
+    "check": null,
+    "explanation": "Lowercase -l lists package records; ii in the status columns denotes installed. This is a database query, not a recursive filesystem scan.",
+    "source": "NOS-120 Cengage LD-005 Manage Software, 2026-11-08; user-provided lab instructions, some screenshots, and guided discussion; execution/checker status not independently verified for every step"
+  },
+  {
+    "id": "LL247",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "dpkg",
+    "tags": [
+      "dpkg",
+      "2026-11-08",
+      "lab-harvest",
+      "guided-discussion",
+      "ld-005"
+    ],
+    "prompt": "List every file registered to the installed bash package.",
+    "answers": [
+      "dpkg -L bash"
+    ],
+    "check": null,
+    "explanation": "Uppercase -L lists files associated with a named package, whereas lowercase -l lists package status. / is a path, not an all-packages selector.",
+    "source": "NOS-120 Cengage LD-005 Manage Software, 2026-11-08; user-provided lab instructions, some screenshots, and guided discussion; execution/checker status not independently verified for every step"
+  },
+  {
+    "id": "LL248",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "apt-cache",
+    "tags": [
+      "apt-cache",
+      "2026-11-08",
+      "lab-harvest",
+      "guided-discussion",
+      "ld-005"
+    ],
+    "prompt": "Inspect package dependencies and recommendations for cython3 without changing system state.",
+    "answers": [
+      "apt-cache depends cython3"
+    ],
+    "check": null,
+    "explanation": "Depends denotes package requirements; Recommends are distinct. This is an application of an operation practiced with another package in LD-004.",
+    "source": "NOS-120 Cengage LD-005 Manage Software, 2026-11-08; user-provided lab instructions, some screenshots, and guided discussion; execution/checker status not independently verified for every step"
+  },
+  {
+    "id": "LL249",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "apt-get",
+    "tags": [
+      "apt-get",
+      "2026-11-08",
+      "lab-harvest",
+      "guided-discussion",
+      "ld-005"
+    ],
+    "prompt": "Install cython3 on the disposable Ubuntu VM and automatically approve ordinary confirmation prompts.",
+    "answers": [
+      "apt-get install cython3 -y",
+      "apt-get -y install cython3"
+    ],
+    "check": null,
+    "explanation": "-y assumes yes for applicable confirmation prompts, but does not override every safety restriction.",
+    "source": "NOS-120 Cengage LD-005 Manage Software, 2026-11-08; user-provided lab instructions, some screenshots, and guided discussion; execution/checker status not independently verified for every step"
+  },
+  {
+    "id": "LL250",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "apt-get",
+    "tags": [
+      "apt-get",
+      "2026-11-08",
+      "lab-harvest",
+      "guided-discussion",
+      "ld-005"
+    ],
+    "prompt": "Refresh APT's repository package indexes without upgrading any installed package.",
+    "answers": [
+      "apt-get update"
+    ],
+    "check": null,
+    "explanation": "update refreshes repository metadata; it is not equivalent to upgrading a particular installed package.",
+    "source": "NOS-120 Cengage LD-005 Manage Software, 2026-11-08; user-provided lab instructions, some screenshots, and guided discussion; execution/checker status not independently verified for every step"
+  },
+  {
+    "id": "LL251",
+    "type": "scenario",
+    "difficulty": "intermediate",
+    "tier": "fluency",
+    "category": "apt-get",
+    "tags": [
+      "apt-get",
+      "2026-11-08",
+      "lab-harvest",
+      "guided-discussion",
+      "ld-005"
+    ],
+    "prompt": "Attempt to upgrade the already-installed cython3 package without installing it if absent, automatically confirming ordinary prompts.",
+    "answers": [
+      "apt-get --only-upgrade install cython3 -y",
+      "apt-get install --only-upgrade cython3 -y"
+    ],
+    "check": null,
+    "explanation": "The install subcommand can upgrade an existing package. --only-upgrade forbids new installation when the target is absent. This attempts an upgrade; it is not merely an update availability check.",
+    "source": "NOS-120 Cengage LD-005 Manage Software, 2026-11-08; user-provided lab instructions, some screenshots, and guided discussion; execution/checker status not independently verified for every step"
+  },
+  {
+    "id": "LL252",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "apt",
+    "tags": [
+      "apt",
+      "2026-11-08",
+      "lab-harvest",
+      "guided-discussion",
+      "ld-005"
+    ],
+    "prompt": "Show APT's available or installed version listing for the named cython3 package.",
+    "answers": [
+      "apt list cython3"
+    ],
+    "check": null,
+    "explanation": "apt list shows package/version metadata and installed markers; it is not a history of past transactions.",
+    "source": "NOS-120 Cengage LD-005 Manage Software, 2026-11-08; user-provided lab instructions, some screenshots, and guided discussion; execution/checker status not independently verified for every step"
+  },
+  {
+    "id": "LL253",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "bash",
+    "tags": [
+      "bash",
+      "2026-11-08",
+      "lab-harvest",
+      "guided-discussion",
+      "ld-005"
+    ],
+    "prompt": "Discover the names of log files maintained by APT, starting from the conventional Linux log hierarchy.",
+    "answers": [
+      "ls /var/log/apt/",
+      "ls /var/log/apt"
+    ],
+    "check": null,
+    "explanation": "/var/log is the conventional system log directory; /var/log/apt is APT's log area. Teach the convention and discovery path, not rote guessing.",
+    "source": "NOS-120 Cengage LD-005 Manage Software, 2026-11-08; user-provided lab instructions, some screenshots, and guided discussion; execution/checker status not independently verified for every step"
+  },
+  {
+    "id": "LL254",
+    "type": "scenario",
+    "difficulty": "intermediate",
+    "tier": "fluency",
+    "category": "grep",
+    "tags": [
+      "grep",
+      "2026-11-08",
+      "lab-harvest",
+      "guided-discussion",
+      "ld-005"
+    ],
+    "prompt": "Find lines in the APT history log that mention cython3.",
+    "answers": [
+      "grep cython3 /var/log/apt/history.log"
+    ],
+    "check": null,
+    "explanation": "grep prints entire matching lines. An Install: record may list cython3 and all packages involved in the same APT transaction, so seeing dependencies does not mean grep searched for them.",
+    "source": "NOS-120 Cengage LD-005 Manage Software, 2026-11-08; user-provided lab instructions, some screenshots, and guided discussion; execution/checker status not independently verified for every step"
+  },
+  {
+    "id": "LL255",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "grep",
+    "tags": [
+      "grep",
+      "2026-11-08",
+      "lab-harvest",
+      "guided-discussion",
+      "ld-005"
+    ],
+    "prompt": "Show only occurrences of the word cython3 in APT's history log, rather than the surrounding lines.",
+    "answers": [
+      "grep -o cython3 /var/log/apt/history.log"
+    ],
+    "check": null,
+    "explanation": "-o (only-matching) outputs matching substrings, in contrast to grep's default whole matching lines.",
+    "source": "NOS-120 Cengage LD-005 Manage Software, 2026-11-08; user-provided lab instructions, some screenshots, and guided discussion; execution/checker status not independently verified for every step"
+  },
+  {
+    "id": "LL256",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "apt-get",
+    "tags": [
+      "apt-get",
+      "2026-11-08",
+      "lab-harvest",
+      "guided-discussion",
+      "ld-005"
+    ],
+    "prompt": "Download the zsh .deb file into the current working directory without installing it.",
+    "answers": [
+      "apt-get download zsh"
+    ],
+    "check": null,
+    "explanation": "apt-get download retrieves a package archive to the cwd. Unlike install, it does not install the application or dependencies.",
+    "source": "NOS-120 Cengage LD-005 Manage Software, 2026-11-08; user-provided lab instructions, some screenshots, and guided discussion; execution/checker status not independently verified for every step"
+  },
+  {
+    "id": "LL257",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "bash",
+    "tags": [
+      "bash",
+      "2026-11-08",
+      "lab-harvest",
+      "guided-discussion",
+      "ld-005"
+    ],
+    "prompt": "In a root shell, navigate to the temporary directory before staging a downloaded package.",
+    "answers": [
+      "cd /tmp"
+    ],
+    "check": null,
+    "explanation": "cd selects the destination cwd for a later apt-get download operation. Root's ~ ordinarily denotes /root, not /.",
+    "source": "NOS-120 Cengage LD-005 Manage Software, 2026-11-08; user-provided lab instructions, some screenshots, and guided discussion; execution/checker status not independently verified for every step"
+  },
+  {
+    "id": "LL258",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "mkdir",
+    "tags": [
+      "mkdir",
+      "2026-11-08",
+      "lab-harvest",
+      "guided-discussion",
+      "ld-005"
+    ],
+    "prompt": "Create an absolute directory /localrepo (including missing parent directories) without error if it already exists.",
+    "answers": [
+      "mkdir -p /localrepo"
+    ],
+    "check": null,
+    "explanation": "-p creates parent directories as necessary and tolerates existing directories.",
+    "source": "NOS-120 Cengage LD-005 Manage Software, 2026-11-08; user-provided lab instructions, some screenshots, and guided discussion; execution/checker status not independently verified for every step"
+  },
+  {
+    "id": "LL259",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "cp",
+    "tags": [
+      "cp",
+      "2026-11-08",
+      "lab-harvest",
+      "guided-discussion",
+      "ld-005"
+    ],
+    "prompt": "Copy any downloaded zsh .deb package archive from the current directory into /localrepo.",
+    "answers": [
+      "cp zsh_*.deb /localrepo/"
+    ],
+    "check": null,
+    "explanation": "The shell expands zsh_*.deb to matching filenames in the cwd; cp copies rather than moves. This assumes matching files exist.",
+    "source": "NOS-120 Cengage LD-005 Manage Software, 2026-11-08; user-provided lab instructions, some screenshots, and guided discussion; execution/checker status not independently verified for every step"
+  },
+  {
+    "id": "LL260",
+    "type": "scenario",
+    "difficulty": "intermediate",
+    "tier": "fluency",
+    "category": "apt-get",
+    "tags": [
+      "apt-get",
+      "2026-11-08",
+      "lab-harvest",
+      "guided-discussion",
+      "ld-005"
+    ],
+    "prompt": "Install a local zsh .deb archive stored in /localrepo while allowing APT to resolve needed dependencies through configured repositories.",
+    "answers": [
+      "apt-get install /localrepo/zsh_*.deb -y",
+      "apt-get -y install /localrepo/zsh_*.deb"
+    ],
+    "check": null,
+    "explanation": "A local path tells APT to install an archive file; plain dpkg -i does not itself resolve missing dependencies. An eligible repository/network must be available for automatic dependency retrieval.",
+    "source": "NOS-120 Cengage LD-005 Manage Software, 2026-11-08; user-provided lab instructions, some screenshots, and guided discussion; execution/checker status not independently verified for every step"
+  },
+  {
+    "id": "LL261",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "zsh",
+    "tags": [
+      "zsh",
+      "2026-11-08",
+      "lab-harvest",
+      "guided-discussion",
+      "ld-005"
+    ],
+    "prompt": "Confirm the installed Z shell executable runs and prints a version.",
+    "answers": [
+      "zsh --version"
+    ],
+    "check": null,
+    "explanation": "Two hyphens introduce the long option --version. Running the binary verifies executable availability; dpkg -l zsh separately checks package database status.",
+    "source": "NOS-120 Cengage LD-005 Manage Software, 2026-11-08; user-provided lab instructions, some screenshots, and guided discussion; execution/checker status not independently verified for every step"
+  },
+  {
+    "id": "LL262",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "apt-get",
+    "tags": [
+      "apt-get",
+      "2026-11-08",
+      "lab-harvest",
+      "guided-discussion",
+      "ld-005"
+    ],
+    "prompt": "Remove zsh and purge its package-managed configuration files.",
+    "answers": [
+      "apt-get remove --purge zsh",
+      "apt-get purge zsh"
+    ],
+    "check": null,
+    "explanation": "Purge applies to configuration files for removed packages; it does not by itself remove unused dependencies.",
+    "source": "NOS-120 Cengage LD-005 Manage Software, 2026-11-08; user-provided lab instructions, some screenshots, and guided discussion; execution/checker status not independently verified for every step"
+  },
+  {
+    "id": "LL263",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "apt-get",
+    "tags": [
+      "apt-get",
+      "2026-11-08",
+      "lab-harvest",
+      "guided-discussion",
+      "ld-005"
+    ],
+    "prompt": "After uninstalling a package, propose removal of automatically installed packages no longer needed by any installed package.",
+    "answers": [
+      "apt-get autoremove"
+    ],
+    "check": null,
+    "explanation": "autoremove targets no-longer-required automatic dependencies and may include unrelated unused packages; inspect the proposed removal set.",
+    "source": "NOS-120 Cengage LD-005 Manage Software, 2026-11-08; user-provided lab instructions, some screenshots, and guided discussion; execution/checker status not independently verified for every step"
+  },
+  {
+    "id": "LL264",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "apt-get",
+    "tags": [
+      "apt-get",
+      "2026-11-08",
+      "lab-harvest",
+      "guided-discussion",
+      "ld-005"
+    ],
+    "prompt": "After removing cython3 from an Ubuntu training VM, purge its package-managed configuration files.",
+    "answers": [
+      "apt-get remove --purge cython3",
+      "apt-get purge cython3"
+    ],
+    "check": null,
+    "explanation": "The removal-and-purge procedure transfers from zsh to cython3. The action is not interchangeable with autoremove, which handles orphaned automatic dependencies.",
+    "source": "NOS-120 Cengage LD-005 Manage Software, 2026-11-08; user-provided lab instructions, some screenshots, and guided discussion; execution/checker status not independently verified for every step"
   }
 ]
