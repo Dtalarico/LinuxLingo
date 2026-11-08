@@ -238,3 +238,8 @@ A documented teaching case reinforced an important design principle: do not requ
 The earlier dated corpus snapshots above remain historical. As of this update, the active corpus contains **230 drills (LL001–LL230)** across three numbered scenario banks: 100 + 100 + 30. The Python loader explicitly includes all three banks. See `PROJECT_CONTINUITY.md` for the November 8 evidence record and `LINUXLINGO_MASTER_SPEC.md` for the new dated clarification on consistent command-versus-instruction answer formatting.
 
 The seven new LL224–LL230 drills cover Snap search/info/list/install, separate APT versus Snap inventories, starting PowerShell from Ubuntu, and the PowerShell `Get-Host` command. The Cengage simulation was guided; this addition does not assert independent delayed mastery or a verified overall simulation grade.
+
+
+## Guided Linux practice resources (November 8, 2026)
+
+See [GUIDED_LINUX_PRACTICE_RESOURCES.md](GUIDED_LINUX_PRACTICE_RESOURCES.md) for LabEx subscription/pricing bookmark, free or alternative guided hands-on Linux labs (Linux Foundation LFS101, LinuxSim, The Linux Camp, Linux Journey), RHCSA preparation links, and the instructional workflow needed to move LinuxLingo beyond drill-only MVP learning. Prices and access terms are dated snapshots; verify them before purchasing. The author intends to consider LabEx Pro once financial-aid/loan funds arrive.
