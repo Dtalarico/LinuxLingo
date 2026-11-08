@@ -243,3 +243,8 @@ The seven new LL224–LL230 drills cover Snap search/info/list/install, separate
 ## Guided Linux practice resources (November 8, 2026)
 
 See [GUIDED_LINUX_PRACTICE_RESOURCES.md](GUIDED_LINUX_PRACTICE_RESOURCES.md) for LabEx subscription/pricing bookmark, free or alternative guided hands-on Linux labs (Linux Foundation LFS101, LinuxSim, The Linux Camp, Linux Journey), RHCSA preparation links, and the instructional workflow needed to move LinuxLingo beyond drill-only MVP learning. Prices and access terms are dated snapshots; verify them before purchasing. The author intends to consider LabEx Pro once financial-aid/loan funds arrive.
+
+
+## November 8, 2026 — RPM/APT software-management harvest
+
+The NOS-120 guided LD-004 lab produced 15 additional practice drills, **LL231–LL245**, covering `apt-cache` package inventories/metadata/dependencies, `apt-get` installation and purging, `dpkg -L`, viewing files, working directories, and package-installation log searches. The current corpus is **245 drills across three numbered banks (100 + 100 + 45)**. The accompanying [Project Continuity](PROJECT_CONTINUITY.md) and [Master Specification](LINUXLINGO_MASTER_SPEC.md) preserve the verifier's hidden directory assumption, confirmed four-check midlab success, independent versus assisted recall, and learning-design requirements. The final uninstall grader result was not observed; do not infer a completed overall lab grade.
