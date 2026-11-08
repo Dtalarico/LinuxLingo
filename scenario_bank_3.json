@@ -443,5 +443,147 @@
     "check": null,
     "explanation": "curl fetches the URL and prints the response body by default; an HTTP error response may still be returned, so inspect status separately when troubleshooting.",
     "source": "TechWorld with Nana Linux commands video, author-reported command harvest, 2026-11-03 (guided discussion; no independent terminal execution)"
+  },
+  {
+    "id": "LL224",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "snap",
+    "tags": [
+      "snap",
+      "2026-11-08",
+      "lab-harvest",
+      "guided-execution"
+    ],
+    "prompt": "Search the Snap Store for Microsoft PowerShell without installing it.",
+    "answers": [
+      "snap search powershell"
+    ],
+    "check": null,
+    "explanation": "Search displays discoverable Snap Store entries, not proof that any package is installed. The observed output showed Microsoft-published powershell and powershell-preview entries.",
+    "source": "NOS-120 LabConnection Simulation 11.1 Configure Snap Packages, 2026-11-08; user screenshots and guided discussion (not independent delayed recall)"
+  },
+  {
+    "id": "LL225",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "snap",
+    "tags": [
+      "snap",
+      "2026-11-08",
+      "lab-harvest",
+      "guided-execution"
+    ],
+    "prompt": "Inspect publisher, release channels, and the installed-version field of the PowerShell Snap without changing it.",
+    "answers": [
+      "snap info powershell"
+    ],
+    "check": null,
+    "explanation": "snap info reports store metadata and channels, which may differ from the installed version; the lab's output included an installed: field. A package's availability is not evidence of installation.",
+    "source": "NOS-120 LabConnection Simulation 11.1 Configure Snap Packages, 2026-11-08; user screenshots and guided discussion (not independent delayed recall)"
+  },
+  {
+    "id": "LL226",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "snap",
+    "tags": [
+      "snap",
+      "2026-11-08",
+      "lab-harvest",
+      "guided-execution"
+    ],
+    "prompt": "List the Snap packages installed on this Linux machine.",
+    "answers": [
+      "snap list"
+    ],
+    "check": null,
+    "explanation": "snap list shows installed Snap packages, not every package installed via APT/dpkg. The lab showed core20, lxd, powershell, and snapd.",
+    "source": "NOS-120 LabConnection Simulation 11.1 Configure Snap Packages, 2026-11-08; user screenshots and guided discussion (not independent delayed recall)"
+  },
+  {
+    "id": "LL227",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "snap",
+    "tags": [
+      "snap",
+      "2026-11-08",
+      "lab-harvest",
+      "guided-execution"
+    ],
+    "prompt": "On the Ubuntu training VM, install the PowerShell Snap using classic confinement as required by the package.",
+    "answers": [
+      "snap install powershell --classic",
+      "sudo snap install powershell --classic"
+    ],
+    "check": null,
+    "explanation": "Classic confinement gives broader host access than strictly confined Snaps. Assess package trust and need before installing; the lab showed an explicit successful installation message. Root was used in the observed VM, so sudo was unnecessary there.",
+    "source": "NOS-120 LabConnection Simulation 11.1 Configure Snap Packages, 2026-11-08; user screenshots and guided discussion (not independent delayed recall)"
+  },
+  {
+    "id": "LL228",
+    "type": "knowledge",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "snap",
+    "tags": [
+      "snap",
+      "2026-11-08",
+      "lab-harvest",
+      "guided-execution"
+    ],
+    "prompt": "Why is 'snap list' not an inventory of all software installed on Ubuntu?",
+    "answers": [
+      "it lists only snap-managed packages, not apt or dpkg packages",
+      "snap list only shows installed snap packages"
+    ],
+    "check": null,
+    "explanation": "Ubuntu can use both APT/dpkg for .deb packages and snapd for Snap packages. These package-management systems are distinct.",
+    "source": "NOS-120 LabConnection Simulation 11.1 Configure Snap Packages, 2026-11-08; user screenshots and guided discussion (not independent delayed recall)"
+  },
+  {
+    "id": "LL229",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "shells",
+    "tags": [
+      "shells",
+      "2026-11-08",
+      "lab-harvest",
+      "guided-execution"
+    ],
+    "prompt": "After installing the PowerShell Snap in the lab, start PowerShell from the Ubuntu shell.",
+    "answers": [
+      "powershell"
+    ],
+    "check": null,
+    "explanation": "The lab's installed Snap exposed the powershell command. The shell prompt changed from root@ubuntu:~# to PS /root>, but the operating system stayed Linux. Modern PowerShell installations commonly expose pwsh; command availability is version/packaging dependent.",
+    "source": "NOS-120 LabConnection Simulation 11.1 Configure Snap Packages, 2026-11-08; user screenshots and guided discussion (not independent delayed recall)"
+  },
+  {
+    "id": "LL230",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "powershell",
+    "tags": [
+      "powershell",
+      "2026-11-08",
+      "lab-harvest",
+      "guided-execution"
+    ],
+    "prompt": "Inside the PowerShell prompt, display host information including the PowerShell host version.",
+    "answers": [
+      "Get-Host"
+    ],
+    "check": null,
+    "explanation": "Get-Host reports the host, and the observed output identified ConsoleHost version 7.3.2. It is a PowerShell cmdlet, not a Bash command. $PSVersionTable is an alternative for inspecting the PowerShell engine version, but this lab specifically demonstrated Get-Host.",
+    "source": "NOS-120 LabConnection Simulation 11.1 Configure Snap Packages, 2026-11-08; user screenshots and guided discussion (not independent delayed recall)"
   }
 ]
