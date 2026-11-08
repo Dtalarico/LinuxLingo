@@ -978,3 +978,14 @@ A related tutoring failure presented `ps -o pid,ni,comm -p 1234` before explaini
 **Instructional insight:** The lab introduced `echo | at` and systemd unit configuration without adequate prior scaffolding. Distinguish coverage gaps from retrieval errors. Teach one-time versus recurring scheduling, user crontab versus system crontab, file configuration versus manager execution, daemon reload versus unit reload, enable versus start, and stdout versus stderr as independent mechanisms before command compression. A focused `systemctl` quick-reference should cover status/start/stop/restart/reload, enable/disable/is-active/is-enabled, daemon-reload, list-units and list-timers; existing service-management drills should not be duplicated.
 
 **Corpus:** New LL201–LL215 in `scenario_bank_3.json`; prior LL001–LL200 retained. The Python loader must explicitly include the third bank; adding JSON alone would not make drills available. No claims of independent mastery or future timer execution.
+
+
+---
+
+## November 8, 2026 — Command syntax and answer-option congruency
+
+**Provenance:** NOS-120 LabConnection Snap/PowerShell simulation, screenshots and author/mentor discussion, November 8, 2026. **Status:** Dated instructional-design clarification; earlier specification remains intact.
+
+When testing literal terminal commands, answer choices must use the same representational level. A bare command such as `Get-Host` and a prose imperative such as `Enter powershell` are not parallel answer formats. If the task is to identify executable syntax, present literal commands consistently (e.g. `powershell`); if the task is to choose a procedure, phrase *all* alternatives as procedures (e.g. “Type `powershell` and press Enter”). Do not silently switch between an imperative verb and a shell token in otherwise command-formatted options. Distinguish grammatical instructions from exact input, and make version/packaging assumptions explicit.
+
+The author independently identified this inconsistency and argued for semantic congruence. The simulation's expected response was not confirmed by a verified answer key; therefore this is evidence of potentially confusing wording, not a proven grading error. Do not count disagreement as a retrieval failure. Follow the existing doctrine of operational purpose, precise terminology, observed evidence, and fair mastery assessment.
