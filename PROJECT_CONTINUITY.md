@@ -628,3 +628,19 @@ Observed Cengage grading defect:
 **Next-chat operational handoff:** Determine the title, due date and instructions for the current week's NOS-120 lab from the Wake Tech Blackboard Content/current assignments page or user screenshot. It is NOT identified by the previous Gradebook image; do not invent a lab number or falsely mark it complete. Assist stepwise with deterministic Linux commands and verification. Harvest/commit useful learning evidence after successful completion. Then ask for the CTI-141 Cloud and Storage Concepts current assignment details; proceed with that class before remaining Linux makeups. Any course-specific change must follow the author's actual displayed assignment instructions. No new drills or software changes were required by this handoff-order correction.
 
 **Context:** The user requested a revised comprehensive, copyable continuity code block for a fresh conversation after this GitHub update, expressly highlighting the intervening CTI-141 priority. Preserve prior chronological notes as historical records; this later instruction is the current authoritative ordering.
+
+---
+
+## 2026-11-09 — 11/9 Campfire and Labs: lab-first pedagogy correction during cpio exercise
+
+**Session identity:** The author calls today's work **11/9 Campfire and Labs**, not “Operation Red Hat.” Honor the author's current session title. Existing coursework priority remains current NOS-120 lab → CTI-141 Cloud and Storage → NOS-120 reopened makeups (10-3, optionally 10-2).
+
+**User-directed work:** Revisit the author's original *DEFINE DICK TUBE vs CONFIGURE SEX — A Technical-College Pedagogy Parody* from Google Drive and reinforce its **DO → SEE → NAME → REMEMBER** doctrine. The practical lab is the initial learning venue for unfamiliar operations; reading chapters/manuals serves reference, reinforcement, deeper explanation, and targeted repair. Avoid the pattern of overexplaining already mastered commands while requiring blind syntax guessing for newly introduced ones.
+
+**Observed NOS-120 lab state from screenshots:** Lab title “Back up files using cpio.” Root session switched via `su user01` and then `sudo su` back to root, with no explained operational requirement for the interim user switch in the displayed instructions. Root created `/SalesData` and empty files `file1`–`file5`; `ls -l` showed root-owned files. A later screenshot requested creation of `/Backups` and then a `cpio` backup task; creation/verification of `/Backups` was not conclusively observed in the available screenshot sequence. Running bare `cpio` yielded “You must specify one of -o/-i/-p options”; an incomplete `cpio /Backups` line was shown, not executed. No expanded `cpio` hint, successful archive/copy, grading result, or lab completion has yet been observed.
+
+**Instructional finding:** New `cpio` mode syntax was introduced without first teaching how to select and use the modes in the observed steps, despite repeated guidance for familiar `ls -l`, `mkdir`, and `touch`. The user's criticism is about a coverage failure and unjustified privilege/state transitions, not inability to run previously known commands. The actual intent of later instructions remains unknown.
+
+**Documentation-only update:** Added a dated doctrine clarification to the Master Specification; this is not an implemented software feature, executed regression test, new drill, independently demonstrated proficiency, or finished lab. Preserve all earlier chronology. Do not change scenario banks until the lab's actual `cpio` exercise and verified results are known.
+
+**Next:** Expand and examine the `cpio` hint, identify whether the intended action is archive creation or pass-through copy, execute one appropriate operation and verify the result. After the complete lab, harvest authentic drills, then transition to CTI-141.
