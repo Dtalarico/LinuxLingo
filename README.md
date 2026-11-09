@@ -253,3 +253,10 @@ The NOS-120 guided LD-004 lab produced 15 additional practice drills, **LL231–
 ## November 8, 2026 — LD-005 guided package management harvest
 
 Added **LL246–LL264** (19 drills), bringing the active corpus to **264 drills** across the three banks (100 + 100 + 64). Follow-on coverage includes `dpkg -l` versus `dpkg -L`, `apt-cache depends`, package install/upgrade/download, APT log discovery and `grep` output interpretation, local `.deb` packages, version checks, purging, and orphaned dependency cleanup. The dated continuity and master-spec appendices preserve the instructional distinction between locating logs and blindly memorizing filenames, as well as the author's simpler direct-download alternative. The LD-005 run was guided; final checker grade and delayed mastery were not observed.
+
+
+---
+
+## November 9, 2026 — Portfolio readiness and evidence goals
+
+**Portfolio evidence and hiring-readiness goals (November 9, 2026):** [Measurable MVP, testing, learning-workflow and demonstration milestones](docs/portfolio-readiness.md). The roadmap distinguishes the existing Python CLI from unimplemented adaptive/system-state features and is not a requirement to finish every future feature before applying for work.
