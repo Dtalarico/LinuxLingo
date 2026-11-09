@@ -499,3 +499,20 @@ Observed Cengage grading defect:
 **Training design:** Teach discovery paths and output interpretation before demanding production of exact log paths, flags, and long command sequences. Reinforce the previous lab's command patterns using a changed package, with one operational concept at a time. Distinguish “check” versus “perform,” package archives versus installed binaries, download directory versus target repository, and Linux-valid direct workflows versus exact external grading scripts. The learner's correct procedural challenge does not show the grader would accept an alternate command order.
 
 **Repo additions:** LL246–LL264 (19 drills) appended to third bank; now 264 total (100 + 100 + 64). Preserve old drills and dated notes; no claims of new runtime behavior or independent performance verification. Next: run loader tests in a working copy when possible, and continue another lab only when the author resumes.
+
+
+---
+
+## November 8, 2026 — Skate Shell tutoring continuity: persistent method correction
+
+**Authorization:** Author explicitly requested a durable repository update rather than another chat-only promise. **Action scope:** append-only Master Spec and continuity guidance; no scenario-bank or runtime changes in this instructional-method update.
+
+**Source:** David M. Talarico's August 23, 2026 `SKATEBOARD DEVELOPMENT-LINUX LINGO` / Skate Shell concept, independently conceived before this lab. It describes `ollie -k | 50-50 -bs; ollie 180 -bs` as base maneuver + modifier + direction/context + composition, mapping to Linux commands, flags, arguments, pipes, sequences, working environments and reusable functions. Source is user-authored conceptual work, not a native Linux command or deployed software.
+
+**Current problem exposed by NOS-120 Cengage tar/gzip lab:** The learner clearly grasped create, append, inspect, compression, source and output as operations, but was repeatedly forced to memorize unexplained letter flags and program-specific operand order. Cengage used `tar -cvf` for creating, `tar -rf` for appending, and `tar -tvf` for inspecting; `-v` was alternately present/absent without explicit clarification of its optional representation role. The course directed students to `touch` documentation in a step whose novel learning objective concerned `tar`. The learner demands active terminal practice, mnemonic hooks and stable compositional patterns, not repeated textbook referrals. Do not attribute unverified intent or motives to the lab author.
+
+**MANDATORY HANDOFF TO NEXT TUTOR SESSION:** Read the new `LINUXLINGO_MASTER_SPEC.md` section “November 8, 2026 — Skate Shell compositional tutoring protocol and mnemonic-first terminal practice” **before the next Linux lab**. Apply it operationally: concept/system → atomic operation → typed operand roles → mnemonic with correct actual semantics → one learner-written command → inspect live output → spaced retrieval. Use one step at a time. Preserve consistent optional flags in adjacent teaching examples, explain changes, do not repeat completed steps, and give targeted reference lookups rather than “it's in the book.” Revisit old commands across changing contexts. Mark guided versus independent versus delayed success separately.
+
+**Last verified lab evidence:** The terminal listing showed `backup.tar` at 10,240 bytes with members `file1`, `file2`, and `file3`. The following task was to produce `backup2.tar.gz`; screenshot showed `tar -z backup2.tar.gz backup.tar` entered/being constructed before clarification to `tar -czf backup2.tar.gz backup.tar`. **Successful compression and overall lab grade not verified.** Current repo corpus remains LL001–LL264 (264 drills) unless separately updated and verified.
+
+**Provenance/limits:** This is a **documented and approved tutoring-method change**, not proof an assistant will automatically retrieve it or that the Python engine was changed. At the start of future work, fetch the repository handoff instead of relying on chat memory. Continue LAB → LEARN → HARVEST → COMMIT → MOVE ON for actual lab harvest after observing the rest of the exercise.
