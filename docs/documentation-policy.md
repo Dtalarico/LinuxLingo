@@ -190,3 +190,20 @@ Document the development of understanding as carefully as the development of sof
 **Approved source lineage (2026-10-27):** Baby Cloud BC-DOC-001; LinuxLingo README, Master Spec, continuity, implementation, and scenario banks; Adaptive Infrastructure Tutoring Prompt v11 with preserved earlier modules.
 
 **Implementation record:** See the dated 2026-10-27 addition to `PROJECT_CONTINUITY.md` for implementation evidence and exact Git commits.
+
+
+---
+
+## 2026-11-09 — Purposeful, version-controlled technical diagrams
+
+**Status: Author-approved documentation preference; additive to LL-DOC-001.** The author wants LinuxLingo to use clear diagrams as version-controlled engineering artifacts **where they genuinely improve understanding**, but not to accumulate as many diagrams as Baby Cloud's evolving physical infrastructure may warrant. Preserve existing historical records and the distinction between documented intent and implemented software.
+
+1. **Use diagrams selectively.** At architecture, learning-flow, validation, data-schema, feature, or major troubleshooting decisions, assess whether a concise diagram would explain a relationship, state transition, dependency, or design choice more clearly than prose alone. Do not produce one for every command, exercise, or incremental change.
+2. **Relevant candidates** include application/module structure; how the Python engine loads scenario banks; learner journey and feedback/remediation flow; answer validation and evidence/verification boundaries; progression from guided practice to independent recall; and state transitions for future adaptive learning. These are *candidates*, not promises of implemented features.
+3. **Version the source.** Prefer text-maintainable Mermaid or source-editable SVG checked into Git, with relative links from the applicable README, master specification, continuity, or documentation index. Label diagrams with a meaningful title, date/version, purpose, author/provenance, and scope.
+4. **Mark status explicitly.** Distinguish **PROPOSED architecture**, **IMPLEMENTED code behavior**, and **VERIFIED behavior**; cite code paths or observations where appropriate. A planned diagram must never be mistaken for a deployed feature or measured educational outcome.
+5. **Keep diagrams synchronized** with substantial code, scenario-bank, workflow, or design changes. Update affected diagrams in a reviewable commit, or document why the update is deferred; retain dated decision history and use Git history for traceability.
+6. **Favor simple, accessible visuals**, readable labels, modest detail, and a compact legend when needed. Avoid decorative, crowded infographics. Diagrams complement, rather than replace, the authoritative text, examples, code, tests, and engineering evidence.
+7. **Session handoff:** At meaningful design or implementation closeout, record whether diagram review or update was completed, not needed, or deferred; never claim an uncreated diagram exists.
+
+**Change boundary:** This entry changes documentation practice only. No new diagram, application feature, test result, or learner-mastery result is claimed as implemented by this policy addition.
