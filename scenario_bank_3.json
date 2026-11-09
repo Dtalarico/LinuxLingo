@@ -1323,5 +1323,173 @@
     "check": null,
     "explanation": "The removal-and-purge procedure transfers from zsh to cython3. The action is not interchangeable with autoremove, which handles orphaned automatic dependencies.",
     "source": "NOS-120 Cengage LD-005 Manage Software, 2026-11-08; user-provided lab instructions, some screenshots, and guided discussion; execution/checker status not independently verified for every step"
+  },
+  {
+    "id": "LL265",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "date",
+    "tags": [
+      "date",
+      "2026-11-09",
+      "lab-harvest",
+      "guided-discussion",
+      "virtual-lab-9.3"
+    ],
+    "prompt": "Set a DATE variable to current YYYY-MM-DD date.",
+    "answers": [
+      "DATE=$(date +%Y-%m-%d)"
+    ],
+    "check": null,
+    "explanation": "Use command substitution $(). date uses %Y for year, %m for month, %d for day; %M is minutes.",
+    "source": "NOS-120 Cengage Virtual Lab 9.3, 2026-11-09; guided session with screenshots; independent mastery not proven"
+  },
+  {
+    "id": "LL266",
+    "type": "scenario",
+    "difficulty": "intermediate",
+    "tier": "fluency",
+    "category": "tar",
+    "tags": [
+      "tar",
+      "2026-11-09",
+      "lab-harvest",
+      "guided-discussion",
+      "virtual-lab-9.3"
+    ],
+    "prompt": "Create a gzip archive with verbose member listing from /home/user1/data, named /home/user1/backups/data_backup-$DATE.tar.gz.",
+    "answers": [
+      "tar -czvf /home/user1/backups/data_backup-$DATE.tar.gz /home/user1/data"
+    ],
+    "check": null,
+    "explanation": "c=create, z=gzip, v=verbose, f=archive path; output directory must be writable.",
+    "source": "NOS-120 Cengage Virtual Lab 9.3, 2026-11-09; guided session with screenshots; independent mastery not proven"
+  },
+  {
+    "id": "LL267",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "tee",
+    "tags": [
+      "tee",
+      "2026-11-09",
+      "lab-harvest",
+      "guided-discussion",
+      "virtual-lab-9.3"
+    ],
+    "prompt": "Append a dated completion message to backuplog and print it.",
+    "answers": [
+      "echo \"Backup completed on $DATE\" | tee -a /home/user1/backups/backuplog"
+    ],
+    "check": null,
+    "explanation": "tee -a appends and prints; echo alone does not verify tar success.",
+    "source": "NOS-120 Cengage Virtual Lab 9.3, 2026-11-09; guided session with screenshots; independent mastery not proven"
+  },
+  {
+    "id": "LL268",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "ls",
+    "tags": [
+      "ls",
+      "2026-11-09",
+      "lab-harvest",
+      "guided-discussion",
+      "virtual-lab-9.3"
+    ],
+    "prompt": "Inspect the permissions and ownership of /home/user1/backups directory itself.",
+    "answers": [
+      "ls -ld /home/user1/backups"
+    ],
+    "check": null,
+    "explanation": "With root:root and 755, user1 cannot create files in that directory.",
+    "source": "NOS-120 Cengage Virtual Lab 9.3, 2026-11-09; guided session with screenshots; independent mastery not proven"
+  },
+  {
+    "id": "LL269",
+    "type": "scenario",
+    "difficulty": "intermediate",
+    "tier": "fluency",
+    "category": "chown",
+    "tags": [
+      "chown",
+      "2026-11-09",
+      "lab-harvest",
+      "guided-discussion",
+      "virtual-lab-9.3"
+    ],
+    "prompt": "As root, change ownership and group of /home/user1/backups to user1.",
+    "answers": [
+      "chown user1:user1 /home/user1/backups"
+    ],
+    "check": null,
+    "explanation": "Fix ownership rather than needlessly granting world write permission.",
+    "source": "NOS-120 Cengage Virtual Lab 9.3, 2026-11-09; guided session with screenshots; independent mastery not proven"
+  },
+  {
+    "id": "LL270",
+    "type": "scenario",
+    "difficulty": "intermediate",
+    "tier": "fluency",
+    "category": "crontab",
+    "tags": [
+      "crontab",
+      "2026-11-09",
+      "lab-harvest",
+      "guided-discussion",
+      "virtual-lab-9.3"
+    ],
+    "prompt": "Schedule /home/user1/scripts/backup.sh daily at 17:54 local time in user1's crontab.",
+    "answers": [
+      "54 17 * * * /home/user1/scripts/backup.sh"
+    ],
+    "check": null,
+    "explanation": "Cron fields: minute, hour, day-of-month, month, weekday, command; execution must be verified after the scheduled time.",
+    "source": "NOS-120 Cengage Virtual Lab 9.3, 2026-11-09; guided session with screenshots; independent mastery not proven"
+  },
+  {
+    "id": "LL271",
+    "type": "scenario",
+    "difficulty": "intermediate",
+    "tier": "fluency",
+    "category": "shell-globbing",
+    "tags": [
+      "shell-globbing",
+      "2026-11-09",
+      "lab-harvest",
+      "guided-discussion",
+      "virtual-lab-9.3"
+    ],
+    "prompt": "Preview the tar files and backuplog in /home/user1/backups without deleting them.",
+    "answers": [
+      "ls -l /home/user1/backups/*.tar* /home/user1/backups/backuplog"
+    ],
+    "check": null,
+    "explanation": "Unquoted * expands; separate absolute path arguments with a space, not a pipe.",
+    "source": "NOS-120 Cengage Virtual Lab 9.3, 2026-11-09; guided session with screenshots; independent mastery not proven"
+  },
+  {
+    "id": "LL272",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "chmod",
+    "tags": [
+      "chmod",
+      "2026-11-09",
+      "lab-harvest",
+      "guided-discussion",
+      "virtual-lab-9.3"
+    ],
+    "prompt": "Make /home/user1/scripts/backup.sh executable by all without making it writable by all.",
+    "answers": [
+      "chmod 755 /home/user1/scripts/backup.sh"
+    ],
+    "check": null,
+    "explanation": "755 is rwx/r-x/r-x. Cengage verifier oddly expected 777 for the less permissive written requirement.",
+    "source": "NOS-120 Cengage Virtual Lab 9.3, 2026-11-09; guided session with screenshots; independent mastery not proven"
   }
 ]
