@@ -1040,3 +1040,37 @@ Build practical contrast drills for `apt-get update` versus `apt-get --only-upgr
 * **Observed baseline:** screenshot showed `backup.tar` size **10,240 bytes** and `file1`, `file2`, `file3` members. The screenshot showed the compressed-archive command under construction, not confirmed successful execution; do not invent the result.
 
 **Long-term product implication (PROPOSED, not implemented):** Add scenario metadata for operational primitive, argument roles, mnemonic hook, required-versus-optional options, compositional prerequisites, and delayed retrieval. Current LinuxLingo MVP may not enforce this progression. The author's original Skate Shell concept is a learning and architecture source; no claim that it is executable Bash.
+
+---
+
+## 2026-11-09 — Lab-first operational teaching and the “Define Dick Tube vs Configure Sex” doctrine
+
+**Status: Author-directed instructional design clarification; documentation only. No claim of implemented CLI behavior or independently measured learning effectiveness.**
+
+**Origin and attribution:** David M. Talarico's earlier parody, *DEFINE DICK TUBE vs CONFIGURE SEX — A Technical-College Pedagogy Parody*, contrasts dead nomenclature with actual operation. Its governing refrain is **DO → SEE → NAME → REMEMBER**, not **NAME → DEFINE → FORGET → RESENT BLACKBOARD**. The operative question is not merely what an interface is called, but what it does, where it connects, what settings and permissions matter, what observable feedback proves the operation, and how failures are diagnosed. The original parody remains in the author's separate source document; this repository records the instructional principle, not a substituted or rewritten copy of the joke.
+
+**Author's explicit priority:** The practical lab should be the primary environment in which an unfamiliar command or operation is *introduced and taught through doing*. Chapters, references and manuals should support explanation, rereading, depth, and repair. Do not silently require a learner to have absorbed syntax from long passive reading before the lab provides a viable first-use path. This is a design requirement for LinuxLingo's future guided instruction, not an assertion that reading is worthless or that learners never need prerequisites.
+
+### Required lab-first sequence for unfamiliar material
+
+1. **Identify the objective and user/system context.** Explain the actual operation, target state, required privilege, source/destination and constraints before asking for syntax.
+2. **Demonstrate the minimum viable operation.** Show relevant command modes and options at the point they are first needed, explaining each option's purpose and non-obvious behavior. No blind option guessing.
+3. **DO:** Run one small, meaningful operation with the learner. Provide a guided first attempt where concept coverage is new.
+4. **SEE:** Inspect real stdout/stderr, resulting files or system state, and meaningful success/failure signatures. Explain partial success and avoid redundant verification.
+5. **NAME:** Connect the performed action and observed consequence to terminology, flags and command structure.
+6. **REMEMBER:** Follow with varied independent recall, reapplication, troubleshooting and later retesting. Fade guidance only after adequate initial teaching.
+7. **REFERENCE:** Use chapters and manuals for deeper understanding or to resolve specifically identified questions, not as a substitute for an unexplained first-use lab.
+
+**Novelty-aware instruction:** Do not repeatedly re-teach familiar `ls -l`, `touch`, or `mkdir` mechanics while leaving the new operation unexplained. Compress established prerequisites; expand first exposure to novel tools. Distinguish **coverage failure** (an operation/option not yet taught) from **retrieval failure** (taught material not recalled), and track them separately before scoring or remediation.
+
+**Privilege and state discipline:** Every identity switch and privilege elevation must have a stated operational justification, expected environment effect, and minimal scope. A command that merely works in an artificially constructed lab state is not automatically good production practice. Explain why a target user, login environment, privilege level, filesystem location and verification method are chosen.
+
+### Observed motivating case: NOS-120 Cengage “Back up files using cpio,” 2026-11-09
+
+The author showed screenshots in which the lab began as root, instructed `su user01`, immediately instructed `sudo su`, and then had root create `/SalesData` and five empty files. The observed commands yielded root-owned files; no functional dependency on the interim `user01` identity was established by the instructions examined. This is an **observed lack of explained justification**, not proof that every future step or instructor intention has been examined.
+
+The lab repeatedly supplied guided `ls -l` and file-creation syntax, then introduced `cpio` without first explaining its required operational modes. The author's bare `cpio` call displayed the diagnostic that one of `-o`, `-i`, or `-p` is required; an unexecuted `cpio /Backups` line followed. At the time of this note, the expanded `cpio` hint and successful backup result had **not** been observed. Do not infer the intended exact `cpio` workflow or report the lab complete.
+
+**Engineering interpretation:** First teach what `cpio` is doing and whether the task requires an archive (`-o`), extraction (`-i`), or pass-through copying (`-p`); then show relevant flags and an exact, inspectable first exercise. A verifier should test the stated operational goal rather than an undisclosed command spelling. Record what the screenshot and terminal actually proved, keep uncertainties visible, and harvest drills only after accurately identifying the intended operation.
+
+**Implementation boundary:** This addendum documents the author's teaching requirements and current lab evidence. The present Python MVP remains a text-answer drill engine; it does not implement a live guided lab, novelty tracking, adaptive mastery, semantic command validation, or actual filesystem-state verification.
