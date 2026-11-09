@@ -1,0 +1,262 @@
+# LinuxLingo
+Duolingo-style Linux terminal trainer for building real command-line fluency through hands-on drills, repetition, and scenario-based practice.
+
+## Overview
+
+LinuxLingo is a terminal-first Linux learning project designed to build actual command-line fluency through active recall, repetition, and hands-on practice.
+
+The core idea is simple:
+
+**Linux should be learned like a language.**
+
+- Commands are vocabulary.
+- Flags are grammar.
+- Pipelines are sentence structure.
+- Real terminal tasks are conversation.
+
+Instead of relying primarily on lectures, videos, or command recognition, LinuxLingo trains the learner to translate a real problem into the correct command and execute it.
+
+**problem → reasoning → command → execution → verification**
+
+---
+
+## Project Goal
+
+LinuxLingo aims to move learners from:
+
+> “I recognize that command.”
+
+to:
+
+> “I know what to type, why I am typing it, and what result I expect.”
+
+The emphasis is on developing terminal reflexes and practical confidence rather than memorizing isolated facts.
+
+---
+
+## MVP
+
+The initial LinuxLingo MVP is a Python command-line application.
+
+The MVP currently:
+
+- loads drills from multiple JSON scenario banks
+- presents Linux command drills
+- accepts typed command responses
+- uses real-world scenarios
+- provides immediate pass/fail feedback and explanations
+- tracks a basic session score
+- normalizes whitespace for answer comparison
+- keeps program logic separate from training content
+- validates duplicate drill IDs across configured banks
+
+The current safe MVP does not execute arbitrary learner-entered commands. Rich state validation, adaptive selection, mastery tracking, and persistent learner data remain future work.
+
+---
+
+## Core Architecture
+
+### `linuxlingo.py`
+Contains the Python CLI engine and program logic. The engine loads each configured scenario-bank JSON file into one combined drill pool.
+
+### Scenario banks
+The training corpus is intentionally split into numbered JSON banks so individual files stay manageable as the corpus grows.
+
+Current convention:
+
+- `scenario_bank.json` — LL001–LL100
+- `scenario_bank_2.json` — begins with LL101 and is intended to carry approximately the next 100 drills
+- future banks will continue as `scenario_bank_3.json`, `scenario_bank_4.json`, and so on as needed
+
+The approximate 100-drill boundary is organizational rather than semantic. Drill IDs remain globally unique across all banks, and `linuxlingo.py` rejects duplicate IDs when loading them.
+
+### `PROJECT_CONTINUITY.md`
+Maintains the current development state so work can continue cleanly across sessions.
+
+### `LINUXLINGO_MASTER_SPEC.md`
+Contains the canonical project architecture, learning philosophy, tier structure, design decisions, and long-term development doctrine.
+
+---
+
+## Learning Model
+
+LinuxLingo is built around active recall, command production, scenario-based practice, error correction, verification, progressive difficulty, and practical self-rescue.
+
+A key design principle is the distinction between:
+
+- **retrieval failure** — a learner was taught something but cannot recall or apply it
+- **coverage failure** — a course or assessment demands syntax or concepts that were not actually taught or scaffolded
+
+The system should not treat those as the same failure.
+
+Recent lab work reinforced several additional learning-design requirements:
+
+- teach the operational purpose before compressing syntax
+- introduce one new abstraction at a time whenever practical
+- teach atomic semantics before combined commands
+- show expected success and failure states, not only the happy path
+- pair “verify” instructions with the exact observable command and expected result
+- distinguish identity, environment, path resolution, permissions, shell nesting, and reporting as separate layers
+- distinguish actual system-generated evidence from manually typed text that merely describes an outcome
+
+---
+
+## Command Bank Development
+
+The command bank grows from real Linux usage: coursework, labs, system administration practice, troubleshooting, and certification study.
+
+Preferred workflow:
+
+**LAB → LEARN → HARVEST → COMMIT → MOVE ON**
+
+As of October 4, 2026, LinuxLingo loads **171 drills (LL001–LL171)** across two numbered scenario banks.
+
+Recent harvests include:
+
+- filesystem and navigation
+- Vim and shell history
+- wildcards and quoting
+- text processing and AWK
+- `find` predicates and `-exec`
+- `locate`, `updatedb`, and `locate -S`
+- `whereis` and `which`
+- Docker image/container operations
+- user and group creation with `useradd`, `passwd`, and `groupadd`
+- supplementary-group membership with `usermod -aG`
+- ownership with `chown`
+- octal permissions with `chmod`
+- permission and ownership verification with `ls -ld` and `ls -l`
+- user-identity and login-context switching with `su` and `su -`
+- identity verification with `whoami`
+- nested-shell behavior with `exit`
+- intentional permission-denied scenarios for group and other access classes
+- service management with `systemctl`: status, start, stop, restart, reload, enable, disable, and boot-policy verification
+- process inspection with `ps -ef`, `grep`, and `pstree -p`
+- service-state interpretation: `active (running)` vs `active (exited)`, Main PID, PPID, TTY, and CPU TIME
+- Bash double-Tab completion as a command-discovery/self-rescue mechanism
+- explicit separation of interactive completion candidates from command stdout
+- network endpoint reasoning: IP address selects the machine; port selects the listening service
+
+The September 14 Cengage work also reinforced an important product-design lesson: training should accept valid Linux solutions where appropriate rather than teaching learners to guess a brittle autograder's preferred command string. It also showed that a lab can create confusion when it asks the learner to infer hidden state changes, success conditions, or failure meanings instead of exposing those transitions directly.
+
+---
+
+## October 3, 2026 service-management harvest
+
+The NOS-120 service-management lab added LL133–LL160 and reinforced a system model rather than a command-list model:
+
+- `systemd` is the service/system manager; `systemctl` is the operator-facing control/query interface.
+- Current runtime state (`start`, `stop`, `restart`, `reload`, `status`) is separate from boot policy (`enable`, `disable`, `is-enabled`).
+- `systemctl status`, `ps -ef`, and `pstree -p` answer different questions: managed-unit state, flat process evidence, and process relationships.
+- `active (exited)` can represent a successful setup-style unit with no persistent process; it is not automatically a failure.
+- Deprecated `service` syntax is preserved for recognition, while modern `systemctl` operation remains primary.
+- Bash tab completion is a discovery mechanism. Double-Tab can display matching completion candidates, but that interactive display must not be confused with command stdout.
+- Teaching language must name the mechanism precisely. Vague instructions such as “display a list” should be rewritten as the actual operation when the distinction matters.
+
+
+---
+
+## October 4, 2026 startup-target harvest
+
+The NOS-120 Manage Server Startup lab added LL161–LL171 and expanded LinuxLingo from service control into systemd target and boot-state reasoning:
+
+- `useradd -m` as explicit account-plus-home-directory creation
+- `chpasswd` as non-interactive/script-friendly password provisioning
+- `id USER` for account identity and group verification
+- `systemctl get-default` for default boot-target inspection
+- `systemctl isolate multi-user.target` and `graphical.target` for immediate runtime-target changes
+- `systemctl set-default multi-user.target` and `graphical.target` for persistent boot-default changes
+- `systemctl reboot` as whole-system control through systemd
+- explicit separation of **current runtime target** from **future boot default**
+- `readlink -f /etc/systemd/system/default.target` as a stronger state-verification technique when an external grader disagrees with the machine
+
+The lab also produced another concrete autograder lesson: Linux state can be demonstrably correct while an external grader continues to report failure. LinuxLingo should privilege verifiable system state over brittle platform bookkeeping whenever safe and practical.
+
+---
+
+## Development Strategy
+
+1. Preserve the terminal-first Python/JSON architecture.
+2. Continue harvesting real coursework and lab material after each learning unit.
+3. Preserve source provenance and troubleshooting context.
+4. Keep scenario banks to roughly 100 drills each for readability and maintenance, then start the next numbered bank.
+5. Preserve globally unique drill IDs across every bank.
+6. Improve answer validation beyond normalized exact matching.
+7. Add performance persistence, mistake review, and mastery/coverage tracking.
+8. Add adaptive drill selection and delayed retesting.
+9. Introduce safe state-based validation.
+10. Add advanced multi-step scenarios and troubleshooting drills.
+
+---
+
+## Future Vision
+
+Possible future LinuxLingo features include adaptive practice, mastery tracking, mistake review, spaced repetition, streak mechanics, certification-focused packs, RHCSA-aligned training, sandboxed Linux environments, automated system-state validation, container-based labs, and later web or desktop interfaces.
+
+The immediate priority remains building a strong terminal-first Linux fluency engine and a high-quality command corpus.
+
+---
+
+## Project Status
+
+**Current Phase:** Active MVP and command-bank development.
+
+**Current loaded corpus:** 185 drills, LL001–LL185, across two numbered JSON banks.
+
+GitHub is the active source of truth.
+
+---
+
+## Author
+
+**David Michael Talarico**
+
+Cloud Infrastructure student focused on Linux, systems administration, cloud computing, networking, and virtualization.
+
+
+---
+
+## Documentation philosophy and historical accountability — 2026-10-27
+
+**The future must know what the past was thinking.** LinuxLingo documents both how the software changes and how the understanding behind it develops. Decisions, assumptions, evidence, corrections, instructional discoveries, assistance levels, and verified results should remain traceable. Documentation is written for intelligent nontechnical readers as well as engineers.
+
+See [LL-DOC-001 — Documentation, Provenance, and Historical Continuity](docs/documentation-policy.md) for the approved documentation standard. The [Master Spec](LINUXLINGO_MASTER_SPEC.md) remains authoritative for instructional design and architecture; [Project Continuity](PROJECT_CONTINUITY.md) records current state, recent changes, and next steps. The policy complements rather than replaces those records. Historical material must not be silently rewritten merely to make the present appear tidier.
+
+---
+
+## October 30, 2026 — Process-management harvest
+
+The NOS-120 supplemental process-management study added **14 drills (LL172–LL185)** on interactive process inspection, signal selection, PID/name targeting, niceness, and verification. The full active corpus now contains **185 drills** across the two numbered scenario banks. Existing service-management drills were retained rather than duplicated.
+
+A documented teaching case reinforced an important design principle: do not require a beginner to infer an unstated initial state or the purpose of a combined option. In particular, `nice -n` applies a relative adjustment to inherited niceness, and `ps -o` controls displayed fields while `ps -p` controls process selection. See the October 30 appendices in the [Master Specification](LINUXLINGO_MASTER_SPEC.md) and [Project Continuity](PROJECT_CONTINUITY.md). Guided understanding is not treated as independent execution or mastery evidence.
+
+
+---
+
+## November 8, 2026 — Current corpus and Snap/PowerShell harvest
+
+The earlier dated corpus snapshots above remain historical. As of this update, the active corpus contains **230 drills (LL001–LL230)** across three numbered scenario banks: 100 + 100 + 30. The Python loader explicitly includes all three banks. See `PROJECT_CONTINUITY.md` for the November 8 evidence record and `LINUXLINGO_MASTER_SPEC.md` for the new dated clarification on consistent command-versus-instruction answer formatting.
+
+The seven new LL224–LL230 drills cover Snap search/info/list/install, separate APT versus Snap inventories, starting PowerShell from Ubuntu, and the PowerShell `Get-Host` command. The Cengage simulation was guided; this addition does not assert independent delayed mastery or a verified overall simulation grade.
+
+
+## Guided Linux practice resources (November 8, 2026)
+
+See [GUIDED_LINUX_PRACTICE_RESOURCES.md](GUIDED_LINUX_PRACTICE_RESOURCES.md) for LabEx subscription/pricing bookmark, free or alternative guided hands-on Linux labs (Linux Foundation LFS101, LinuxSim, The Linux Camp, Linux Journey), RHCSA preparation links, and the instructional workflow needed to move LinuxLingo beyond drill-only MVP learning. Prices and access terms are dated snapshots; verify them before purchasing. The author intends to consider LabEx Pro once financial-aid/loan funds arrive.
+
+
+## November 8, 2026 — RPM/APT software-management harvest
+
+The NOS-120 guided LD-004 lab produced 15 additional practice drills, **LL231–LL245**, covering `apt-cache` package inventories/metadata/dependencies, `apt-get` installation and purging, `dpkg -L`, viewing files, working directories, and package-installation log searches. The current corpus is **245 drills across three numbered banks (100 + 100 + 45)**. The accompanying [Project Continuity](PROJECT_CONTINUITY.md) and [Master Specification](LINUXLINGO_MASTER_SPEC.md) preserve the verifier's hidden directory assumption, confirmed four-check midlab success, independent versus assisted recall, and learning-design requirements. The final uninstall grader result was not observed; do not infer a completed overall lab grade.
+
+
+## November 8, 2026 — LD-005 guided package management harvest
+
+Added **LL246–LL264** (19 drills), bringing the active corpus to **264 drills** across the three banks (100 + 100 + 64). Follow-on coverage includes `dpkg -l` versus `dpkg -L`, `apt-cache depends`, package install/upgrade/download, APT log discovery and `grep` output interpretation, local `.deb` packages, version checks, purging, and orphaned dependency cleanup. The dated continuity and master-spec appendices preserve the instructional distinction between locating logs and blindly memorizing filenames, as well as the author's simpler direct-download alternative. The LD-005 run was guided; final checker grade and delayed mastery were not observed.
+
+
+---
+
+## November 9, 2026 — Portfolio readiness and evidence goals
+
+**Portfolio evidence and hiring-readiness goals (November 9, 2026):** [Measurable MVP, testing, learning-workflow and demonstration milestones](docs/portfolio-readiness.md). The roadmap distinguishes the existing Python CLI from unimplemented adaptive/system-state features and is not a requirement to finish every future feature before applying for work.
