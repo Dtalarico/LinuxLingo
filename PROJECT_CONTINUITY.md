@@ -589,3 +589,16 @@ Observed Cengage grading defect:
 **2026-11-09 corpus harvest:** LL265–LL272 appended to `scenario_bank_3.json` (commit `140145b2eb0a04f77a4b6763a019c39c131f3901`), leaving prior drills intact. Updated documented corpus: 272 drills across three banks (100 + 100 + 72). Entries are guided lab-derived text-answer drills; not demonstrations that the CLI validates shell state, handles semantic equivalents, or that author independently mastered them. JSON parsed and count validated during repository write preparation; running `linuxlingo.py` and automated test execution were not performed.
 
 **Next lab handoff:** Await observed cron execution and second-stage Cengage result; if a check remains red, inspect user1 crontab via `crontab -l`, VM clock, cron daemon and backup directory; verify fresh archive and log with their timestamps. Do not report an unobserved success or require needless redundant commands once adequate evidence exists. After this lab, instructor's reopened work remains Virtual Lab 10-2 (optional) and Virtual Lab 10-3 (PuTTY requirement).
+
+
+---
+
+## 2026-11-09 — Virtual Lab 9.3 final cron verifier result (observed after prior pending handoff)
+
+**Evidence:** User's final screenshot showed both second-stage Cengage checks blue/checked: the backup archive and backuplog were created by the cron job; the Linux system log showed the job ran. Together with the previously observed four checks on the script stage, **all six displayed lab verification checks passed**. No separate final grade/Blackboard gradebook entry has been inspected; do not assume a specific numerical score.
+
+**Independent learning milestone:** After the initial schedule became stale, the author independently identified that the elapsed five-minute window required reading the VM clock again and rescheduling; the author used the VM's date output and entered the corrected daily target of 17:54. Prior screenshots showed `service cron status` active (running); the final verifier now supports actual scheduled execution rather than merely installed crontab syntax. The author's self-identified successful troubleshooting should be distinguished from the extensive guidance used to write and repair the backup script.
+
+**Status:** NOS-120 Virtual Lab 9.3 Cengage verifier COMPLETE (all six visible checks). Script/cron run evidence verified by graded interface, not independent hands-on shell reinspection after execution. Prior chronology is retained without overwriting the pending state recorded before this result.
+
+**Next author-directed workflow:** 1. Complete this continuity update, 2. produce a full new-chat handoff (user says the thread is lengthy), 3. prioritize **this week's current NOS-120 lab**, 4. return to remaining reopened makeup work afterward: Virtual Lab 10-3 with PuTTY and optional Virtual Lab 10-2. Preserve Lab -> Learn -> Harvest -> Commit -> Move On; simple deterministic commands, source screenshots, one-step verification, clear assisted vs independent milestones, and strict actual Linux versus Cengage verifier distinctions.
