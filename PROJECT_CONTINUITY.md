@@ -546,3 +546,23 @@ Observed Cengage grading defect:
 **VERIFICATION BOUNDARY:** Documentation only. The existing CLI loads three banks and uses normalized string matching and session scoring; adaptive selection, execution of learner commands, saved mastery and live system-state evaluation are not implemented by this change. No employer-specific hiring outcome is implied.
 
 **Next exact task:** Author selects next code/test milestone, preferably LL-P1 runnable demo and LL-P2 automated tests; verify actual behavior and record authentic pass/fail output before updating milestone status.
+
+
+---
+
+## 2026-11-09 — Current-first LinuxLingo README reorganization
+
+**Author instruction:** Reorganize LinuxLingo for the same professional, newest-first reader experience as Baby Cloud before the README becomes an unwieldy chronology; preserve original history and make the future documentation practice durable in GitHub.
+
+**Source inventory and review:** The complete nontruncated \`main\` Git tree at \`002f123d56422390ba352011103f49205ae960ce\` contained 11 tracked files. All 11 were successfully fetched for inspection, including \`linuxlingo.py\`, all three JSON scenario banks, the governing Master Spec, prior continuity and policy. No test suite or app execution was performed; source inspection is not runtime verification.
+
+**EXECUTED changes:**
+1. Created \`README-HISTORY.md\` from the entire prior README, unchanged at 15,046 characters (commit \`67396b31cffc6a61c028c327d8674692f6135411\`). Verified by fetching the file again and checking the original start/end and length. The archive remains at repo root to preserve relative link context; Git history also preserves the original.
+2. Replaced the sprawling main README with an approximately 7,621-character current-first landing page (commit \`3d8a5909e10e6f6b5aec9bb1a7dba27bf816f0d0\`). It identifies the real Python CLI MVP and its limits, documented 264-drill corpus, quickstart, next reproducible/tested portfolio milestones, canonical Master Spec, current continuity, documentation policy and original archive.
+3. Added the mandatory 'Current-first repository navigation and durable documentation layout' rule to \`docs/documentation-policy.md\` (commit \`3019cd8fe7a36424a7440a3c89e2c651cda80194\`). The rule requires future assistants/engineers to keep current evidence near the top, write dated decisions/history in their proper files, preserve prior intent, avoid appending chronological history to the README, verify links and claims, and only use selective, version-controlled diagrams where useful.
+
+**Verification boundary:** GitHub confirmed both new README and archive exist, and the policy addition was read back. No scenario bank, Python code, application behavior, automated tests, learner mastery or actual code execution changed. The documented drill total remains a previously recorded source claim until fresh automated validation.
+
+**Next exact portfolio task:** At author direction, follow \`docs/portfolio-readiness.md\` to demonstrate the existing MVP running reproducibly (LL-P1), then implement and execute automated loader/corpus and answer-validation tests (LL-P2). Update evidence and compact README state only after observed results. Preserve explicit author approval for software changes.
+
+**Provenance:** Author directed reader-first presentation and durable practice; assistant performed this documentation-only Git reorganization.
