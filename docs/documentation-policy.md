@@ -207,3 +207,19 @@ Document the development of understanding as carefully as the development of sof
 7. **Session handoff:** At meaningful design or implementation closeout, record whether diagram review or update was completed, not needed, or deferred; never claim an uncreated diagram exists.
 
 **Change boundary:** This entry changes documentation practice only. No new diagram, application feature, test result, or learner-mastery result is claimed as implemented by this policy addition.
+
+
+---
+
+## 2026-11-09 — Current-first repository navigation and durable documentation layout
+
+**Status: Author-approved, additive documentation rule.** LinuxLingo follows the same current-first portfolio-presentation principle adopted for Baby Cloud, adapted to a software/instructional repository. The author requires future sessions to apply this structure rather than repeatedly append chronological material to the reader-facing README.
+
+1. **README is a concise present-day landing page.** Prioritize the problem and project purpose; what the actual Python program implements; the last verified or documented corpus/feature state and explicit unverified boundaries; a runnable quickstart; near-term evidence and portfolio milestones; and a short documentation index. Never imply a written Master Specification is implemented software.
+2. **Historical material remains complete and navigable.** Keep the 2026-11-09 pre-reorganization README verbatim in root-level README-HISTORY.md, where prior relative links retain their original base path. Preserve Master Spec chronology, decisions, error records, scenario provenance, continuity and Git history. Do not silently delete or paraphrase away previous author intent.
+3. **Put each kind of change in its proper home.** Authoritative learning/architecture requirements and dated teaching-design history belong in LINUXLINGO_MASTER_SPEC.md; evidence and cross-session state in PROJECT_CONTINUITY.md; observable verified implementations in code and tests; long-term hiring evidence acceptance criteria in docs/portfolio-readiness.md; historical snapshots in the archive; and concise current status in the README.
+4. **Newest relevant facts first; history available by link.** A hiring manager or engineer should see the live prototype scope and limitations within seconds, then be able to follow documentation to inspect the deeper original record.
+5. **Update together, without duplication.** At a significant software, corpus or tutoring change, update relevant implementation/tests, appropriate dated reasoning/evidence records, continuity, and the short README *only where current status changes*. Check internal links, numbers and claimed support against source or observed tests, and update version-controlled diagrams when genuinely helpful. Do not continually append new monthly sections to the README.
+6. **Honor the established change and proof gates.** Inventory and review all relevant files for major reorganization, preserve a verbatim original snapshot first, make reviewable commits, maintain PROPOSED/APPROVED/EXECUTED/VERIFIED boundaries, and protect sensitive learner/instructor information. A source-code inspection is not a test execution, and a count documented in an old journal is not an independently rerun corpus validation.
+
+**Status of this change:** Documentation-navigation policy only. It does not introduce new runtime capabilities, automated tests, a proven clean-install demo or new diagrams.
