@@ -516,3 +516,18 @@ Observed Cengage grading defect:
 **Last verified lab evidence:** The terminal listing showed `backup.tar` at 10,240 bytes with members `file1`, `file2`, and `file3`. The following task was to produce `backup2.tar.gz`; screenshot showed `tar -z backup2.tar.gz backup.tar` entered/being constructed before clarification to `tar -czf backup2.tar.gz backup.tar`. **Successful compression and overall lab grade not verified.** Current repo corpus remains LL001–LL264 (264 drills) unless separately updated and verified.
 
 **Provenance/limits:** This is a **documented and approved tutoring-method change**, not proof an assistant will automatically retrieve it or that the Python engine was changed. At the start of future work, fetch the repository handoff instead of relying on chat memory. Continue LAB → LEARN → HARVEST → COMMIT → MOVE ON for actual lab harvest after observing the rest of the exercise.
+
+
+---
+
+## 2026-11-09 — Selective diagrams and portfolio-evidence discussion
+
+**Author request / approval:** Author explicitly requested that LinuxLingo retain **version-controlled diagrams as part of project documentation**, but use fewer than Baby Cloud and only when they clarify the actual learning engine. The author asked a related engineering-career question about what additional demonstrable outcomes would help the projects support Red Hat/Kyndryl hiring decisions. The discussion is career guidance, not verification of employer standards or completed qualifications.
+
+**Repository inspection:** Current `main` tree at `570f52450729d096101af9180dd956d4b4c081e3` was inventoried (10 tracked files). The README, LL-DOC-001, continuity, and master specification were reviewed for the documentation policy change. No runtime, drill bank, or test execution was conducted; do not imply all 10 files were read in full or that code behavior was newly validated.
+
+**Change EXECUTED:** Appended the dated section 'Purposeful, version-controlled technical diagrams' to `docs/documentation-policy.md` (commit `93753f02cd8d153fe3e059edb34824b9b4476e8d`). Policy favors editable, versioned Mermaid or SVG diagrams of architecture, scenario loading, learning feedback, validation or adaptive flows only when useful; clearly label PROPOSED/IMPLEMENTED/VERIFIED, link to relevant specifications, and keep diagrams aligned with actual code and tests. It does not assert a new diagram exists.
+
+**Portfolio rationale (discussion, not implementation):** Working demonstrations, independent explanation, repeatable tests, reliable failure recovery and authentic evidence strengthen hiring claims more than increased document volume alone. LinuxLingo's next evidence milestone remains a demonstrated, tested learning workflow with clear provenance and limitations; do not mistake authored plans for implemented features.
+
+**Next project step remains author-directed:** Resume the prior code/drill verification and instructional roadmap when the author chooses. Review diagrams at the next substantial architecture change, but do not force an unnecessary visualization.
