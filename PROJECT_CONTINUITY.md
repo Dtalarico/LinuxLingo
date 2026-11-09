@@ -531,3 +531,18 @@ Observed Cengage grading defect:
 **Portfolio rationale (discussion, not implementation):** Working demonstrations, independent explanation, repeatable tests, reliable failure recovery and authentic evidence strengthen hiring claims more than increased document volume alone. LinuxLingo's next evidence milestone remains a demonstrated, tested learning workflow with clear provenance and limitations; do not mistake authored plans for implemented features.
 
 **Next project step remains author-directed:** Resume the prior code/drill verification and instructional roadmap when the author chooses. Review diagrams at the next substantial architecture change, but do not force an unnecessary visualization.
+
+
+---
+
+## 2026-11-09 — Hiring-readiness evidence roadmap created
+
+**Author instruction:** Turn LinuxLingo into a reviewable, hiring-relevant portfolio artifact by recording what remains to be built and verified, without confusing the substantial spec and drill corpus with implemented application functionality.
+
+**Review:** The nontruncated `main` tree at `d3bba12623dbc709aa62eb286b1ea1179ce12643` listed 10 files; all were fetched and inspected, including `linuxlingo.py` and the three scenario banks. No Python tests were executed and no new software runtime claims are made.
+
+**EXECUTED documentation changes:** Created `docs/portfolio-readiness.md` (commit `b534fda08124ffeec83063b314b69de2fe4233fe`) and linked it from `README.md` (commit `c57e55618d45a7dceb74d87b46e19ff663cf2a86`). Priorities: reproducible actual CLI demonstration, automated loader/validation tests, documented limits and safer accepted-answer behavior, a usable guided-to-independent learning workflow, validated corpus, failure and CI evidence, and a concise portfolio demonstration with selective versioned diagrams.
+
+**VERIFICATION BOUNDARY:** Documentation only. The existing CLI loads three banks and uses normalized string matching and session scoring; adaptive selection, execution of learner commands, saved mastery and live system-state evaluation are not implemented by this change. No employer-specific hiring outcome is implied.
+
+**Next exact task:** Author selects next code/test milestone, preferably LL-P1 runnable demo and LL-P2 automated tests; verify actual behavior and record authentic pass/fail output before updating milestone status.
