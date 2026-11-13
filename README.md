@@ -3,9 +3,9 @@
 **A terminal-first Python trainer for Linux command-line fluency through scenarios, active recall, and practical troubleshooting.**
 
 **Author:** David M. Talarico  
-**Last documented project status:** November 9, 2026  
+**Last documented project status:** November 13, 2026  
 **Implementation:** Working-source Python CLI MVP and three JSON scenario banks  
-**Current documented corpus:** 264 drills (LL001–LL264; 100 + 100 + 64), according to the November 8 engineering records  
+**Current documented corpus:** 287 drills (LL001–LL287; 100 + 100 + 87), including 15 guided Virtual Lab 10.3 drills harvested November 13; counts reflect repository data, not a fresh clean-machine test  
 **Next portfolio priority:** Reproducible CLI demonstration and automated tests
 
 > **Learning principle:** Linux should be learned like a language: commands as vocabulary, flags as grammar, pipelines as composition, and real terminal tasks as conversation.
@@ -15,7 +15,7 @@
 | Component / capability | Implemented or documented status |
 |---|---|
 | `linuxlingo.py` | Python command-line application that loads the configured JSON scenario banks, presents random practice prompts, accepts typed answers and tracks a session score |
-| Scenario banks | Three numbered JSON banks, documented as 264 drills in the latest dated harvest |
+| Scenario banks | Three numbered JSON banks, documented as 287 drills through the November 13 guided harvest |
 | Basic feedback | Whitespace-normalized string matching against accepted answers; PASS / FAIL and an expected-answer example, with explanation when supplied |
 | Duplicate-ID protection | Loader rejects duplicate IDs across valid loaded drills |
 | Safe command handling | Learner-entered command text is compared as text; the MVP does **not** execute arbitrary learner commands |
