@@ -1074,3 +1074,20 @@ The lab repeatedly supplied guided `ls -l` and file-creation syntax, then introd
 **Engineering interpretation:** First teach what `cpio` is doing and whether the task requires an archive (`-o`), extraction (`-i`), or pass-through copying (`-p`); then show relevant flags and an exact, inspectable first exercise. A verifier should test the stated operational goal rather than an undisclosed command spelling. Record what the screenshot and terminal actually proved, keep uncertainties visible, and harvest drills only after accurately identifying the intended operation.
 
 **Implementation boundary:** This addendum documents the author's teaching requirements and current lab evidence. The present Python MVP remains a text-answer drill engine; it does not implement a live guided lab, novelty tracking, adaptive mastery, semantic command validation, or actual filesystem-state verification.
+
+
+## 2026-11-13 — Operator cognitive-cost doctrine (author-directed addendum)
+
+**Canonical principle:** The operator should not have to pay the cognitive cost for the designer's lack of consideration. Never externalize an avoidable design burden onto the operator.
+
+**Distinction:** Inherent task complexity belongs in training and documented operating procedures. Avoidable ambiguity, inconsistent syntax, arbitrary terminology, hidden defaults, unexplained prerequisites, and undisclosed validation rules belong on the designer's desk. The operator remains responsible for deliberate authorized actions; the design is responsible for furnishing precise preconditions, accepted inputs, scopes, and expected results before execution.
+
+**Procedural standard (NATOPS-inspired, not a claim of regulatory equivalence):** Before any consequential operation, present the intended target and scope, required authority and context, exact syntax and valid formats, preconditions, side effects and risks, verification command and expected evidence, and safe recovery path. Prefer explicit examples and constrained prompts over trial-and-error discovery. Help must specify acceptable values, not merely labels such as `MONTH`. Do not demand experimentation to reveal an input format already known to the system.
+
+**Instructional standard:** Demonstrate an operation and observable consequence before requiring memorization of nomenclature: **DO → SEE → NAME → REMEMBER**. Distinguish execution permissions from configuration scope; make mode transitions deliberate, visible, and legible. Confirm each step through observable feedback rather than assuming command acceptance implies task completion.
+
+**Observed motivating case (Cisco IOS Packet Tracer, 2026-11-13):** `clock set` interactive help displayed `MONTH — Month of the year` without specifying the accepted month-name syntax (e.g., `Jan` rather than `1` or `01`). The operator was forced into avoidable guesses. The lesson is not to reproduce Cisco syntax everywhere; it is to make parameter constraints and outcomes explicit in the interface.
+
+**Project applicability:** For Baby Cloud, expose target node, execution environment, privilege level, dependencies, exact command, expected state, and rollback/verification before running commands. For LinuxLingo, teach correct commands and accepted values with guided, observable verification; do not mark deliberate operator learning as unproductive cognitive overhead. For FlowTops, TalkChain/tokChain, and esperanTek, require semantic congruence, standardized terminology, explicit context and authorization, clear failure messages, and human-centered operating contracts. Cross-project applicability is a **design directive**, not evidence of implementation.
+
+**Status:** DOCTRINE RECORDED; no new software behavior, hardware testing, or operational implementation is implied. This is a dated append-only extension; earlier text remains authoritative as historical record unless explicitly superseded.
