@@ -1491,5 +1491,320 @@
     "check": null,
     "explanation": "755 is rwx/r-x/r-x. Cengage verifier oddly expected 777 for the less permissive written requirement.",
     "source": "NOS-120 Cengage Virtual Lab 9.3, 2026-11-09; guided session with screenshots; independent mastery not proven"
+  },
+  {
+    "id": "LL273",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "ssh",
+    "tags": [
+      "ssh",
+      "2026-11-13",
+      "lab-harvest",
+      "guided-discussion",
+      "virtual-lab-10.3"
+    ],
+    "prompt": "Connect from a Windows laptop with PuTTY to an Azure Linux VM at its currently assigned public IP address. What is the default SSH TCP port?",
+    "answers": [
+      "22"
+    ],
+    "check": null,
+    "explanation": "SSH commonly listens on TCP port 22. An Azure VM's live NIC public IP must be read from Azure; do not assume a copied or stale lab IP is correct.",
+    "source": "NOS-120 Cengage Virtual Lab 10.3, 2026-11-13; guided command construction/hint comparison, PuTTY screenshots and Blackboard 100/100; independent delayed recall not established"
+  },
+  {
+    "id": "LL274",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "sudo",
+    "tags": [
+      "sudo",
+      "2026-11-13",
+      "lab-harvest",
+      "guided-discussion",
+      "virtual-lab-10.3"
+    ],
+    "prompt": "While signed in as an authorized regular account, set a root password without first switching identity to root.",
+    "answers": [
+      "sudo passwd root"
+    ],
+    "check": null,
+    "explanation": "sudo elevates passwd for the selected account; setting a root password is different from switching to a root login shell. Ubuntu administration normally prefers sudo over routine root passwords.",
+    "source": "NOS-120 Cengage Virtual Lab 10.3, 2026-11-13; guided command construction/hint comparison, PuTTY screenshots and Blackboard 100/100; independent delayed recall not established"
+  },
+  {
+    "id": "LL275",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "su",
+    "tags": [
+      "su",
+      "2026-11-13",
+      "lab-harvest",
+      "guided-discussion",
+      "virtual-lab-10.3"
+    ],
+    "prompt": "After setting root's password, open a root login shell with a full login environment.",
+    "answers": [
+      "su -"
+    ],
+    "check": null,
+    "explanation": "su - enters a login shell with the target user's environment/home; plain su changes identity but normally retains the current working directory.",
+    "source": "NOS-120 Cengage Virtual Lab 10.3, 2026-11-13; guided command construction/hint comparison, PuTTY screenshots and Blackboard 100/100; independent delayed recall not established"
+  },
+  {
+    "id": "LL276",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "groupadd",
+    "tags": [
+      "groupadd",
+      "2026-11-13",
+      "lab-harvest",
+      "guided-discussion",
+      "virtual-lab-10.3"
+    ],
+    "prompt": "As root, create a group named east1.",
+    "answers": [
+      "groupadd east1"
+    ],
+    "check": null,
+    "explanation": "groupadd accepts one group name per invocation; create west1 and south1 in separate invocations.",
+    "source": "NOS-120 Cengage Virtual Lab 10.3, 2026-11-13; guided command construction/hint comparison, PuTTY screenshots and Blackboard 100/100; independent delayed recall not established"
+  },
+  {
+    "id": "LL277",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "groupmod",
+    "tags": [
+      "groupmod",
+      "2026-11-13",
+      "lab-harvest",
+      "guided-discussion",
+      "virtual-lab-10.3"
+    ],
+    "prompt": "Rename existing group west1 to west_region.",
+    "answers": [
+      "groupmod west1 -n west_region"
+    ],
+    "check": null,
+    "explanation": "The -n option sets the new group name. Both 'groupmod west1 -n west_region' and 'groupmod -n west_region west1' are valid on the lab's Linux; Cengage used the former.",
+    "source": "NOS-120 Cengage Virtual Lab 10.3, 2026-11-13; guided command construction/hint comparison, PuTTY screenshots and Blackboard 100/100; independent delayed recall not established"
+  },
+  {
+    "id": "LL278",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "groupdel",
+    "tags": [
+      "groupdel",
+      "2026-11-13",
+      "lab-harvest",
+      "guided-discussion",
+      "virtual-lab-10.3"
+    ],
+    "prompt": "Delete the group west_region.",
+    "answers": [
+      "groupdel west_region"
+    ],
+    "check": null,
+    "explanation": "groupdel removes an existing group; confirm the exact target name before deleting.",
+    "source": "NOS-120 Cengage Virtual Lab 10.3, 2026-11-13; guided command construction/hint comparison, PuTTY screenshots and Blackboard 100/100; independent delayed recall not established"
+  },
+  {
+    "id": "LL279",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "echo",
+    "tags": [
+      "echo",
+      "2026-11-13",
+      "lab-harvest",
+      "guided-discussion",
+      "virtual-lab-10.3"
+    ],
+    "prompt": "As root, make a /etc/skel/ file literally named 'sample template' (with a space) containing the line 'sample text'.",
+    "answers": [
+      "echo \"sample text\" > /etc/skel/\"sample template\""
+    ],
+    "check": null,
+    "explanation": "The destination filename includes a literal space; quote it or escape the space. /etc/skel is copied into new home directories when useradd -m is used.",
+    "source": "NOS-120 Cengage Virtual Lab 10.3, 2026-11-13; guided command construction/hint comparison, PuTTY screenshots and Blackboard 100/100; independent delayed recall not established"
+  },
+  {
+    "id": "LL280",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "useradd",
+    "tags": [
+      "useradd",
+      "2026-11-13",
+      "lab-harvest",
+      "guided-discussion",
+      "virtual-lab-10.3"
+    ],
+    "prompt": "Create utwo with primary group east1 and a new home directory populated from /etc/skel.",
+    "answers": [
+      "useradd utwo -g east1 -m"
+    ],
+    "check": null,
+    "explanation": "-g sets the primary group; -m creates the home directory and populates it from /etc/skel. This lab prefers account name followed by its options.",
+    "source": "NOS-120 Cengage Virtual Lab 10.3, 2026-11-13; guided command construction/hint comparison, PuTTY screenshots and Blackboard 100/100; independent delayed recall not established"
+  },
+  {
+    "id": "LL281",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "passwd",
+    "tags": [
+      "passwd",
+      "2026-11-13",
+      "lab-harvest",
+      "guided-discussion",
+      "virtual-lab-10.3"
+    ],
+    "prompt": "As an administrator, set a new password for utwo.",
+    "answers": [
+      "passwd utwo"
+    ],
+    "check": null,
+    "explanation": "The lab used 'sudo passwd utwo' from a root shell; sudo is unnecessary when already root. Successful execution prints 'password updated successfully'.",
+    "source": "NOS-120 Cengage Virtual Lab 10.3, 2026-11-13; guided command construction/hint comparison, PuTTY screenshots and Blackboard 100/100; independent delayed recall not established"
+  },
+  {
+    "id": "LL282",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "chage",
+    "tags": [
+      "chage",
+      "2026-11-13",
+      "lab-harvest",
+      "guided-discussion",
+      "virtual-lab-10.3"
+    ],
+    "prompt": "Set utwo's minimum password age to 5 days and maximum password age to 60 days.",
+    "answers": [
+      "chage utwo -m 5 -M 60"
+    ],
+    "check": null,
+    "explanation": "For chage, lowercase -m is minimum days and uppercase -M maximum. These flags differ from useradd -m. Display policy without changing it using chage -l utwo.",
+    "source": "NOS-120 Cengage Virtual Lab 10.3, 2026-11-13; guided command construction/hint comparison, PuTTY screenshots and Blackboard 100/100; independent delayed recall not established"
+  },
+  {
+    "id": "LL283",
+    "type": "scenario",
+    "difficulty": "intermediate",
+    "tier": "fluency",
+    "category": "usermod",
+    "tags": [
+      "usermod",
+      "2026-11-13",
+      "lab-harvest",
+      "guided-discussion",
+      "virtual-lab-10.3"
+    ],
+    "prompt": "Assign south1 as utwo's supplementary group, as specified in a lab where no earlier supplementary memberships need preservation.",
+    "answers": [
+      "usermod utwo -G south1"
+    ],
+    "check": null,
+    "explanation": "Uppercase -G sets the supplementary-group list; using it without -a REPLACES existing supplementary memberships. -aG would preserve them but was not in this lab's hint. Lowercase -g changes the primary group.",
+    "source": "NOS-120 Cengage Virtual Lab 10.3, 2026-11-13; guided command construction/hint comparison, PuTTY screenshots and Blackboard 100/100; independent delayed recall not established"
+  },
+  {
+    "id": "LL284",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "userdel",
+    "tags": [
+      "userdel",
+      "2026-11-13",
+      "lab-harvest",
+      "guided-discussion",
+      "virtual-lab-10.3"
+    ],
+    "prompt": "Remove temporary user uthree and its home directory.",
+    "answers": [
+      "userdel uthree -r"
+    ],
+    "check": null,
+    "explanation": "-r removes the home directory and mail spool if present. A missing /var/mail/uthree warning does not mean account deletion failed; 'id uthree' returning 'no such user' verified deletion.",
+    "source": "NOS-120 Cengage Virtual Lab 10.3, 2026-11-13; guided command construction/hint comparison, PuTTY screenshots and Blackboard 100/100; independent delayed recall not established"
+  },
+  {
+    "id": "LL285",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "tail",
+    "tags": [
+      "tail",
+      "2026-11-13",
+      "lab-harvest",
+      "guided-discussion",
+      "virtual-lab-10.3"
+    ],
+    "prompt": "Display the last ten lines of the local group account database.",
+    "answers": [
+      "tail /etc/group"
+    ],
+    "check": null,
+    "explanation": "The output displayed east1 and 'south1:x:...:utwo'. The /etc/group member list shows supplementary memberships, while primary-group association is recorded with the account's GID.",
+    "source": "NOS-120 Cengage Virtual Lab 10.3, 2026-11-13; guided command construction/hint comparison, PuTTY screenshots and Blackboard 100/100; independent delayed recall not established"
+  },
+  {
+    "id": "LL286",
+    "type": "scenario",
+    "difficulty": "intermediate",
+    "tier": "fluency",
+    "category": "su",
+    "tags": [
+      "su",
+      "2026-11-13",
+      "lab-harvest",
+      "guided-discussion",
+      "virtual-lab-10.3"
+    ],
+    "prompt": "While already operating as utwo in /root, start a new login shell as utwo and arrive in /home/utwo.",
+    "answers": [
+      "su - utwo"
+    ],
+    "check": null,
+    "explanation": "Plain 'su utwo' changed identity without moving out of /root; '- ' sets login environment and home directory, normally requiring the target account's password if the caller is not root.",
+    "source": "NOS-120 Cengage Virtual Lab 10.3, 2026-11-13; guided command construction/hint comparison, PuTTY screenshots and Blackboard 100/100; independent delayed recall not established"
+  },
+  {
+    "id": "LL287",
+    "type": "scenario",
+    "difficulty": "beginner",
+    "tier": "fluency",
+    "category": "cat",
+    "tags": [
+      "cat",
+      "2026-11-13",
+      "lab-harvest",
+      "guided-discussion",
+      "virtual-lab-10.3"
+    ],
+    "prompt": "While in /home/utwo, display the inherited file named 'sample template' and confirm its contents.",
+    "answers": [
+      "cat \"sample template\""
+    ],
+    "check": null,
+    "explanation": "The lab screenshot showed ls -l reporting utwo:east1 ownership and cat displaying 'sample text'. Quoting preserves the filename's space.",
+    "source": "NOS-120 Cengage Virtual Lab 10.3, 2026-11-13; guided command construction/hint comparison, PuTTY screenshots and Blackboard 100/100; independent delayed recall not established"
   }
 ]
