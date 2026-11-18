@@ -1091,3 +1091,26 @@ The lab repeatedly supplied guided `ls -l` and file-creation syntax, then introd
 **Project applicability:** For Baby Cloud, expose target node, execution environment, privilege level, dependencies, exact command, expected state, and rollback/verification before running commands. For LinuxLingo, teach correct commands and accepted values with guided, observable verification; do not mark deliberate operator learning as unproductive cognitive overhead. For FlowTops, TalkChain/tokChain, and esperanTek, require semantic congruence, standardized terminology, explicit context and authorization, clear failure messages, and human-centered operating contracts. Cross-project applicability is a **design directive**, not evidence of implementation.
 
 **Status:** DOCTRINE RECORDED; no new software behavior, hardware testing, or operational implementation is implied. This is a dated append-only extension; earlier text remains authoritative as historical record unless explicitly superseded.
+
+
+---
+
+## 2026-11-18 — Discovery-first teaching and human-readable syntax (author-directed addendum)
+
+**Status:** APPROVED teaching/design requirement, DOCUMENTED; implementation in the CLI or trainer has **not** been changed or tested. All previous specification text is retained.
+
+### Every unfamiliar Linux component: teach three things together
+
+1. **What it does.** Define the component, its purpose, its operating-system layer, and how it connects to the task. Expand acronyms and decode command or filename terminology rather than assuming prior vocabulary.
+2. **How to discover where it lives.** Start from the function being administered, identify the responsible installed software/service, locate its configuration or documentation entry point, and follow actual references to the precise existing file or setting. Explain each meaningful path segment. Teach reproducible read-only discovery rather than requiring memorization of thousands of files under `/etc`.
+3. **How to verify it works.** Supply expected state/output, safe verification commands, failure signs, and the limits of what each check proves; do not confuse valid syntax with successful operation or local success with end-to-end service success.
+
+**Operator sequence:** **INSPECT → READ → CHECK → EXECUTE → VERIFY**, in that exact order. Inspect real files and state; read the lab's literal instruction; check target, requirements, preserved settings, dependency and evidence; execute the smallest authorized change; then verify the saved result and the actual system effect. Move through course steps one at a time. Never present assumptions as observed facts or substitute a plausible value for an unverified one. Preserve unrelated network-management interfaces; never truncate an unknown file or apply a risky change before understanding its effects. When a step requires multiple edits to the same configuration, collect the full intended change, edit once, validate once, apply once, and verify before moving forward, unless the actual instructions specifically require an intermediate checkpoint.
+
+**Mechanism-first example:** For a DNS A record, begin with what an A record means (hostname → IPv4 address), identify the installed DNS server implementation, and discover its zone file by following its configuration rather than presuming a beginner knows `named.conf.local`. In a BIND environment, explain the meaning of `/etc`, BIND (Berkeley Internet Name Domain), `named` (name daemon), `.conf` and `.local`; inspect `named.conf` and the referenced zone declaration, and verify its actual `file` setting. Explain Netplan's network configuration versus DNS client settings versus BIND's server-side zone records. Demonstrate that CIDR notation belongs in an interface address but not the destination argument to `ping`.
+
+### Human-readable whitespace is a design requirement, not wasted storage
+
+**Author's principle:** It is not 1986; modern software should not force the operator to decipher walls of dense symbols to save a few bytes. Design interfaces, documentation, examples, command output, error messages, configuration and serialized intent specifications for human comprehension first. Use meaningful whitespace, indentation, visual separation, grouping, descriptive names and consistent formatting so a reader can *see the structure*. Explain grammar before introducing compressed syntax. Prefer one coherent, discoverable operator-facing language over arbitrary implementation-specific incantations. Retain machine-readable precision, existing format specifications, protocol requirements, and safe parsing; do not insert whitespace where syntax forbids it. Apply this principle to the LinuxLingo teaching experience, scenario authoring and proposed future interface design, and cross-reference EsperanTek's readable semantic-intent interface.
+
+**Evidence distinction:** These are recorded future teaching and design requirements. No code, corpus, external Linux machine, or user-system setting is asserted changed by this documentation-only addition.
