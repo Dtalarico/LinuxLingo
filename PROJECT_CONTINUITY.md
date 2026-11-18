@@ -7,6 +7,23 @@ Update this file after every substantial LinuxLingo work session.
 
 ---
 
+## 2026-11-18 — Author-directed scope-creep correction (append-only)
+
+**Authority and purpose:** The project author explicitly requested this append-only record after reviewing the repository and objecting to unsupervised expansion of LinuxLingo's scope. This entry records that correction; it does not retroactively erase earlier discussions, approve prior expansions, or authorize a rewrite.
+
+**Scope boundary reaffirmed:** LinuxLingo is a **terminal-first Linux command-line fluency trainer**, using the existing Python CLI and JSON scenario banks. Its active coursework workflow is **LAB → LEARN → HARVEST → COMMIT → MOVE ON**. Harvest genuine Linux commands, syntax, arguments/options, operational use, relevant verification, and source provenance. Check existing drills and avoid duplicates before adding a new one. A useful drill should remain about command-line practice rather than broad educational theory.
+
+**Scope-creep concern:** Recent Master Specification and continuity additions accumulated instructional-design doctrines, operator-cognitive-cost ideas, cross-project implications and tutoring-method commentary beyond what the author intended to request from routine lab harvesting. Those historical entries remain preserved for accountability; their presence **does not constitute permission** to enlarge the product requirements or modify its roadmap, architecture, or educational mission.
+
+**Operating restriction from this point:** No unsolicited pedagogical doctrine, curriculum redesign, feature expansion, Baby Cloud cross-project changes, or architecture changes may be committed as part of Linux lab harvesting. Do not reclassify frustration with a course as a new LinuxLingo requirement. Discuss any proposed scope change separately and obtain explicit author review and approval **before** modifying project specifications or implementation. Do not treat prior assistant-authored documentation as authorization for new scope changes.
+
+**Immediate priority:** Finish time-sensitive NOS-120 Linux labs using brief assistance, allow the author to guess where desired, capture commands without interrupting the lab, and commit only the relevant command-drill harvest when authorized. Preserve accuracy, source provenance, prior material, and the distinction between proposed, executed, and verified work.
+
+**Change boundary:** This commit appends only this dated continuity entry. It does not edit previous policy text, remove prior entries, alter the Python program, change scenario banks, or imply that a new drill has been committed.
+
+
+---
+
 ## Instructional authorship and cross-session handoff
 
 The project's goal includes teaching the student to **write clear, accurate technical and engineering records independently**, not merely collecting entries that an AI assistant writes on the student's behalf. Earlier assistant-written records are useful continuity artifacts but are **not evidence of independent student authorship**.
@@ -671,19 +688,3 @@ Observed Cengage grading defect:
 
 **Current next course task:** Virtual Lab **10.2** (reopened/makeup), then up to three CTI-120 Packet Tracer networking labs Friday; Saturday remainder of networking labs, this week's Linux work and McGraw-Hill work. Two CTI-120 networking labs and checkpoint exam have Sunday due date; McGraw-Hill is due November 20. Course priorities may change at user's direction. Do not mark 10.2 or networking labs complete unless verified separately.
 
-
----
-
-## 2026-11-18 — Author-directed scope-creep correction (append-only)
-
-**Authority and purpose:** The project author explicitly requested this append-only record after reviewing the repository and objecting to unsupervised expansion of LinuxLingo's scope. This entry records that correction; it does not retroactively erase earlier discussions, approve prior expansions, or authorize a rewrite.
-
-**Scope boundary reaffirmed:** LinuxLingo is a **terminal-first Linux command-line fluency trainer**, using the existing Python CLI and JSON scenario banks. Its active coursework workflow is **LAB → LEARN → HARVEST → COMMIT → MOVE ON**. Harvest genuine Linux commands, syntax, arguments/options, operational use, relevant verification, and source provenance. Check existing drills and avoid duplicates before adding a new one. A useful drill should remain about command-line practice rather than broad educational theory.
-
-**Scope-creep concern:** Recent Master Specification and continuity additions accumulated instructional-design doctrines, operator-cognitive-cost ideas, cross-project implications and tutoring-method commentary beyond what the author intended to request from routine lab harvesting. Those historical entries remain preserved for accountability; their presence **does not constitute permission** to enlarge the product requirements or modify its roadmap, architecture, or educational mission.
-
-**Operating restriction from this point:** No unsolicited pedagogical doctrine, curriculum redesign, feature expansion, Baby Cloud cross-project changes, or architecture changes may be committed as part of Linux lab harvesting. Do not reclassify frustration with a course as a new LinuxLingo requirement. Discuss any proposed scope change separately and obtain explicit author review and approval **before** modifying project specifications or implementation. Do not treat prior assistant-authored documentation as authorization for new scope changes.
-
-**Immediate priority:** Finish time-sensitive NOS-120 Linux labs using brief assistance, allow the author to guess where desired, capture commands without interrupting the lab, and commit only the relevant command-drill harvest when authorized. Preserve accuracy, source provenance, prior material, and the distinction between proposed, executed, and verified work.
-
-**Change boundary:** This commit appends only this dated continuity entry. It does not edit previous policy text, remove prior entries, alter the Python program, change scenario banks, or imply that a new drill has been committed.
