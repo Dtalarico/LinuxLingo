@@ -688,3 +688,14 @@ Observed Cengage grading defect:
 
 **Current next course task:** Virtual Lab **10.2** (reopened/makeup), then up to three CTI-120 Packet Tracer networking labs Friday; Saturday remainder of networking labs, this week's Linux work and McGraw-Hill work. Two CTI-120 networking labs and checkpoint exam have Sunday due date; McGraw-Hill is due November 20. Course priorities may change at user's direction. Do not mark 10.2 or networking labs complete unless verified separately.
 
+
+
+## 2026-11-20 — Command-harvest priority correction (author-directed, append-only)
+
+**Author's explicit correction:** LinuxLingo harvesting exists to collect Linux **commands** from real NOS-120 labs and learning sessions and turn them into usable command-practice drills. Do not let instructional-design discussions, policy work, or an excessively restrictive definition of “new” displace that primary work.
+
+**Required behavior during every Linux lab:** Maintain a lightweight running list of command-harvest candidates as commands arise, without interrupting lab completion or demanding a separate harvest request. Include (1) a command not yet represented, (2) a new flag, syntax form, or command combination, and (3) a materially useful new application or troubleshooting/verification use of a familiar command. Do **not** require an entirely novel command name for an item to qualify. Check existing banks and skip genuinely redundant drills, but do not skip worthwhile variations merely because the underlying command already exists.
+
+**After the lab:** Turn relevant candidates into accurate, source-attributed command drills in the current numbered JSON bank, preserving sequential IDs, existing drills, valid answers, and the distinction between guided execution and independent mastery. Validate JSON, unique IDs, and bank loading, then commit and verify only the approved harvest. If a lab ends before harvesting can be committed, report the uncommitted candidates clearly rather than silently losing them. Continue **LAB → LEARN → HARVEST → COMMIT → MOVE ON**.
+
+**Strict scope boundary:** This correction is an execution reminder, **not** authorization to change the Python engine, Master Specification, pedagogy, architecture, other projects, or historical records. Prioritize the student's graded lab. No unrelated documentation or feature work.
